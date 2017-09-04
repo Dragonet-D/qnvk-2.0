@@ -1,0 +1,8 @@
+// 转换rem
+@function r($px) {
+  @return $px / $r * 1rem
+}
+// 转换百分比
+@function percent(){
+
+}

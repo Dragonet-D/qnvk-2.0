@@ -1,0 +1,20 @@
+$header-height: r(88);
+$logo-height: r(50);
+$search-input-width: r(622);
+$search-input-height: r(50);
+header{
+  height: $header-height;
+  border-top: 1px solid $header-border-color;
+  border-bottom: 1px solid $header-border-color;
+  display: flex;
+  justify-content: space-around;
+  .logo{
+    width: $logo-height;
+    height: $logo-height;
+    background: $header-border-color;
+  }
+  .search-input{
+    width: $search-input-width;
+    height: $search-input-height;
+  }
+}

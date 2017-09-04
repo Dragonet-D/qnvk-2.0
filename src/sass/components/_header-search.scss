@@ -1,20 +1,22 @@
 $header-height: r(88);
 $logo-height: r(50);
-$search-input-width: r(622);
+$search-input-width: 600;
 $search-input-height: r(50);
-header{
+header {
   height: $header-height;
   border-top: 1px solid $header-border-color;
   border-bottom: 1px solid $header-border-color;
   display: flex;
   justify-content: space-around;
-  .logo{
+  align-content: center;
+  .logo {
     width: $logo-height;
     height: $logo-height;
     background: $header-border-color;
+    display: block;
   }
-  .search-input{
-    width: $search-input-width;
+  .search-input {
+    width: percent($search-input-width);
     height: $search-input-height;
   }
 }

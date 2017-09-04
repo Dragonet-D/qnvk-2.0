@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <script>
+    (function () {
+      setRem();
+      window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+
+      function setRem() {
+        var html = document.documentElement;
+        var width = html.clientWidth;
+        html.style.fontSize = width / 12 + "px";
+      }
+    })();
+  </script>
+</head>
+<body>
+<!--搜索头部-->
+<header>
+  <i class="logo"></i>
+  <input class="search-input" type="text">
+</header>
+</body>
+</html>

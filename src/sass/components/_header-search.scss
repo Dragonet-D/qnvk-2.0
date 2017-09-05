@@ -3,7 +3,7 @@ $logo-height: r(50);
 $search-input-width: 600;
 $search-input-height: r(50);
 header {
-  height: $header-height;
+  padding: r(19) 0;
   border-top: 1px solid $header-border-color;
   border-bottom: 1px solid $header-border-color;
   display: flex;
@@ -18,5 +18,9 @@ header {
   .search-input {
     width: percent($search-input-width);
     height: $search-input-height;
+    border: 1px solid $header-border-color;
+    font-size: r(28);
+    border-radius: 12px;
+    outline: none;
   }
 }

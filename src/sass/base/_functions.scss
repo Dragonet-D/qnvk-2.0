@@ -1,3 +1,4 @@
+@charset "utf-8";
 // 转换rem
 @function r($px) {
   @return $px / $r * 1rem

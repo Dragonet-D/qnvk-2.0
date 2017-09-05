@@ -433,7 +433,7 @@ template {
 }
 
 header {
-  height: 1.76rem;
+  padding: 0.38rem 0;
   border-top: 1px solid red;
   border-bottom: 1px solid red;
   display: flex;
@@ -449,4 +449,8 @@ header .logo {
 header .search-input {
   width: 80%;
   height: 1rem;
+  border: 1px solid red;
+  font-size: 0.56rem;
+  border-radius: 12px;
+  outline: none;
 }

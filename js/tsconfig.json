@@ -1,0 +1,85 @@
+{
+  "info": [
+    {
+      "cid": "44",
+      "categoryname": "心理健康",
+      "info": [
+        {
+          "id": "25607",
+          "livetype": "2",
+          "picture": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-09-06/59afbb6d2824c.jpg",
+          "title": "20170906期“青年之声”青少年心理健康公益讲堂",
+          "categoryname": "心理健康",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-08-13/5990176bc01b0.jpg",
+          "name": "黄怀"
+        }
+      ]
+    },
+    {
+      "cid": "29",
+      "categoryname": "物理",
+      "info": [
+        {
+          "id": "25743",
+          "livetype": "1",
+          "picture": "http://pic.aodianyun.com/aodianyun/wxcarousel/497615c8d02e83ca79582c73e6287ffe/400/225",
+          "title": "四川师范大学附属中学李晓霞公益直播课堂",
+          "categoryname": "物理",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-07-28/597ae81953834.jpg",
+          "name": "石室联中文华"
+        }
+      ]
+    },
+    {
+      "cid": "13",
+      "categoryname": "数学",
+      "info": [
+        {
+          "id": "25506",
+          "livetype": "2",
+          "picture": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-08-30/59a6216e613b2.jpg",
+          "title": "20170830期“青年之声”青少年心理健康公益讲堂",
+          "categoryname": "数学",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-08-21/599a4c6bc9675.jpg",
+          "name": "权莉"
+        },
+        {
+          "id": "25507",
+          "livetype": "2",
+          "picture": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-08-31/59a78f42e6278.jpg",
+          "title": "20170831期“青年之声”青少年心理健康公益讲堂",
+          "categoryname": "数学",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-08-13/59901e12be5c9.png",
+          "name": "李超琼"
+        },
+        {
+          "id": "25508",
+          "livetype": "2",
+          "picture": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-09-01/59a90ad65657e.jpg",
+          "title": "20170901期“青年之声”青少年心理健康公益讲堂",
+          "categoryname": "数学",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-08-15/59925650871af.jpg",
+          "name": "古月"
+        },
+        {
+          "id": "25601",
+          "livetype": "1",
+          "picture": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-09-03/59ab711cd0fa6.jpg",
+          "title": "成都泡桐树小学孟乔老师直播公益讲堂",
+          "categoryname": "数学",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-09-02/59aa0e0a1e208.jpg",
+          "name": "成都泡桐树小学孟乔"
+        },
+        {
+          "id": "25603",
+          "livetype": "2",
+          "picture": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-09-05/59ae0201c5208.jpg",
+          "title": "20170905期“青年之声”青少年心理健康公益讲堂",
+          "categoryname": "数学",
+          "touxiang": "http://assert-qnvk.oss-cn-shenzhen.aliyuncs.com/Uploads/Picture/2017-09-05/59ae014fad006.jpg",
+          "name": "刘心"
+        }
+      ]
+    }
+  ]
+}

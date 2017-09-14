@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="stylesheets/index.css">
+  <!--<script src="../node_modules/vconsole/dist/vconsole.min.js"></script>-->
+  <script>
+    (function () {
+      setRem()
+      window.addEventListener('orientation' in window ? 'deviceorientation' : 'resize', setRem)
+
+      function setRem() {
+        var html = document.documentElement
+        var width = html.clientWidth
+        html.style.fontSize = width / 15 + 'px'
+      }
+    })()
+  </script>
+  <title>青年V课堂</title>
+</head>
+<body>
+<div class="header">
+  <!-- 头部筛选遮罩-->
+  <div class="tab_mask" style="display: none">
+    <h3 class="tab_mask_remind">筛选</h3>
+    <!--学科-->
+    <div class="objects">
+      <h2>学科:</h2>
+      <span>语文</span>
+      <span>语文</span>
+      <span>语文</span>
+      <span>语文</span>
+      <span>语文</span>
+      <span>语文</span>
+    </div>
+    <!--学段-->
+    <div class="stages">
+      <h2>学段:</h2>
+      <span>小学</span>
+      <span>小学</span>
+      <span>小学</span>
+    </div>
+    <!--年级-->
+    <div class="classes">
+      <h2>年级:</h2>
+      <span>1</span>
+      <span>1</span>
+      <span>1</span>
+      <span>1</span>
+      <span>1</span>
+      <span>1</span>
+    </div>
+  </div>
+  <!--轮播-->
+  <div id="banner">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+<!--选项卡-->
+<div id="tab" class="swiper-container-tab">
+  <div class="swiper-wrapper">
+  </div>
+</div>
+</div>
+<!--精选推荐-->
+<div id="home_advance" class="video_audios tabs" style="display: block;">
+  <!--直播预告-->
+  <div id="class_advance" class="class_advance choose_craful" style="display: none">
+    <h2>直播预告</h2>
+    <ul class="class_advance">
+    </ul>
+  </div>
+  <!--推荐语音-->
+  <div id="audio_advance" class="audio_advance choose_craful">
+    <h2 class="audio_title"></h2>
+    <ul class="audio_content"></ul>
+  </div>
+</div>
+<!--精选推荐-->
+<div class="video_audios tabs">
+  <div class="video_audio">
+    <ul class="list_content">
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--课程包-->
+<div class="class_bags tabs">
+  <div class="video_audio">
+    <ul class="list_content">
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+      <li class="single_video">
+        <a class="single_list_wrapper" href="javascript:">
+          <section class="list_header">
+              <span class="list_header_info">
+                <img class="class_type" src="images/all_live_video@2x.png" alt="">
+                <strong class="is_free">免费</strong>
+              </span>
+            <img src="images/recommend_window_img@2x.png" alt="">
+            <span class="title">
+                <title class="video_introduce">初中二年级化学-有机化学</title>
+              </span>
+          </section>
+          <p class="video_owner">韩梅梅</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--课程包-->
+<div class="class_bags tabs">
+  <div class="class_bag">
+    <ul class="audio_content">
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_package_portrait_img@2x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">高考作文的写作技能提升</span>
+          <span class="audio_owner">高考作文的写作技能提升高考作文的写作技能提升</span>
+          <span class="audio_hot">
+              <span>
+                <time>2017-9-1</time>
+                <i class="watched_sum">23456</i>
+                <i>购买</i>
+              </span>
+              <i class="bag_price">¥199.00</i>
+            </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_package_portrait_img@2x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">高考作文的写作技能提升</span>
+          <span class="audio_owner">高考作文的写作技能提升高考作文的写作技能提升</span>
+          <span class="audio_hot">
+              <span>
+                <time>2017-9-1</time>
+                <i class="watched_sum">23456</i>
+                <i>购买</i>
+              </span>
+              <i class="bag_price">¥199.00</i>
+            </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_package_portrait_img@2x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">高考作文的写作技能提升</span>
+          <span class="audio_owner">高考作文的写作技能提升高考作文的写作技能提升</span>
+          <span class="audio_hot">
+              <span>
+                <time>2017-9-1</time>
+                <i class="watched_sum">23456</i>
+                <i>购买</i>
+              </span>
+              <i class="bag_price">¥199.00</i>
+            </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_package_portrait_img@2x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">高考作文的写作技能提升</span>
+          <span class="audio_owner">高考作文的写作技能提升高考作文的写作技能提升</span>
+          <span class="audio_hot">
+              <span>
+                <time>2017-9-1</time>
+                <i class="watched_sum">23456</i>
+                <i>购买</i>
+              </span>
+              <i class="bag_price">¥199.00</i>
+            </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--语音课程-->
+<div class="audio_lists tabs">
+  <div class="audio_list">
+    <ul class="audio_content">
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                <time>2017-9-1</time>
+                <span>
+                  <i class="watched_sum">23456</i>
+                  <i>人气</i>
+                </span>
+              </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                <time>2017-9-1</time>
+                <span>
+                  <i class="watched_sum">23456</i>
+                  <i>人气</i>
+                </span>
+              </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                <time>2017-9-1</time>
+                <span>
+                  <i class="watched_sum">23456</i>
+                  <i>人气</i>
+                </span>
+              </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                <time>2017-9-1</time>
+                <span>
+                  <i class="watched_sum">23456</i>
+                  <i>人气</i>
+                </span>
+              </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--语音课程-->
+<div class="audio_lists tabs">
+  <div class="audio_list">
+    <ul class="audio_content">
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                  <time>2017-9-1</time>
+                  <span>
+                    <i class="watched_sum">23456</i>
+                    <i>人气</i>
+                  </span>
+                </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                  <time>2017-9-1</time>
+                  <span>
+                    <i class="watched_sum">23456</i>
+                    <i>人气</i>
+                  </span>
+                </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                  <time>2017-9-1</time>
+                  <span>
+                    <i class="watched_sum">23456</i>
+                    <i>人气</i>
+                  </span>
+                </span>
+        </a>
+      </li>
+      <li class="audio_item">
+        <a class="icon" href="javascript:">
+          <img src="images/recommend_psycho_portrait_img@3x.png" alt="">
+        </a>
+        <a class="audio_info" href="javascript:">
+          <span class="audio_title">心时代家庭教育系统之技法--明确目标心时代家庭教育系统之技法</span>
+          <span class="audio_owner">心时代家庭教育系统之技法</span>
+          <span class="audio_hot">
+                  <time>2017-9-1</time>
+                  <span>
+                    <i class="watched_sum">23456</i>
+                    <i>人气</i>
+                  </span>
+                </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--loading-->
+<div class="loading">
+  <img width="24" height="24" src="images/loading.gif" alt="">
+  <p class="desc">正在载入...</p>
+</div>
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/swiper.jquery.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

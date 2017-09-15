@@ -37,34 +37,46 @@ $.ajax({
   // 头部遮罩
   var tabMsk = $('.tab_mask')
   var header = $('.header')
+  var homeadvance = $('#home_advance')
   // 选项卡构造函数
-  var tabcenter = new TabCenter(tab, tabContents, tabMsk, mySwiper)
+  var tabcenter = new TabCenter(tab, tabContents, tabMsk, mySwiper, homeadvance)
   tabcenter.init()
   var tabwrapper = $('#tab .swiper-wrapper').find('.swiper-slide').eq(0).addClass('active')
   // tab固定
   var tabfixed = new TabFixed('#tab', '.header')
   tabfixed.init()
 })
+var homeadvance = $('#home_advance')
+var chooseObj = {
+  id: '',
+  tags: ''
+}
+
 // 主页默认数据接口
-function advanceData(obj) {
+function advanceData(chooseObj) {
   $.ajax({
-    url: 'http://192.168.0.68/914/live/index.php/Newindex/info/id'+obj,
-    type: 'get',
+    url: 'http://192.168.0.68/914/live/index.php/Newindex/info',
+    type: 'post',
     dataType: 'jsonp',
+    data: chooseObj,
     jsonp: 'jsonpcallback',
     success: function (data) {
-      if(data.info){
-        // 首页默认选项卡数据
-        var tabInfo = data.info
+      console.log(data)
+      // 首页选项卡数据
+      var tabInfo = data.info
+      // 直播数据
+      var liveinfo = data.liveinfo
+      // 切换筛选数据
+      var otherdata = data.infolist
+      if (tabInfo) {
         tagContent(tabInfo)
       }
-      if(data.liveinfo){
-        // 直播数据
-        var liveinfo = data.liveinfo
+      if (data.liveinfo) {
         liveInfo(liveinfo)
       }
-
-      console.log(data)
+      if(data.infolist){
+        othertagContent(otherdata)
+      }
     },
     error: function (err) {
       console.log(err)
@@ -73,10 +85,42 @@ function advanceData(obj) {
 
   })
 }
+
+// 其他选项卡内容
+function othertagContent(otherdata) {
+  var audioadvance = $('#audio_advance .audio_content')
+  for(var i = 0; i < otherdata.length; i++){
+    var livetype = Number(otherdata[i].livetype),
+      id = otherdata[i].id,
+      picture = otherdata[i].picture
+      audiotitle = otherdata[i].content,
+      title = otherdata[i].title,
+      time = title.substring(0, 8)
+      if(livetype === 2){
+        audioadvance.append(`
+            <li class="audio_item">
+              <a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/${id}">
+                <i class="icon">
+                  <img src="${picture}" alt="">
+                </i>
+                <span class="audio_info">
+                  <span class="audio_title">${audiotitle}</span>
+                  <span class="audio_owner">${title}</span>
+                  <span class="audio_hot">
+                    <time>${time}</time>
+                  </span>
+                </span>
+              </a>
+            </li>
+        `)
+    }
+  }
+}
+
 // 获取遮罩数据接口
-function getTagMask(obj) {
+function getTagMask(id) {
   $.ajax({
-    url: 'http://192.168.0.68/914/live/index.php/Newindex/taglist/'+obj,
+    url: 'http://192.168.0.68/914/live/index.php/Newindex/tags/id/' + id,
     type: 'get',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
@@ -89,20 +133,19 @@ function getTagMask(obj) {
   }).done(function () {
 
   })
-  console.log('obj'+obj)
 }
 
 // 横向选项卡内容
 function defaultTagContent(list) {
   var tabwrapper = $('#tab .swiper-wrapper')
   tabwrapperWidth = list.length
-  tabwrapper.width(3.2*tabwrapperWidth+'rem')
+  tabwrapper.width(3.2 * tabwrapperWidth + 'rem')
   for (var i = 0; i < list.length; i++) {
     var title = list[i].tag1
     console.log(title)
-    var ta1 = list[i].ta1
+    var id = list[i].id
     tabwrapper.append(`
-      <div class="swiper-slide" data-id="${title},${ta1}">
+      <div class="swiper-slide" data-id="${id}">
         <span>${title}</span>
       </div>
     `)
@@ -111,22 +154,33 @@ function defaultTagContent(list) {
 
 // 纵向选项卡内容
 function tagContent(tabInfo) {
+  homeadvance.html(`
+    <div id="class_advance" class="class_advance choose_craful" style="display: none">
+      <h2>直播预告</h2>
+      <ul class="class_advance"></ul>
+    </div>
+    <!--推荐语音-->
+    <div id="audio_advance" class="audio_advance choose_craful">
+      <h2 class="audio_title"></h2>
+      <ul class="audio_content"></ul>
+    </div>
+  `)
   for (var i = 0; i < tabInfo.length; i++) {
-    var categoryname = tabInfo[i]['categoryname'+tabInfo[i].cid]
-    var blockTitle = tabInfo[i]['cat'+tabInfo[i].cid]
+    var categoryname = tabInfo[i]['categoryname' + tabInfo[i].cid]
+    var blockTitle = tabInfo[i]['cat' + tabInfo[i].cid]
     var str = ''
     // 心理健康
-    if(categoryname === '心理健康') {
+    if (categoryname === '心理健康') {
       var audiotitle = $('#audio_advance .audio_title')
       audiotitle.text(categoryname)
       var audiocontent = $('#audio_advance .audio_content')
-      for(var k = 0;k < blockTitle.length; k++){
+      for (var k = 0; k < blockTitle.length; k++) {
         var id = blockTitle[k].id,
           picture = blockTitle[k].picture,
           name = blockTitle[k].name,
           audiotitle = blockTitle[k].title,
           time = audiotitle.substring(0, 8)
-          audiocontent.append(`
+        audiocontent.append(`
             <li class="audio_item">
               <a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/${id}">
                 <i class="icon">
@@ -143,16 +197,15 @@ function tagContent(tabInfo) {
             </li>
         `)
       }
-    }else{
-      var homeadvance = $('#home_advance')
+    } else {
       var str = ''
-      for(var j = 0;j < blockTitle.length;j++){
+      for (var j = 0; j < blockTitle.length; j++) {
         var listcontent = $('#home_advance .list_content')
         var ids = blockTitle[j].id,
           pictures = blockTitle[j].picture,
           names = blockTitle[j].name,
           audiotitles = blockTitle[j].title
-          str +=`
+        str += `
             <li class="single_video">
               <a class="single_list_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/${ids}">
                 <section class="list_header">
@@ -256,7 +309,7 @@ function getAds(adlist) {
 }
 
 // 选项卡构造函数
-function TabCenter(tab, tabContents, tabMsk, Swiper) {
+function TabCenter(tab, tabContents, tabMsk, Swiper, homeadvance) {
   // 选项卡外框
   this.tab = tab
   // 选项卡内容
@@ -273,8 +326,11 @@ function TabCenter(tab, tabContents, tabMsk, Swiper) {
   this.maxWidth = this.swiperWidth / 2 - this.maxTranslate
   // 上一次点击的下标
   this.prevIndex = 0
+  this.homeadvance = homeadvance
   // 选择的对象
-  this.chooseObj = {0: '精选推荐'}
+  this.tagss = {}
+  // 筛选的ID
+  this.cid = {0:''}
 }
 
 // 选项卡构造函数 初始化函数
@@ -307,57 +363,135 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   // 选项卡内容切换
   var tabContents = This.tabContents
   var slideContent = swiper.slides[clickedIndex].getElementsByTagName('span')[0].innerText;
-  This.tabListChange(tabContents, clickedIndex, This, slideContent)
+  var slideobj = swiper.slides[clickedIndex]
+  This.tabListChange(tabContents, clickedIndex, This, slideContent, slideobj)
 }
 // 选项卡加样式
 TabCenter.prototype.slideActive = function (clickedIndex, tab) {
   tab.find('.active').removeClass('active')
   tab.find('.swiper-slide').eq(clickedIndex).addClass('active')
   var tabId = tab.find('.swiper-slide').eq(clickedIndex).attr('data-id')
-  console.log(tabId)
-  advanceData(tabId)
 }
 // 选项卡内容切换
-TabCenter.prototype.tabListChange = function (tabContents, index, This, slideContent) {
-  tabContents[This.prevIndex].style.display = 'none'
-  tabContents[index].style.display = 'block'
-  This.prevIndex = index
+TabCenter.prototype.tabListChange = function (tabContents, index, This, slideContent, slideobj) {
+  console.log(This.homeadvance)
+  console.log(index)
   if (index === 0) {
     This.tabMsk.slideUp(30)
+    advanceData('')
   } else {
     This.tabMsk.slideDown(30)
-    // This.tabMsk.html(`${slideContent}`)
+    var tabId = slideobj.getAttribute('data-id')
+    obj = {
+      id: tabId,
+      tags: ''
+    }
+    // 获取选项卡初始数据
+    advanceData(obj)
     // 获取遮罩数据
-    getTagMask()
+    $.ajax({
+      url: 'http://192.168.0.68/914/live/index.php/Newindex/tags/id/' + tabId,
+      type: 'get',
+      dataType: 'jsonp',
+      jsonp: 'jsonpcallback',
+      success: function (data) {
+        console.log(data.tagslist)
+        // 遮罩数据渲染函数
+        This.maskData(data.tagslist, This)
+      },
+      error: function (err) {
+        console.log(err)
+      }
+    }).done(function () {
+      // 选项卡过滤
+      var tabMskDetials = This.tabMsk.get(0).getElementsByTagName('div')
+      This.tabFilter(tabMskDetials, This)
+    })
   }
   // 点击之前清空筛选对象
   This.clearChooseObj(This)
-  This.chooseObj[0] = slideContent
-  // 选项卡过滤
-  var tabMskDetials = This.tabMsk.get(0).getElementsByTagName('div')
-  This.tabFilter(tabMskDetials, This)
+  // 点击传tab的ID
+  This.cid[0] = tabId
+
 }
 // 选项卡头部点击过滤
 TabCenter.prototype.tabFilter = function (maskcontent, This) {
+  console.log(This)
   var itemA = null;
   for (var k = 0; k < maskcontent.length; k++) {
     itemA = maskcontent[k].querySelectorAll("span");
     maskcontent[k].prevNode = null;
     maskcontent[k].index = k;
     for (var m = 0; m < itemA.length; m++) {
+      itemA[m].onOff = true
       itemA[m].addEventListener('touchstart', function () {
         var parent = this.parentNode;
-        This.chooseObj[parent.index + 1] = this.innerText;
         if (parent.prevNode) {
           parent.prevNode.className = ''
         }
-        this.className = 'search_active';
+        var str = ''
+        // 点击切换筛选明细状态
+        if(this.onOff){
+          this.className = 'search_active';
+          this.onOff = false
+          This.tagss[parent.index + 1] = this.getAttribute('data-id')
+          for(var attr in This.tagss){
+            str += This.tagss[attr]+','
+          }
+          console.log(str)
+        }else {
+          this.className = ''
+          This.tagss[parent.index + 1] = ''
+          this.onOff = true
+          for(var key in This.tagss){
+            str += This.tagss[key]+','
+          }
+          console.log(str)
+        }
         parent.prevNode = this;
-        console.log(This.chooseObj)
+        // 后台筛选数据
+        var reg = /\d+/g
+        console.log(str)
+        if(reg.test(str)){
+          chooseObj.tags = str.match(reg).join(',')+ ','
+        }else{
+          chooseObj.tags = ''
+        }
+        chooseObj.id = This.cid[0]
+        // 数据筛选
+        advanceData(chooseObj)
       })
     }
   }
-  console.log(This.chooseObj)
+}
+// 遮罩数据获取
+TabCenter.prototype.maskData = function (data, This) {
+  var str1 = '',
+    str2 = '',
+    str3 = ''
+  for(var i = 0;i < data.length; i++){
+    var tag1 = data[i].tag2,
+      tag2 = data[i].tag3,
+      tag3 = data[i].tag4,
+      id1 = data[i].ta2,
+      id2 = data[i].ta3,
+      id3 = data[i].ta4
+    if(tag1){
+      str1 += `<span data-id="${id1}">${tag1}</span>`
+    }
+    if(tag2){
+      str2 += `<span data-id="${id2}">${tag2}</span>`
+    }
+    if(tag3){
+      str3 += `<span data-id="${id3}">${tag3}</span>`
+    }
+  }
+  This.tabMsk.find('.objects').find('h2').css('display', 'block')
+  This.tabMsk.find('.objects').html(`<h2>学科:</h2>${str1}`)
+  This.tabMsk.find('.stages').find('h2').css('display', 'block')
+  This.tabMsk.find('.stages').html(`<h2>学段:</h2>${str2}`)
+  This.tabMsk.find('.classes').find('h2').css('display', 'block')
+  This.tabMsk.find('.classes').html(`<h2>年级:</h2>${str3}`)
 }
 // 清空筛选对象
 TabCenter.prototype.clearChooseObj = function (This) {

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./sass/libs/swiper.min.css">
+  <link rel="stylesheet" href="./stylesheets/index.css">
+
+  <script>
+    (function () {
+      setRem()
+      window.addEventListener('orientation' in window ? 'deviceorientation' : 'resize', setRem)
+
+      function setRem() {
+        var html = document.documentElement
+        var width = html.clientWidth
+        html.style.fontSize = width / 15 + 'px'
+      }
+    })()
+  </script>
+  <title>青年V课堂</title>
+</head>
+<body>
+<div class="header">
+  <!-- 头部筛选遮罩-->
+  <div class="tab_mask" style="display: none">
+    <h3 class="tab_mask_remind">筛选</h3>
+    <!--学科-->
+    <div class="objects">
+      <h2 style="display: none">学科:</h2>
+    </div>
+    <!--学段-->
+    <div class="stages">
+      <h2 style="display: none">学段:</h2>
+    </div>
+    <!--年级-->
+    <div class="classes">
+      <h2 style="display: none">年级:</h2>
+    </div>
+  </div>
+  <!--轮播-->
+  <div id="banner">
+    <div class="swiper-container">
+      <div class="swiper-wrapper"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+<!--选项卡-->
+<div id="tab" class="swiper-container-tab">
+  <div class="swiper-wrapper">
+  </div>
+</div>
+</div>
+<!--精选推荐-->
+<div id="home_advance" class="video_audios tabs" style="display: block;">
+  <!--直播预告-->
+  <div id="class_advance" class="class_advance choose_craful" style="display: none">
+    <h2>直播预告</h2>
+    <ul class="class_advance">
+    </ul>
+  </div>
+  <!--推荐语音-->
+  <div id="audio_advance" class="audio_advance choose_craful">
+    <h2 class="audio_title"></h2>
+    <ul class="audio_content"></ul>
+  </div>
+</div>
+<!--loading-->
+<div class="loading">
+  <img width="24" height="24" src="images/loading.gif" alt="">
+  <p class="desc">正在载入...</p>
+</div>
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/swiper.jquery.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,13 +1,32 @@
 $(function () {
   // 主页默认数据接口
   advanceData()
+  // 微信接口
+  weixinconfig()
 })
+
+// 微信配置数据
+var urls = location.href.split('#')[0]
+var config = ''
+function weixinconfig() {
+  $.ajax({
+    url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Index/sing',
+    type: 'post',
+    dataType: 'json',
+    async: false,
+    data: {
+      data: urls
+    },
+    success: function (data) {
+      config = data;
+    }
+  });
+}
 // 广告 和 分类接口
 $.ajax({
-  url: 'http://192.168.0.68/914/live/index.php/Newindex/ad',
+  url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/ad',
   type: 'get',
-  dataType: 'jsonp',
-  jsonp: 'jsonpcallback',
+  dataType: 'json',
   success: function (data) {
     console.log(data)
     // 轮播数据
@@ -54,27 +73,31 @@ var chooseObj = {
 
 // 主页默认数据接口
 function advanceData(chooseObj) {
+  console.log('chooseObj')
+  console.log(chooseObj)
   $.ajax({
-    url: 'http://192.168.0.68/914/live/index.php/Newindex/info',
-    type: 'post',
-    dataType: 'jsonp',
+    url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/info',
+    type: 'get',
+    dataType: 'json',
     data: chooseObj,
-    jsonp: 'jsonpcallback',
     success: function (data) {
       console.log(data)
+
       // 首页选项卡数据
       var tabInfo = data.info
-      // 直播数据
-      var liveinfo = data.liveinfo
-      // 切换筛选数据
-      var otherdata = data.infolist
       if (tabInfo) {
         tagContent(tabInfo)
       }
-      if (data.liveinfo) {
+
+      // 直播数据
+      var liveinfo = data.liveinfo
+      if (liveinfo) {
         liveInfo(liveinfo)
       }
-      if(data.infolist){
+
+      // 切换筛选数据
+      var otherdata = data.infolist
+      if(otherdata){
         othertagContent(otherdata)
       }
     },
@@ -88,39 +111,67 @@ function advanceData(chooseObj) {
 
 // 其他选项卡内容
 function othertagContent(otherdata) {
+  homeadvance.html(
+    '<div id="audio_advance" class="audio_advance choose_craful">'+
+      '<ul class="audio_content">'+'</ul>'+
+    '</div>'+
+    '<div class="video_audio choose_craful">'+
+      '<ul class="list_content">'+'</ul>'+
+    '</div>'
+  )
   var audioadvance = $('#audio_advance .audio_content')
+  var videoaudio = $('.video_audio .list_content')
   for(var i = 0; i < otherdata.length; i++){
     var livetype = Number(otherdata[i].livetype),
       id = otherdata[i].id,
       picture = otherdata[i].picture
       audiotitle = otherdata[i].content,
       title = otherdata[i].title,
-      time = title.substring(0, 8)
+      time = title.substring(0, 8),
+        name = otherdata[i].name
       if(livetype === 2){
-        audioadvance.append(`
-            <li class="audio_item">
-              <a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/${id}">
-                <i class="icon">
-                  <img src="${picture}" alt="">
-                </i>
-                <span class="audio_info">
-                  <span class="audio_title">${audiotitle}</span>
-                  <span class="audio_owner">${title}</span>
-                  <span class="audio_hot">
-                    <time>${time}</time>
-                  </span>
-                </span>
-              </a>
-            </li>
-        `)
-    }
+        audioadvance.append(
+          '<li class="audio_item">'+
+            '<a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+id+'">'+
+              '<i class="icon">'+
+                '<img src="'+picture+'" alt="">'+
+              '</i>'+
+              '<span class="audio_info">'+
+                '<span class="audio_title">'+title+'</span>'+
+                '<span class="audio_owner">'+name+'</span>'+
+                '<span class="audio_hot">'+
+                  '<time>'+time+'</time>'+
+                '</span>'+
+              '</span>'+
+            '</a>'+
+          '</li>'
+        )
+    }else{
+        videoaudio.append(
+            '<li class="single_video">'+
+              '<a class="single_list_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+id+'">'+
+                '<section class="list_header">'+
+                  '<span class="list_header_info">'+
+                    '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">'+
+                    '<p class="is_free">免费</p>'+
+                  '</span>'+
+                  '<img src="'+picture+'" alt="">'+
+                  '<span class="title">'+
+                    '<title class="video_introduce">'+title+'</title>'+
+                  '</span>'+
+                '</section>'+
+                '<p class="video_owner">'+name+'</p>'+
+              '</a>'+
+            '</li>'
+        )
+      }
   }
 }
 
 // 获取遮罩数据接口
 function getTagMask(id) {
   $.ajax({
-    url: 'http://192.168.0.68/914/live/index.php/Newindex/tags/id/' + id,
+    url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/tags/id/' + id,
     type: 'get',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
@@ -144,27 +195,26 @@ function defaultTagContent(list) {
     var title = list[i].tag1
     console.log(title)
     var id = list[i].id
-    tabwrapper.append(`
-      <div class="swiper-slide" data-id="${id}">
-        <span>${title}</span>
-      </div>
-    `)
+    tabwrapper.append(
+      '<div class="swiper-slide" data-id="'+id+'">'+
+        '<span>'+title+'</span>'+
+      '</div>'
+    )
   }
 }
 
 // 纵向选项卡内容
 function tagContent(tabInfo) {
-  homeadvance.html(`
-    <div id="class_advance" class="class_advance choose_craful" style="display: none">
-      <h2>直播预告</h2>
-      <ul class="class_advance"></ul>
-    </div>
-    <!--推荐语音-->
-    <div id="audio_advance" class="audio_advance choose_craful">
-      <h2 class="audio_title"></h2>
-      <ul class="audio_content"></ul>
-    </div>
-  `)
+  homeadvance.html(
+    '<div id="class_advance" class="class_advance choose_craful" style="display: none">'+
+      '<h2>直播预告</h2>'+
+      '<ul class="class_advance"></ul>'+
+    '</div>'+
+    '<div id="audio_advance" class="audio_advance choose_craful">'+
+      '<h2 class="audio_title"></h2>'+
+      '<ul class="audio_content"></ul>'+
+    '</div>'
+  )
   for (var i = 0; i < tabInfo.length; i++) {
     var categoryname = tabInfo[i]['categoryname' + tabInfo[i].cid]
     var blockTitle = tabInfo[i]['cat' + tabInfo[i].cid]
@@ -180,22 +230,22 @@ function tagContent(tabInfo) {
           name = blockTitle[k].name,
           audiotitle = blockTitle[k].title,
           time = audiotitle.substring(0, 8)
-        audiocontent.append(`
-            <li class="audio_item">
-              <a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/${id}">
-                <i class="icon">
-                  <img src="${picture}" alt="">
-                </i>
-                <span class="audio_info">
-                  <span class="audio_title">${audiotitle}</span>
-                  <span class="audio_owner">${name}</span>
-                  <span class="audio_hot">
-                    <time>${time}</time>
-                  </span>
-                </span>
-              </a>
-            </li>
-        `)
+          audiocontent.append(
+            '<li class="audio_item">'+
+              '<a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+id+'">'+
+                '<i class="icon">'+
+                  '<img src="'+picture+'" alt="">'+
+                '</i>'+
+                '<span class="audio_info">'+
+                  '<span class="audio_title">'+audiotitle+'</span>'+
+                  '<span class="audio_owner">'+name+'</span>'+
+                  '<span class="audio_hot">'+
+                    '<time>'+time+'</time>'+
+                  '</span>'+
+                '</span>'+
+              '</a>'+
+            '</li>'
+          )
       }
     } else {
       var str = ''
@@ -205,37 +255,36 @@ function tagContent(tabInfo) {
           pictures = blockTitle[j].picture,
           names = blockTitle[j].name,
           audiotitles = blockTitle[j].title
-        str += `
-            <li class="single_video">
-              <a class="single_list_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/${ids}">
-                <section class="list_header">
-                  <span class="list_header_info">
-                    <img class="class_type" src="images/all_live_video@2x.png" alt="">
-                    <strong class="is_free">免费</strong>
-                  </span>
-                  <img src="${pictures}" alt="">
-                  <span class="title">
-                    <title class="video_introduce">${audiotitles}</title>
-                  </span>
-                </section>
-                <p class="video_owner">${names}</p>
-              </a>
-            </li>
-          `
+        str +=
+          '<li class="single_video">'+
+              '<a class="single_list_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+ids+'">'+
+                '<section class="list_header">'+
+                  '<span class="list_header_info">'+
+                    '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">'+
+                    '<p class="is_free">免费</p>'+
+                  '</span>'+
+                  '<img src="'+pictures+'" alt="">'+
+                  '<span class="title">'+
+                    '<title class="video_introduce">'+audiotitles+'</title>'+
+                  '</span>'+
+                '</section>'+
+                '<p class="video_owner">'+names+'</p>'+
+              '</a>'+
+            '</li>'
       }
-      homeadvance.append(`
-              <div class="video_audio choose_craful">
-                <h2>${categoryname}</h2>
-                <ul class="list_content">${str}</ul>
-              </div>
-      `)
+      homeadvance.append(
+        '<div class="video_audio choose_craful">'+
+          '<h2>'+categoryname+'</h2>'+
+          '<ul class="list_content">'+str+'</ul>'+
+        '</div>'
+      )
       $('.loading').css('display', 'none')
     }
   }
 }
 
 
-// 直播函数
+// 直播信息函数
 function liveInfo(liveinfo) {
   var advanveWrapper = $('#class_advance')
   var classadvanve = $('#class_advance .class_advance')
@@ -249,32 +298,32 @@ function liveInfo(liveinfo) {
     liveoff = Number(liveinfo.status),
     livetype = Number(liveinfo.livetype)
   if (livetype === 1) {
-    livetagsrc = "images/all_live_video@2x.png"
+    livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png"
   } else if (livetype === 2) {
-    livetagsrc = "images/all_live_audio@2x.png"
+    livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png"
   }
   if (liveoff === 1) {
     advanveWrapper.css('display', 'block')
-    classadvanve.html(`
-        <li class="live">
-          <a href="http://www3.qnzsvk.cn/index.php/Index/livedeil/id/${id}">
-            <span class="list_header">
-                <span class="list_header_info">
-                  <img class="class_type" src="${livetagsrc}" alt="">
-                  <strong class="is_free">免费</strong>
-                </span>
-              <img src="${picture}" alt="">
-              <span class="title all-cut-time">
-              </span>
-            </span>
-            <span class="live_introdus">
-              <span class="title">${title}</span>
-              <span class="live_user">${spker}</span>
-              <span id="living_mark" class="status">${willlivetime}</span>
-            </span>
-          </a>
-        </li>
-      `)
+    classadvanve.html(
+        '<li class="live">'+
+          '<a href="http://www3.qnzsvk.cn/index.php/Index/livedeil/id/'+id+'">'+
+            '<span class="list_header">'+
+                '<span class="list_header_info">'+
+                  '<img class="class_type" src="'+livetagsrc+'" alt="">'+
+                  '<p class="is_free">免费</p>'+
+                '</span>'+
+              '<img src="'+picture+'" alt="">'+
+              '<span class="title all-cut-time">'+
+              '</span>'+
+            '</span>'+
+            '<span class="live_introdus">'+
+              '<span class="title">'+title+'</span>'+
+              '<span class="live_user">'+spker+'</span>'+
+              '<span id="living_mark" class="status">'+willlivetime+'</span>'+
+            '</span>'+
+          '</a>'+
+        '</li>'
+    )
   }
 
   // 模拟倒计时
@@ -295,16 +344,16 @@ function getAds(adlist) {
   var adWrapper = $('#banner .swiper-wrapper')
   for (var i = 0; i < adlist.length; i++) {
     var adjieshao = adlist[i].ad_jieshao
-    var imgUrl = adlist[i].adpath
-    var adurl = adlist[i].adurl
-    adWrapper.append(`
-          <div class="swiper-slide">
-          <a href="${adurl}">
-            <img src="${imgUrl}" alt="">
-          </a>
-          <h2 class="swiper_title">${adjieshao}</h2>
-        </div>
-    `)
+    var imgUrl = adlist[i].adurl
+    var adurl = adlist[i].adpath
+    adWrapper.append(
+        '<div class="swiper-slide">'+
+          '<a href="'+adurl+'">'+
+            '<img src="'+imgUrl+'" alt="">'+
+          '</a>'+
+          '<h2 class="swiper_title">'+adjieshao+'</h2>'+
+        '</div>'
+    )
   }
 }
 
@@ -390,10 +439,9 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     advanceData(obj)
     // 获取遮罩数据
     $.ajax({
-      url: 'http://192.168.0.68/914/live/index.php/Newindex/tags/id/' + tabId,
+      url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/tags/id/'+tabId,
       type: 'get',
-      dataType: 'jsonp',
-      jsonp: 'jsonpcallback',
+      dataType: 'json',
       success: function (data) {
         console.log(data.tagslist)
         // 遮罩数据渲染函数
@@ -409,7 +457,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     })
   }
   // 点击之前清空筛选对象
-  This.clearChooseObj(This)
+  // This.clearChooseObj(This)
   // 点击传tab的ID
   This.cid[0] = tabId
 
@@ -460,6 +508,7 @@ TabCenter.prototype.tabFilter = function (maskcontent, This) {
         chooseObj.id = This.cid[0]
         // 数据筛选
         advanceData(chooseObj)
+        console.log('点击学科')
       })
     }
   }
@@ -477,13 +526,13 @@ TabCenter.prototype.maskData = function (data, This) {
       id2 = data[i].ta3,
       id3 = data[i].ta4
     if(tag1){
-      str1 += `<span data-id="${id1}">${tag1}</span>`
+      str1 += '<span data-id="'+id1+'">'+tag1+'</span>'
     }
     if(tag2){
-      str2 += `<span data-id="${id2}">${tag2}</span>`
+      str2 += '<span data-id="'+id2+'">'+tag2+'</span>'
     }
     if(tag3){
-      str3 += `<span data-id="${id3}">${tag3}</span>`
+      str3 += '<span data-id="'+id3+'">'+tag3+'</span>'
     }
   }
   This.tabMsk.find('.objects').find('h2').css('display', 'block')
@@ -499,7 +548,18 @@ TabCenter.prototype.clearChooseObj = function (This) {
     delete This.chooseObj[attr]
   }
 }
-
+// 截留函数
+TabCenter.prototype.debounce = function(func, delay) {
+  let timer
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(function () {
+      func.apply(this, args)
+    }, delay)
+  }
+}
 // 固定tab
 function TabFixed(tab, header) {
   this.tab = $(tab)

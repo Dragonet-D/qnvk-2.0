@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ede71c1-6d94-4830-b821-6be3da3ab2e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/save/916.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/index.js" afterPath="$PROJECT_DIR$/src/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stylesheets/index.css" afterPath="$PROJECT_DIR$/src/stylesheets/index.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,22 +20,25 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+            <state relative-caret-position="317">
+              <caret line="346" column="33" lean-forward="false" selection-start-line="346" selection-start-column="33" selection-end-line="346" selection-end-column="33" />
               <folding>
-                <element signature="n#!!block;n#TabCenter#0" expanded="false" />
-                <marker date="1505545931467" expanded="true" signature="5458:5471" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="9230:9992" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="9311:9975" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="9353:9699" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="9404:9552" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="9651:9676" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="9743:9957" ph="..." />
-                <marker date="1505545931467" expanded="true" signature="15602:15653" ph="..." />
-                <marker date="1505545931467" expanded="false" signature="17008:17534" ph="{...}" />
-                <marker date="1505545931467" expanded="false" signature="17561:18282" ph="{...}" />
-                <marker date="1505545931467" expanded="false" signature="18331:19528" ph="{...}" />
+                <marker date="1505553111207" expanded="true" signature="5336:5349" ph="..." />
+                <marker date="1505553111207" expanded="true" signature="15425:15476" ph="..." />
+                <marker date="1505553111207" expanded="false" signature="16831:17357" ph="{...}" />
+                <marker date="1505553111207" expanded="false" signature="17384:18105" ph="{...}" />
+                <marker date="1505553111207" expanded="false" signature="18154:19351" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/commt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="590">
-              <caret line="75" column="13" lean-forward="false" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="52" />
+              <caret line="75" column="69" lean-forward="false" selection-start-line="75" selection-start-column="69" selection-end-line="75" selection-end-column="69" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -111,16 +110,6 @@
                 <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_tabCommon.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sass/components/_tabCommon.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -171,7 +160,6 @@
       <find>tagContent</find>
       <find>othertagContent</find>
       <find>video_audio</find>
-      <find>hosturl</find>
       <find>urls</find>
       <find>192</find>
       <find>http://www2.qnzsvk.cn</find>
@@ -182,12 +170,16 @@
       <find>audio_advance</find>
       <find>choose_craful</find>
       <find>免费</find>
-      <find>getAds</find>
       <find>defaultTagContent</find>
+      <find>http://www3.qnzsvk.cn</find>
+      <find>hosturl</find>
+      <find>getAds</find>
     </findStrings>
     <replaceStrings>
       <replace>https://cdn2.qnzsvk.cn/static/20170915/</replace>
       <replace>http://ubuntuhd1.server.qnzsvk.cn/</replace>
+      <replace>hosturl</replace>
+      <replace>hosturl+'</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -216,12 +208,13 @@
         <option value="$USER_HOME$/Desktop/index.html" />
         <option value="$PROJECT_DIR$/src/sass/components/_header.scss" />
         <option value="$PROJECT_DIR$/save/916.html" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/sass/components/_tab.scss" />
         <option value="$PROJECT_DIR$/src/sass/base/_mixin.scss" />
         <option value="$PROJECT_DIR$/src/sass/base/_base.scss" />
         <option value="$PROJECT_DIR$/src/sass/index.scss" />
         <option value="$PROJECT_DIR$/src/sass/components/_tabmask.scss" />
+        <option value="$USER_HOME$/Desktop/commt.js" />
+        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/js/index.js" />
       </list>
     </option>
@@ -243,9 +236,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="862" />
-    <option name="y" value="13" />
-    <option name="width" value="1044" />
+    <option name="x" value="533" />
+    <option name="y" value="21" />
+    <option name="width" value="1078" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -373,12 +366,12 @@
       <workItem from="1505350293692" duration="27026000" />
       <workItem from="1505438332159" duration="317000" />
       <workItem from="1505438667584" duration="29800000" />
-      <workItem from="1505526093190" duration="14628000" />
+      <workItem from="1505526093190" duration="16166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92356000" />
+    <option name="totallyTimeSpent" value="93894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -415,7 +408,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sass/components/_tab.scss" />
     <entry file="file://$PROJECT_DIR$/sass/components/_slider.scss" />
     <entry file="file://$PROJECT_DIR$/sass/components/_tabmask.scss" />
     <entry file="file://$PROJECT_DIR$/js/tsconfig.json" />
@@ -588,21 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="75" column="13" lean-forward="false" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sass/base/_mixin.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -645,23 +622,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Desktop/commt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="75" column="69" lean-forward="false" selection-start-line="75" selection-start-column="69" selection-end-line="75" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state relative-caret-position="317">
+          <caret line="346" column="33" lean-forward="false" selection-start-line="346" selection-start-column="33" selection-end-line="346" selection-end-column="33" />
           <folding>
-            <element signature="n#!!block;n#TabCenter#0" expanded="false" />
-            <marker date="1505545931467" expanded="true" signature="5458:5471" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="9230:9992" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="9311:9975" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="9353:9699" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="9404:9552" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="9651:9676" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="9743:9957" ph="..." />
-            <marker date="1505545931467" expanded="true" signature="15602:15653" ph="..." />
-            <marker date="1505545931467" expanded="false" signature="17008:17534" ph="{...}" />
-            <marker date="1505545931467" expanded="false" signature="17561:18282" ph="{...}" />
-            <marker date="1505545931467" expanded="false" signature="18331:19528" ph="{...}" />
+            <marker date="1505553111207" expanded="true" signature="5336:5349" ph="..." />
+            <marker date="1505553111207" expanded="true" signature="15425:15476" ph="..." />
+            <marker date="1505553111207" expanded="false" signature="16831:17357" ph="{...}" />
+            <marker date="1505553111207" expanded="false" signature="17384:18105" ph="{...}" />
+            <marker date="1505553111207" expanded="false" signature="18154:19351" ph="{...}" />
           </folding>
         </state>
       </provider>

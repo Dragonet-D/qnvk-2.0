@@ -10,7 +10,7 @@ var urls = location.href.split('#')[0]
 var config = ''
 function weixinconfig() {
   $.ajax({
-    url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Index/sing',
+    url: hosturl+'/index.php/Index/sing',
     type: 'post',
     dataType: 'json',
     async: false,
@@ -24,7 +24,7 @@ function weixinconfig() {
 }
 // 广告 和 分类接口
 $.ajax({
-  url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/ad',
+  url: hosturl+'/index.php/Newindex/ad',
   type: 'get',
   dataType: 'json',
   success: function (data) {
@@ -76,7 +76,7 @@ function advanceData(chooseObj) {
   console.log('chooseObj')
   console.log(chooseObj)
   $.ajax({
-    url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/info',
+    url: hosturl+'/index.php/Newindex/info',
     type: 'get',
     dataType: 'json',
     data: chooseObj,
@@ -128,11 +128,11 @@ function othertagContent(otherdata) {
       audiotitle = otherdata[i].content,
       title = otherdata[i].title,
       time = title.substring(0, 8),
-        name = otherdata[i].name
+      name = otherdata[i].name
       if(livetype === 2){
         audioadvance.append(
           '<li class="audio_item">'+
-            '<a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+id+'">'+
+            '<a class="audio_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+id+'">'+
               '<i class="icon">'+
                 '<img src="'+picture+'" alt="">'+
               '</i>'+
@@ -149,7 +149,7 @@ function othertagContent(otherdata) {
     }else{
         videoaudio.append(
             '<li class="single_video">'+
-              '<a class="single_list_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+id+'">'+
+              '<a class="single_list_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+id+'">'+
                 '<section class="list_header">'+
                   '<span class="list_header_info">'+
                     '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">'+
@@ -171,7 +171,7 @@ function othertagContent(otherdata) {
 // 获取遮罩数据接口
 function getTagMask(id) {
   $.ajax({
-    url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/tags/id/' + id,
+    url: hosturl+'/index.php/Newindex/tags/id/' + id,
     type: 'get',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
@@ -232,7 +232,7 @@ function tagContent(tabInfo) {
           time = audiotitle.substring(0, 8)
           audiocontent.append(
             '<li class="audio_item">'+
-              '<a class="audio_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+id+'">'+
+              '<a class="audio_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+id+'">'+
                 '<i class="icon">'+
                   '<img src="'+picture+'" alt="">'+
                 '</i>'+
@@ -257,7 +257,7 @@ function tagContent(tabInfo) {
           audiotitles = blockTitle[j].title
         str +=
           '<li class="single_video">'+
-              '<a class="single_list_wrapper" href="http://www3.qnzsvk.cn/index.php/Index/livedeil_0/id/'+ids+'">'+
+              '<a class="single_list_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+ids+'">'+
                 '<section class="list_header">'+
                   '<span class="list_header_info">'+
                     '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">'+
@@ -306,7 +306,7 @@ function liveInfo(liveinfo) {
     advanveWrapper.css('display', 'block')
     classadvanve.html(
         '<li class="live">'+
-          '<a href="http://www3.qnzsvk.cn/index.php/Index/livedeil/id/'+id+'">'+
+          '<a href="'+hosturl+'/index.php/Index/livedeil/id/'+id+'">'+
             '<span class="list_header">'+
                 '<span class="list_header_info">'+
                   '<img class="class_type" src="'+livetagsrc+'" alt="">'+
@@ -344,8 +344,8 @@ function getAds(adlist) {
   var adWrapper = $('#banner .swiper-wrapper')
   for (var i = 0; i < adlist.length; i++) {
     var adjieshao = adlist[i].ad_jieshao
-    var imgUrl = adlist[i].adurl
-    var adurl = adlist[i].adpath
+    var imgUrl = adlist[i].adpath
+    var adurl = adlist[i].adurl
     adWrapper.append(
         '<div class="swiper-slide">'+
           '<a href="'+adurl+'">'+
@@ -439,7 +439,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     advanceData(obj)
     // 获取遮罩数据
     $.ajax({
-      url: 'http://ubuntuhd1.server.qnzsvk.cn/index.php/Newindex/tags/id/'+tabId,
+      url: hosturl+'/index.php/Newindex/tags/id/'+tabId,
       type: 'get',
       dataType: 'json',
       success: function (data) {

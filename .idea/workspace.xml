@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ede71c1-6d94-4830-b821-6be3da3ab2e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/index.js" afterPath="$PROJECT_DIR$/src/js/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,14 +19,15 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="346" column="33" lean-forward="false" selection-start-line="346" selection-start-column="33" selection-end-line="346" selection-end-column="33" />
+            <state relative-caret-position="241">
+              <caret line="169" column="17" lean-forward="true" selection-start-line="169" selection-start-column="17" selection-end-line="169" selection-end-column="17" />
               <folding>
-                <marker date="1505553111207" expanded="true" signature="5336:5349" ph="..." />
-                <marker date="1505553111207" expanded="true" signature="15425:15476" ph="..." />
-                <marker date="1505553111207" expanded="false" signature="16831:17357" ph="{...}" />
-                <marker date="1505553111207" expanded="false" signature="17384:18105" ph="{...}" />
-                <marker date="1505553111207" expanded="false" signature="18154:19351" ph="{...}" />
+                <element signature="e#16185#16363#0" expanded="false" />
+                <marker date="1505554909362" expanded="true" signature="5371:5384" ph="..." />
+                <marker date="1505554909362" expanded="true" signature="15511:15562" ph="..." />
+                <marker date="1505554909362" expanded="false" signature="16911:17437" ph="{...}" />
+                <marker date="1505554909362" expanded="false" signature="17464:18185" ph="{...}" />
+                <marker date="1505554909362" expanded="false" signature="18234:19431" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -86,8 +86,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="75" column="69" lean-forward="false" selection-start-line="75" selection-start-column="69" selection-end-line="75" selection-end-column="69" />
+            <state relative-caret-position="514">
+              <caret line="71" column="19" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -157,8 +157,6 @@
       <find>tags</find>
       <find>tagss</find>
       <find>chooseObj</find>
-      <find>tagContent</find>
-      <find>othertagContent</find>
       <find>video_audio</find>
       <find>urls</find>
       <find>192</find>
@@ -166,7 +164,6 @@
       <find>https://cdn2.qnzsvk.cn/static/20170911/</find>
       <find>http://www2.qnzsvk.cn/</find>
       <find>images</find>
-      <find>advanceData</find>
       <find>audio_advance</find>
       <find>choose_craful</find>
       <find>免费</find>
@@ -174,6 +171,10 @@
       <find>http://www3.qnzsvk.cn</find>
       <find>hosturl</find>
       <find>getAds</find>
+      <find>tagContent</find>
+      <find>advanceData</find>
+      <find>othertagContent</find>
+      <find>loading</find>
     </findStrings>
     <replaceStrings>
       <replace>https://cdn2.qnzsvk.cn/static/20170915/</replace>
@@ -366,12 +367,12 @@
       <workItem from="1505350293692" duration="27026000" />
       <workItem from="1505438332159" duration="317000" />
       <workItem from="1505438667584" duration="29800000" />
-      <workItem from="1505526093190" duration="16166000" />
+      <workItem from="1505526093190" duration="17927000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93894000" />
+    <option name="totallyTimeSpent" value="95655000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -632,8 +633,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="75" column="69" lean-forward="false" selection-start-line="75" selection-start-column="69" selection-end-line="75" selection-end-column="69" />
+        <state relative-caret-position="514">
+          <caret line="71" column="19" lean-forward="false" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -647,14 +648,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="346" column="33" lean-forward="false" selection-start-line="346" selection-start-column="33" selection-end-line="346" selection-end-column="33" />
+        <state relative-caret-position="241">
+          <caret line="169" column="17" lean-forward="true" selection-start-line="169" selection-start-column="17" selection-end-line="169" selection-end-column="17" />
           <folding>
-            <marker date="1505553111207" expanded="true" signature="5336:5349" ph="..." />
-            <marker date="1505553111207" expanded="true" signature="15425:15476" ph="..." />
-            <marker date="1505553111207" expanded="false" signature="16831:17357" ph="{...}" />
-            <marker date="1505553111207" expanded="false" signature="17384:18105" ph="{...}" />
-            <marker date="1505553111207" expanded="false" signature="18154:19351" ph="{...}" />
+            <element signature="e#16185#16363#0" expanded="false" />
+            <marker date="1505554909362" expanded="true" signature="5371:5384" ph="..." />
+            <marker date="1505554909362" expanded="true" signature="15511:15562" ph="..." />
+            <marker date="1505554909362" expanded="false" signature="16911:17437" ph="{...}" />
+            <marker date="1505554909362" expanded="false" signature="17464:18185" ph="{...}" />
+            <marker date="1505554909362" expanded="false" signature="18234:19431" ph="{...}" />
           </folding>
         </state>
       </provider>

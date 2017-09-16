@@ -166,6 +166,8 @@ function othertagContent(otherdata) {
         )
       }
   }
+  // loading样式消失
+  loading('none')
 }
 
 // 获取遮罩数据接口
@@ -278,9 +280,11 @@ function tagContent(tabInfo) {
           '<ul class="list_content">'+str+'</ul>'+
         '</div>'
       )
-      $('.loading').css('display', 'none')
     }
   }
+  setTimeout(function () {
+    loading('none')
+  },300)
 }
 
 
@@ -413,6 +417,8 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   var tabContents = This.tabContents
   var slideContent = swiper.slides[clickedIndex].getElementsByTagName('span')[0].innerText;
   var slideobj = swiper.slides[clickedIndex]
+  // loading样式显示
+  loading('block')
   This.tabListChange(tabContents, clickedIndex, This, slideContent, slideobj)
 }
 // 选项卡加样式
@@ -425,6 +431,7 @@ TabCenter.prototype.slideActive = function (clickedIndex, tab) {
 TabCenter.prototype.tabListChange = function (tabContents, index, This, slideContent, slideobj) {
   console.log(This.homeadvance)
   console.log(index)
+
   if (index === 0) {
     This.tabMsk.slideUp(30)
     advanceData('')
@@ -437,6 +444,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     }
     // 获取选项卡初始数据
     advanceData(obj)
+
     // 获取遮罩数据
     $.ajax({
       url: hosturl+'/index.php/Newindex/tags/id/'+tabId,
@@ -536,11 +544,11 @@ TabCenter.prototype.maskData = function (data, This) {
     }
   }
   This.tabMsk.find('.objects').find('h2').css('display', 'block')
-  This.tabMsk.find('.objects').html(`<h2>学科:</h2>${str1}`)
+  This.tabMsk.find('.objects').html('<h2>学科:</h2>'+str1)
   This.tabMsk.find('.stages').find('h2').css('display', 'block')
-  This.tabMsk.find('.stages').html(`<h2>学段:</h2>${str2}`)
+  This.tabMsk.find('.stages').html('<h2>学段:</h2>'+str2)
   This.tabMsk.find('.classes').find('h2').css('display', 'block')
-  This.tabMsk.find('.classes').html(`<h2>年级:</h2>${str3}`)
+  This.tabMsk.find('.classes').html('<h2>年级:</h2>'+str3)
 }
 // 清空筛选对象
 TabCenter.prototype.clearChooseObj = function (This) {
@@ -681,4 +689,9 @@ function countDown(intDiff, living) {
     )
     intDiff--;
   }, 1000);
+}
+
+// loading样式
+function loading(showhide) {
+  $('.loading').css('display', showhide)
 }

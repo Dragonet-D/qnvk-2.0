@@ -3,14 +3,17 @@ $(function () {
   advanceData()
   // 微信接口
   weixinconfig()
+  // 分享朋友圈
+  shareFriend()
 })
 
 // 微信配置数据
 var urls = location.href.split('#')[0]
 var config = ''
+// 微信config
 function weixinconfig() {
   $.ajax({
-    url: hosturl+'/index.php/Index/sing',
+    url: hosturl + '/index.php/Index/sing',
     type: 'post',
     dataType: 'json',
     async: false,
@@ -19,18 +22,23 @@ function weixinconfig() {
     },
     success: function (data) {
       config = data;
+      console.log(config)
+    },
+    error: function (err) {
+      console.log(err)
     }
   });
 }
+
 // 广告 和 分类接口
 $.ajax({
-  url: hosturl+'/index.php/Newindex/ad',
+  url: hosturl + '/index.php/Newindex/ad',
   type: 'get',
   dataType: 'json',
   success: function (data) {
-    console.log(data)
+    console.log(data);
     // 轮播数据
-    getAds(data.ad)
+    getAds(data.ad);
     // 默认选项卡内容
     defaultTagContent(data.cat)
   }
@@ -40,7 +48,7 @@ $.ajax({
     loop: true,
     autoplay: 5000,
     pagination: '.swiper-pagination'
-  })
+  });
   // 选项卡滑块
   var mySwiper = new Swiper('#tab', {
     freeMode: true,
@@ -51,32 +59,33 @@ $.ajax({
     touchRatio: 0.5
   });
   // 选项卡外层
-  var tab = $('#tab')
-  var tabContents = document.querySelectorAll('.tabs')
+  var tab = $('#tab');
+  var tabContents = document.querySelectorAll('.tabs');
   // 头部遮罩
-  var tabMsk = $('.tab_mask')
-  var header = $('.header')
-  var homeadvance = $('#home_advance')
+  var tabMsk = $('.tab_mask');
+  var header = $('.header');
+  var homeadvance = $('#home_advance');
   // 选项卡构造函数
-  var tabcenter = new TabCenter(tab, tabContents, tabMsk, mySwiper, homeadvance)
-  tabcenter.init()
+  var tabcenter = new TabCenter(tab, tabContents, tabMsk, mySwiper, homeadvance);
+  tabcenter.init();
   var tabwrapper = $('#tab .swiper-wrapper').find('.swiper-slide').eq(0).addClass('active')
   // tab固定
-  var tabfixed = new TabFixed('#tab', '.header')
-  tabfixed.init()
-})
-var homeadvance = $('#home_advance')
+  // var tabfixed = new TabFixed('#tab', '.header')
+  // tabfixed.init()
+});
+
+var homeadvance = $('#home_advance');
+// 传入后端的对象
 var chooseObj = {
   id: '',
   tags: ''
-}
+};
 
 // 主页默认数据接口
 function advanceData(chooseObj) {
   console.log('chooseObj')
-  console.log(chooseObj)
   $.ajax({
-    url: hosturl+'/index.php/Newindex/info',
+    url: hosturl + '/index.php/Newindex/info',
     type: 'get',
     dataType: 'json',
     data: chooseObj,
@@ -97,7 +106,7 @@ function advanceData(chooseObj) {
 
       // 切换筛选数据
       var otherdata = data.infolist
-      if(otherdata){
+      if (otherdata) {
         othertagContent(otherdata)
       }
     },
@@ -112,59 +121,86 @@ function advanceData(chooseObj) {
 // 其他选项卡内容
 function othertagContent(otherdata) {
   homeadvance.html(
-    '<div id="audio_advance" class="audio_advance choose_craful">'+
-      '<ul class="audio_content">'+'</ul>'+
-    '</div>'+
-    '<div class="video_audio choose_craful">'+
-      '<ul class="list_content">'+'</ul>'+
+    '<div id="audio_advance" class="audio_advance choose_craful">' +
+    '<ul class="audio_content">' + '</ul>' +
+    '</div>' +
+    '<div class="video_audio choose_craful">' +
+    '<ul class="list_content">' + '</ul>' +
     '</div>'
   )
   var audioadvance = $('#audio_advance .audio_content')
   var videoaudio = $('.video_audio .list_content')
-  for(var i = 0; i < otherdata.length; i++){
-    var livetype = Number(otherdata[i].livetype),
-      id = otherdata[i].id,
-      picture = otherdata[i].picture
+  for (var i = 0; i < otherdata.length; i++) {
+    if (otherdata[i]) {
+      var livetype = Number(otherdata[i].livetype) || '',
+        id = otherdata[i].id,
+        picture = otherdata[i].picture
       audiotitle = otherdata[i].content,
-      title = otherdata[i].title,
-      time = title.substring(0, 8),
-      name = otherdata[i].name
-      if(livetype === 2){
-        audioadvance.append(
-          '<li class="audio_item">'+
-            '<a class="audio_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+id+'">'+
-              '<i class="icon">'+
-                '<img src="'+picture+'" alt="">'+
-              '</i>'+
-              '<span class="audio_info">'+
-                '<span class="audio_title">'+title+'</span>'+
-                '<span class="audio_owner">'+name+'</span>'+
-                '<span class="audio_hot">'+
-                  '<time>'+time+'</time>'+
-                '</span>'+
-              '</span>'+
-            '</a>'+
+        title = otherdata[i].title,
+        // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
+        time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleString()
+        name = otherdata[i].name,
+        ischoes = Number(otherdata[i].ischoes),
+        price = otherdata[i].price,
+        // 价格
+        pricee = '',
+        // 是否免费
+        free = '',
+        // logo地址
+        logourl = '',
+        // 播放地址
+        playurl = ''
+      // 语音消息
+      if (livetype === 2) {
+        logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
+        audioadvance.prepend(
+          '<li class="audio_item">' +
+          '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+          '<i class="icon">' +
+          '<img src="' + picture + '" alt="">' +
+          '</i>' +
+          '<span class="audio_info">' +
+          '<span class="audio_title">' + title + '</span>' +
+          '<span class="audio_owner">' + name + '</span>' +
+          '<span class="audio_hot">' +
+          '<time>' + time + '</time>' +
+          '</span>' +
+          '</span>' +
+          '</a>' +
           '</li>'
         )
-    }else{
-        videoaudio.append(
-            '<li class="single_video">'+
-              '<a class="single_list_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+id+'">'+
-                '<section class="list_header">'+
-                  '<span class="list_header_info">'+
-                    '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">'+
-                    '<p class="is_free">免费</p>'+
-                  '</span>'+
-                  '<img src="'+picture+'" alt="">'+
-                  '<span class="title">'+
-                    '<title class="video_introduce">'+title+'</title>'+
-                  '</span>'+
-                '</section>'+
-                '<p class="video_owner">'+name+'</p>'+
-              '</a>'+
-            '</li>'
+      } else if (livetype === 1) {
+        if (ischoes === 1) {
+          pricee = price;
+          free = 'toll';
+        } else if (ischoes === 2) {
+          pricee = '课程包';
+          free = 'toll';
+          playurl = 'curdetailpage'
+        } else {
+          pricee = '免费';
+          free = 'free';
+        }
+        logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
+        videoaudio.prepend(
+          '<li class="single_video">' +
+          '<a class="single_list_wrapper" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
+          '<section class="list_header">' +
+          '<span class="list_header_info">' +
+          '<img class="class_type" src="' + logourl + '" alt="">' +
+          '<p class="is_free">' + pricee + '</p>' +
+          '</span>' +
+          '<img src="' + picture + '" alt="">' +
+          '<span class="title">' +
+          '<title class="video_introduce">' + title + '</title>' +
+          '</span>' +
+          '</section>' +
+          '<p class="video_owner">' + name + '</p>' +
+          '</a>' +
+          '</li>'
         )
       }
+    }
   }
   // loading样式消失
   loading('none')
@@ -173,7 +209,7 @@ function othertagContent(otherdata) {
 // 获取遮罩数据接口
 function getTagMask(id) {
   $.ajax({
-    url: hosturl+'/index.php/Newindex/tags/id/' + id,
+    url: hosturl + '/index.php/Newindex/tags/id/' + id,
     type: 'get',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
@@ -192,29 +228,30 @@ function getTagMask(id) {
 function defaultTagContent(list) {
   var tabwrapper = $('#tab .swiper-wrapper')
   tabwrapperWidth = list.length
-  tabwrapper.width(3.2 * tabwrapperWidth + 'rem')
+  tabwrapper.css({
+    justifyContent: 'space-around',
+    display: 'flex'
+  })
   for (var i = 0; i < list.length; i++) {
-    var title = list[i].tag1
-    console.log(title)
-    var id = list[i].id
-    tabwrapper.append(
-      '<div class="swiper-slide" data-id="'+id+'">'+
-        '<span>'+title+'</span>'+
-      '</div>'
-    )
+    if (list[i].tag1 !== ' ') {
+      var title = list[i].tag1
+      console.log(title)
+      var id = list[i].id
+      tabwrapper.append(
+        '<div class="swiper-slide" data-id="' + id + '">' +
+        '<span>' + title + '</span>' +
+        '</div>'
+      )
+    }
   }
 }
 
 // 纵向选项卡内容
 function tagContent(tabInfo) {
   homeadvance.html(
-    '<div id="class_advance" class="class_advance choose_craful" style="display: none">'+
-      '<h2>直播预告</h2>'+
-      '<ul class="class_advance"></ul>'+
-    '</div>'+
-    '<div id="audio_advance" class="audio_advance choose_craful">'+
-      '<h2 class="audio_title"></h2>'+
-      '<ul class="audio_content"></ul>'+
+    '<div id="class_advance" class="class_advance choose_craful" style="display: none">' +
+    '<h2 class="live_advance">直播预告</h2>' +
+    '<ul class="class_advance"></ul>' +
     '</div>'
   )
   for (var i = 0; i < tabInfo.length; i++) {
@@ -222,7 +259,7 @@ function tagContent(tabInfo) {
     var blockTitle = tabInfo[i]['cat' + tabInfo[i].cid]
     var str = ''
     // 心理健康
-    if (categoryname === '心理健康') {
+    if (categoryname === '心理健康课' || categoryname === '心理健康课') {
       var audiotitle = $('#audio_advance .audio_title')
       audiotitle.text(categoryname)
       var audiocontent = $('#audio_advance .audio_content')
@@ -231,23 +268,24 @@ function tagContent(tabInfo) {
           picture = blockTitle[k].picture,
           name = blockTitle[k].name,
           audiotitle = blockTitle[k].title,
-          time = audiotitle.substring(0, 8)
-          audiocontent.append(
-            '<li class="audio_item">'+
-              '<a class="audio_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+id+'">'+
-                '<i class="icon">'+
-                  '<img src="'+picture+'" alt="">'+
-                '</i>'+
-                '<span class="audio_info">'+
-                  '<span class="audio_title">'+audiotitle+'</span>'+
-                  '<span class="audio_owner">'+name+'</span>'+
-                  '<span class="audio_hot">'+
-                    '<time>'+time+'</time>'+
-                  '</span>'+
-                '</span>'+
-              '</a>'+
-            '</li>'
-          )
+          //time = blockTitle[k].tag1.substring(0, blockTitle[k].tag1.indexOf(','))
+          time = new Date(Number(blockTitle[k].starttime) * 1000).toLocaleString()
+        audiocontent.append(
+          '<li class="audio_item">' +
+          '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+          '<i class="icon">' +
+          '<img src="' + picture + '" alt="">' +
+          '</i>' +
+          '<span class="audio_info">' +
+          '<span class="audio_title">' + audiotitle + '</span>' +
+          '<span class="audio_owner">' + name + '</span>' +
+          '<span class="audio_hot">' +
+          '<time>' + time + '</time>' +
+          '</span>' +
+          '</span>' +
+          '</a>' +
+          '</li>'
+        )
       }
     } else {
       var str = ''
@@ -256,37 +294,67 @@ function tagContent(tabInfo) {
         var ids = blockTitle[j].id,
           pictures = blockTitle[j].picture,
           names = blockTitle[j].name,
-          audiotitles = blockTitle[j].title
+          audiotitles = blockTitle[j].title,
+          livetype = Number(blockTitle[j].livetype),
+          playurl = '',
+          logourl = '',
+          statuss = Number(blockTitle[j].statuss),
+          ischoes = Number(blockTitle[j].ischoes),
+          price = Number(blockTitle[j].price)
+        // 语音课程
+        if (livetype === 2) {
+          playurl = 'livedeil_0'
+          logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
+        } else { // 视频课程
+          playurl = 'livedeil'
+          logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
+          if (statuss === 2) {
+            if (price === 0.00) {
+              playurl = 'livedeil'
+            } else {
+              if (ischoes === 2) {
+                playurl = 'curdetailpage'
+              } else {
+                playurl = 'curdetail'
+              }
+            }
+          } else if (statuss === 1) {
+            playurl = 'livedeil'
+          }
+        }
         str +=
-          '<li class="single_video">'+
-              '<a class="single_list_wrapper" href="'+hosturl+'/index.php/Index/livedeil_0/id/'+ids+'">'+
-                '<section class="list_header">'+
-                  '<span class="list_header_info">'+
-                    '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">'+
-                    '<p class="is_free">免费</p>'+
-                  '</span>'+
-                  '<img src="'+pictures+'" alt="">'+
-                  '<span class="title">'+
-                    '<title class="video_introduce">'+audiotitles+'</title>'+
-                  '</span>'+
-                '</section>'+
-                '<p class="video_owner">'+names+'</p>'+
-              '</a>'+
-            '</li>'
+          '<li class="single_video">' +
+          '<a class="single_list_wrapper" href="' + hosturl + '/index.php/Index/' + playurl + '/id/' + ids + '">' +
+          '<section class="list_header">' +
+          '<span class="list_header_info">' +
+          '<img class="class_type" src="' + logourl + '" alt="">' +
+          '<p class="is_free">免费</p>' +
+          '</span>' +
+          '<img src="' + pictures + '" alt="">' +
+          '<span class="title">' +
+          '<title class="video_introduce">' + audiotitles + '</title>' +
+          '</span>' +
+          '</section>' +
+          '<p class="video_owner">' + names + '</p>' +
+          '</a>' +
+          '</li>'
       }
       homeadvance.append(
-        '<div class="video_audio choose_craful">'+
-          '<h2>'+categoryname+'</h2>'+
-          '<ul class="list_content">'+str+'</ul>'+
+        '<div class="video_audio choose_craful">' +
+        '<h2>' + categoryname + '</h2>' +
+        '<ul class="list_content">' + str + '</ul>' +
+        '</div>' +
+        '<div id="audio_advance" class="audio_advance choose_craful">' +
+        '<h2 class="audio_title"></h2>' +
+        '<ul class="audio_content"></ul>' +
         '</div>'
       )
     }
   }
   setTimeout(function () {
     loading('none')
-  },300)
+  }, 300)
 }
-
 
 // 直播信息函数
 function liveInfo(liveinfo) {
@@ -295,38 +363,41 @@ function liveInfo(liveinfo) {
   var id = liveinfo.id,
     picture = liveinfo.picture,
     title = liveinfo.title,
-    livetime = liveinfo.livetime,
+    livetime = liveinfo.starttime,
     spker = liveinfo.spker,
     jianjie = liveinfo.jianjie,
-    willlivetime = new Date(Number(liveinfo.livetime) * 1000).toLocaleString(),
+    willlivetime = new Date(Number(liveinfo.starttime) * 1000).toLocaleString(),
     liveoff = Number(liveinfo.status),
-    livetype = Number(liveinfo.livetype)
+    livetype = Number(liveinfo.livetype),
+    liveurl = ''
   if (livetype === 1) {
     livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png"
+    liveurl = 'livedeil'
   } else if (livetype === 2) {
     livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png"
+    liveurl = 'autolive'
   }
   if (liveoff === 1) {
     advanveWrapper.css('display', 'block')
     classadvanve.html(
-        '<li class="live">'+
-          '<a href="'+hosturl+'/index.php/Index/livedeil/id/'+id+'">'+
-            '<span class="list_header">'+
-                '<span class="list_header_info">'+
-                  '<img class="class_type" src="'+livetagsrc+'" alt="">'+
-                  '<p class="is_free">免费</p>'+
-                '</span>'+
-              '<img src="'+picture+'" alt="">'+
-              '<span class="title all-cut-time">'+
-              '</span>'+
-            '</span>'+
-            '<span class="live_introdus">'+
-              '<span class="title">'+title+'</span>'+
-              '<span class="live_user">'+spker+'</span>'+
-              '<span id="living_mark" class="status">'+willlivetime+'</span>'+
-            '</span>'+
-          '</a>'+
-        '</li>'
+      '<li class="live">' +
+      '<a href="' + hosturl + '/index.php/Index/' + liveurl + '/id/' + id + '">' +
+      '<span class="list_header">' +
+      '<span class="list_header_info">' +
+      '<img class="class_type" src="' + livetagsrc + '" alt="">' +
+      '<p class="is_free">免费</p>' +
+      '</span>' +
+      '<img src="' + picture + '" alt="">' +
+      '<span class="title all-cut-time">' +
+      '</span>' +
+      '</span>' +
+      '<span class="live_introdus">' +
+      '<span class="title">' + title + '</span>' +
+      '<span class="live_user">' + spker + '</span>' +
+      '<span id="living_mark" class="status">' + willlivetime + '</span>' +
+      '</span>' +
+      '</a>' +
+      '</li>'
     )
   }
 
@@ -339,8 +410,8 @@ function liveInfo(liveinfo) {
   // 时间
   var newtime = startime - timestamp;
   var intDiff = newtime;
-  countDown(intDiff, living)
-  console.log(livetime)
+  // 直播倒计时函数
+  countDown(intDiff, living);
 }
 
 // 轮播广告
@@ -351,12 +422,12 @@ function getAds(adlist) {
     var imgUrl = adlist[i].adpath
     var adurl = adlist[i].adurl
     adWrapper.append(
-        '<div class="swiper-slide">'+
-          '<a href="'+adurl+'">'+
-            '<img src="'+imgUrl+'" alt="">'+
-          '</a>'+
-          '<h2 class="swiper_title">'+adjieshao+'</h2>'+
-        '</div>'
+      '<div class="swiper-slide">' +
+      '<a href="' + adurl + '">' +
+      '<img src="' + imgUrl + '" alt="">' +
+      '</a>' +
+      '<h2 class="swiper_title">' + adjieshao + '</h2>' +
+      '</div>'
     )
   }
 }
@@ -383,17 +454,16 @@ function TabCenter(tab, tabContents, tabMsk, Swiper, homeadvance) {
   // 选择的对象
   this.tagss = {}
   // 筛选的ID
-  this.cid = {0:''}
+  this.cid = {0: ''}
 }
-
 // 选项卡构造函数 初始化函数
 TabCenter.prototype.init = function () {
   var This = this
   this.mySwiper.on('tap', function (swiper) {
     This.slideClick(swiper, This)
   })
-}
-// 选项卡点击
+};
+// 选项卡点击居中
 TabCenter.prototype.slideClick = function (swiper, This) {
   // swiper-slide
   var slide = swiper.slides[swiper.clickedIndex]
@@ -420,23 +490,19 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   // loading样式显示
   loading('block')
   This.tabListChange(tabContents, clickedIndex, This, slideContent, slideobj)
-}
+};
 // 选项卡加样式
 TabCenter.prototype.slideActive = function (clickedIndex, tab) {
   tab.find('.active').removeClass('active')
   tab.find('.swiper-slide').eq(clickedIndex).addClass('active')
   var tabId = tab.find('.swiper-slide').eq(clickedIndex).attr('data-id')
-}
+};
 // 选项卡内容切换
 TabCenter.prototype.tabListChange = function (tabContents, index, This, slideContent, slideobj) {
-  console.log(This.homeadvance)
-  console.log(index)
-
   if (index === 0) {
-    This.tabMsk.slideUp(30)
+    This.tabMsk.css('display', 'none')
     advanceData('')
   } else {
-    This.tabMsk.slideDown(30)
     var tabId = slideobj.getAttribute('data-id')
     obj = {
       id: tabId,
@@ -444,16 +510,20 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     }
     // 获取选项卡初始数据
     advanceData(obj)
-
     // 获取遮罩数据
     $.ajax({
-      url: hosturl+'/index.php/Newindex/tags/id/'+tabId,
+      url: hosturl + '/index.php/Newindex/tags/id/' + tabId,
       type: 'get',
       dataType: 'json',
       success: function (data) {
         console.log(data.tagslist)
         // 遮罩数据渲染函数
         This.maskData(data.tagslist, This)
+        if (data.tagslist.length) {
+          This.tabMsk.css('display', 'block')
+        } else {
+          This.tabMsk.css('display', 'none')
+        }
       },
       error: function (err) {
         console.log(err)
@@ -464,15 +534,10 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
       This.tabFilter(tabMskDetials, This)
     })
   }
-  // 点击之前清空筛选对象
-  // This.clearChooseObj(This)
-  // 点击传tab的ID
   This.cid[0] = tabId
-
-}
-// 选项卡头部点击过滤
+};
+// 遮罩数据点击过滤
 TabCenter.prototype.tabFilter = function (maskcontent, This) {
-  console.log(This)
   var itemA = null;
   for (var k = 0; k < maskcontent.length; k++) {
     itemA = maskcontent[k].querySelectorAll("span");
@@ -487,93 +552,85 @@ TabCenter.prototype.tabFilter = function (maskcontent, This) {
         }
         var str = ''
         // 点击切换筛选明细状态
-        if(this.onOff){
+        if (this.onOff) {
           this.className = 'search_active';
           this.onOff = false
           This.tagss[parent.index + 1] = this.getAttribute('data-id')
-          for(var attr in This.tagss){
-            str += This.tagss[attr]+','
+          for (var attr in This.tagss) {
+            str += This.tagss[attr] + ','
           }
-          console.log(str)
-        }else {
+        } else {
           this.className = ''
           This.tagss[parent.index + 1] = ''
           this.onOff = true
-          for(var key in This.tagss){
-            str += This.tagss[key]+','
+          for (var key in This.tagss) {
+            str += This.tagss[key] + ','
           }
-          console.log(str)
         }
         parent.prevNode = this;
-        // 后台筛选数据
+        // 传给后台筛选数据的参数
         var reg = /\d+/g
-        console.log(str)
-        if(reg.test(str)){
-          chooseObj.tags = str.match(reg).join(',')+ ','
-        }else{
+        if (reg.test(str)) {
+          chooseObj.tags = str.match(reg).join(',') + ','
+        } else {
           chooseObj.tags = ''
         }
         chooseObj.id = This.cid[0]
+        console.log(chooseObj)
         // 数据筛选
         advanceData(chooseObj)
-        console.log('点击学科')
       })
     }
   }
-}
-// 遮罩数据获取
+};
+// 遮罩数据获取;
 TabCenter.prototype.maskData = function (data, This) {
   var str1 = '',
     str2 = '',
-    str3 = ''
-  for(var i = 0;i < data.length; i++){
-    var tag1 = data[i].tag2,
-      tag2 = data[i].tag3,
-      tag3 = data[i].tag4,
-      id1 = data[i].ta2,
-      id2 = data[i].ta3,
-      id3 = data[i].ta4
-    if(tag1){
-      str1 += '<span data-id="'+id1+'">'+tag1+'</span>'
+    str3 = '',
+    sum = 0
+  for (var i = 0; i < data.length; i++) {
+    var tag2 = data[i].tag2,
+      tag3 = data[i].tag3,
+      tag4 = data[i].tag4,
+      id2 = data[i].ta2,
+      id3 = data[i].ta3,
+      id4 = data[i].ta4
+    if (tag2) {
+      str1 += '<span data-id="' + id2 + '">' + tag2 + '</span>'
+      This.tabMsk.find('.objects').find('h2').css('display', 'block')
+      This.tabMsk.find('.objects').html('<h2>学科:</h2>' + str1)
     }
-    if(tag2){
-      str2 += '<span data-id="'+id2+'">'+tag2+'</span>'
+
+    if (tag3) {
+      str2 += '<span data-id="' + id3 + '">' + tag3 + '</span>'
+      This.tabMsk.find('.stages').find('h2').css('display', 'block')
+      This.tabMsk.find('.stages').html('<h2>学段:</h2>' + str2)
+    }else {
+      sum ++
+      if(sum === data.length){
+        This.tabMsk.find('.stages').html(' ')
+      }
     }
-    if(tag3){
-      str3 += '<span data-id="'+id3+'">'+tag3+'</span>'
+    if (tag4 && false) {
+      str3 += '<span data-id="' + id4 + '">' + tag4 + '</span>'
+      This.tabMsk.find('.classes').find('h2').css('display', 'block')
+      This.tabMsk.find('.classes').html('<h2>年级:</h2>' + str3)
     }
   }
-  This.tabMsk.find('.objects').find('h2').css('display', 'block')
-  This.tabMsk.find('.objects').html('<h2>学科:</h2>'+str1)
-  This.tabMsk.find('.stages').find('h2').css('display', 'block')
-  This.tabMsk.find('.stages').html('<h2>学段:</h2>'+str2)
-  This.tabMsk.find('.classes').find('h2').css('display', 'block')
-  This.tabMsk.find('.classes').html('<h2>年级:</h2>'+str3)
-}
+};
 // 清空筛选对象
 TabCenter.prototype.clearChooseObj = function (This) {
   for (var attr in This.chooseObj) {
     delete This.chooseObj[attr]
   }
-}
-// 截留函数
-TabCenter.prototype.debounce = function(func, delay) {
-  let timer
-  return function (...args) {
-    if (timer) {
-      clearTimeout(timer)
-    }
-    timer = setTimeout(function () {
-      func.apply(this, args)
-    }, delay)
-  }
-}
+};
+
 // 固定tab
 function TabFixed(tab, header) {
   this.tab = $(tab)
   this.headerHeight = $(header).height()
 }
-
 TabFixed.prototype.init = function () {
   var This = this
   $(window).scroll(function () {
@@ -591,7 +648,7 @@ TabFixed.prototype.init = function () {
       })
     }
   })
-}
+};
 
 // 分享朋友圈
 function shareFriend() {
@@ -618,26 +675,13 @@ function shareFriend() {
 //微信配置
 function weixin() {
   wx.config({
-    //debug: true,
+    // debug: true,
     appId: config.appId, // 必填，公众号的唯一标识
     timestamp: config.timestamp, // 必填，生成签名的时间戳
     nonceStr: config.nonceStr, // 必填，生成签名的随机串
     signature: config.signature, // 必填，签名，见附录1 ba939f772c41cadd1175bcedb4f9ec6627578484
     jsApiList: [
       'checkJsApi',
-      'startRecord',
-      'stopRecord',
-      'onVoiceRecordEnd',
-      'playVoice',
-      'pauseVoice',
-      'stopVoice',
-      'onVoicePlayEnd',
-      'uploadVoice',
-      'downloadVoice',
-      'chooseImage',
-      'previewImage',
-      'uploadImage',
-      'downloadImage',
       'onMenuShareTimeline',
       'onMenuShareAppMessage',
       'onMenuShareQQ',

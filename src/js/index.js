@@ -104,6 +104,7 @@ function advanceData(chooseObj) {
         liveInfo(liveinfo)
       }
 
+
       // 切换筛选数据
       var otherdata = data.infolist
       if (otherdata) {
@@ -141,15 +142,7 @@ function othertagContent(otherdata) {
         time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleString()
         name = otherdata[i].name,
         ischoes = Number(otherdata[i].ischoes),
-        price = otherdata[i].price,
-        // 价格
-        pricee = '',
-        // 是否免费
-        free = '',
-        // logo地址
-        logourl = '',
-        // 播放地址
-        playurl = ''
+        price = otherdata[i].price
       // 语音消息
       if (livetype === 2) {
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
@@ -170,17 +163,6 @@ function othertagContent(otherdata) {
           '</li>'
         )
       } else if (livetype === 1) {
-        if (ischoes === 1) {
-          pricee = price;
-          free = 'toll';
-        } else if (ischoes === 2) {
-          pricee = '课程包';
-          free = 'toll';
-          playurl = 'curdetailpage'
-        } else {
-          pricee = '免费';
-          free = 'free';
-        }
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
         videoaudio.prepend(
           '<li class="single_video">' +
@@ -188,7 +170,7 @@ function othertagContent(otherdata) {
           '<section class="list_header">' +
           '<span class="list_header_info">' +
           '<img class="class_type" src="' + logourl + '" alt="">' +
-          '<p class="is_free">' + pricee + '</p>' +
+          '<p class="is_free">免费</p>' +
           '</span>' +
           '<img src="' + picture + '" alt="">' +
           '<span class="title">' +
@@ -227,11 +209,6 @@ function getTagMask(id) {
 // 横向选项卡内容
 function defaultTagContent(list) {
   var tabwrapper = $('#tab .swiper-wrapper')
-  tabwrapperWidth = list.length
-  tabwrapper.css({
-    justifyContent: 'space-around',
-    display: 'flex'
-  })
   for (var i = 0; i < list.length; i++) {
     if (list[i].tag1 !== ' ') {
       var title = list[i].tag1
@@ -468,13 +445,16 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   // swiper-slide
   var slide = swiper.slides[swiper.clickedIndex]
   // 被点击slide的中心点
-  var slideCenter = slide.offsetLeft + slide.clientWidth
+  var slideCenter = slide.offsetLeft + slide.clientWidth / 2
   // 点击下标
   var clickedIndex = swiper.clickedIndex
   // tab转场
   This.mySwiper.setWrapperTransition(10)
+  console.log(slideCenter)
+  console.log(This.swiperWidth / 2)
   if (slideCenter < This.swiperWidth / 2) {
     This.mySwiper.setWrapperTranslate(0)
+    console.log(slideCenter)
   } else if (slideCenter > This.maxWidth) {
     This.mySwiper.setWrapperTranslate(This.maxTranslate)
   } else {
@@ -508,6 +488,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
       id: tabId,
       tags: ''
     }
+    This.windowScroll()
     // 获取选项卡初始数据
     advanceData(obj)
     // 获取遮罩数据
@@ -536,6 +517,13 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
   }
   This.cid[0] = tabId
 };
+// 页面滚动
+TabCenter.prototype.windowScroll = function () {
+  $(window).scroll(function () {
+    var bodyScroll = document.body.scrollTop || document.documentElement.scrollTop
+    console.log(bodyScroll)
+  })
+}
 // 遮罩数据点击过滤
 TabCenter.prototype.tabFilter = function (maskcontent, This) {
   var itemA = null;

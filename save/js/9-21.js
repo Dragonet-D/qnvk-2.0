@@ -115,9 +115,16 @@ function advanceData(chooseObj) {
   }).done(function () {
   })
 }
-
 // 其他选项卡内容
 function othertagContent(otherdata) {
+  homeadvance.html(
+    '<div id="audio_advance" class="audio_advance choose_craful">' +
+    '<ul class="audio_content">' + '</ul>' +
+    '</div>' +
+    '<div class="video_audio choose_craful">' +
+    '<ul class="list_content">' + '</ul>' +
+    '</div>'
+  )
   var audioadvance = $('#audio_advance .audio_content')
   var videoaudio = $('.video_audio .list_content')
   for (var i = 0; i < otherdata.length; i++) {
@@ -421,8 +428,6 @@ function TabCenter(tab, tabContents, tabMsk, Swiper, homeadvance) {
   this.tagss = {}
   // 筛选的ID
   this.cid = {0: ''}
-  // 开关
-  this.onOff = true
 }
 
 // 选项卡构造函数 初始化函数
@@ -459,6 +464,8 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   var tabContents = This.tabContents
   var slideContent = swiper.slides[clickedIndex].getElementsByTagName('span')[0].innerText;
   var slideobj = swiper.slides[clickedIndex]
+  // loading样式显示
+  loading('block')
   This.tabListChange(tabContents, clickedIndex, This, slideContent, slideobj)
 };
 // 选项卡加样式
@@ -473,129 +480,14 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     This.tabMsk.css('display', 'none')
     advanceData('')
   } else {
-    homeadvance.html(
-      '<div id="audio_advance" class="audio_advance choose_craful">' +
-      '<ul class="audio_content">' + '</ul>' +
-      '</div>' +
-      '<div class="video_audio choose_craful">' +
-      '<ul class="list_content">' + '</ul>' +
-      '</div>'
-    )
-    var listcontent = ''
     var tabId = slideobj.getAttribute('data-id')
-    var page = 0
-    var onOff = true
     obj = {
       id: tabId,
-      tags: '',
-      page: page
+      tags: ''
     }
-    $('#home_advance').dropload({
-      scrollArea: window,
-      domDown: {
-        domClass: 'dropload-down',
-        domRefresh: '',
-        domLoad: '<div class="dropload-load"><img width="24" height="24" src="https://cdn2.qnzsvk.cn/static/20170919/qnvk_2.0/images/loading.gif" alt="">加载中...</div>',
-        domNoData: '<div class="dropload-noData">- 暂时没有了哦 -</div>'
-      },
-      loadDownFn: function (me) {
-        page++;
-        // 拼接HTML
-        var result = '';
-        var logourl = ''
-        $.ajax({
-          url: hosturl + '/index.php/Newindex/info',
-          type: 'get',
-          dataType: 'json',
-          data: {
-            id: tabId,
-            tags: '',
-            page: page
-          },
-          success: function (data) {
-            if (onOff) {
-              if (data.infolist[0].livetype === '2') {
-                console.log('语音')
-                listcontent = $('#audio_advance .audio_content')
-              } else if (data.infolist[0].livetype === '1') {
-                console.log('视频')
-                listcontent = $('#home_advance .list_content')
-              }
-              onOff = false
-            }
-            var arrLen = data.infolist.length;
-            var otherdata = data.infolist
-            if (arrLen > 0) {
-              console.log(data)
-              // 如果没有数据
-              for (var i = 0; i < arrLen; i++) {
-                var livetype = Number(otherdata[i].livetype),
-                  id = otherdata[i].id,
-                  picture = otherdata[i].picture
-                audiotitle = otherdata[i].content,
-                  title = otherdata[i].title,
-                  // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
-                  time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleString()
-                name = otherdata[i].name,
-                  ischoes = Number(otherdata[i].ischoes),
-                  price = otherdata[i].price
-                if (livetype === 2) {
-                  result +=
-                    '<li class="audio_item">' +
-                    '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
-                    '<i class="icon">' +
-                    '<img src="' + picture + '" alt="">' +
-                    '</i>' +
-                    '<span class="audio_info">' +
-                    '<span class="audio_title">' + title + '</span>' +
-                    '<span class="audio_owner">' + name + '</span>' +
-                    '<span class="audio_hot">' +
-                    '<time>' + time + '</time>' +
-                    '</span>' +
-                    '</span>' +
-                    '</a>' +
-                    '</li>'
-                } else if (livetype === 1) {
-                  result +=
-                    '<li class="single_video">' +
-                    '<a class="single_list_wrapper" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
-                    '<section class="list_header">' +
-                    '<span class="list_header_info">' +
-                    '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">' +
-                    '<p class="is_free">免费</p>' +
-                    '</span>' +
-                    '<img src="' + picture + '" alt="">' +
-                    '<span class="title">' +
-                    '<title class="video_introduce">' + title + '</title>' +
-                    '</span>' +
-                    '</section>' +
-                    '<p class="video_owner">' + name + '</p>' +
-                    '</a>' +
-                    '</li>'
-                }
-              }
-              console.log(result)
-            } else {
-              // 锁定
-              me.lock();
-              // 无数据
-              me.noData();
-              $('.dropload-down').text('- 加载完毕 -')
-            }
-            // 插入数据到页面，放到最后面
-            listcontent.prepend(result);
-            // 每次数据插入，必须重置
-            me.resetload();
-          },
-          error: function (xhr, type) {
-            alert('Ajax error!');
-            // 即使加载出错，也得重置
-            me.resetload();
-          }
-        });
-      }
-    });
-
+    This.windowScroll()
+    // 获取选项卡初始数据
+    advanceData(obj)
     // 获取遮罩数据
     $.ajax({
       url: hosturl + '/index.php/Newindex/tags/id/' + tabId,
@@ -621,8 +513,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     })
   }
   This.cid[0] = tabId
-}
-;
+};
 // 页面滚动
 TabCenter.prototype.windowScroll = function () {
   $(window).scroll(function () {

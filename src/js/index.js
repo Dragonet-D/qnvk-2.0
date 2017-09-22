@@ -118,6 +118,14 @@ function advanceData(chooseObj) {
 
 // 其他选项卡内容
 function othertagContent(otherdata) {
+  homeadvance.html(
+    '<div id="audio_advance" class="audio_advance choose_craful">' +
+    '<ul class="audio_content">' + '</ul>' +
+    '</div>' +
+    '<div class="video_audio choose_craful">' +
+    '<ul class="list_content">' + '</ul>' +
+    '</div>'
+  )
   var audioadvance = $('#audio_advance .audio_content')
   var videoaudio = $('.video_audio .list_content')
   for (var i = 0; i < otherdata.length; i++) {
@@ -128,7 +136,7 @@ function othertagContent(otherdata) {
       audiotitle = otherdata[i].content,
         title = otherdata[i].title,
         // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
-        time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleString()
+        time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString()
       name = otherdata[i].name,
         ischoes = Number(otherdata[i].ischoes),
         price = otherdata[i].price
@@ -235,7 +243,7 @@ function tagContent(tabInfo) {
           name = blockTitle[k].name,
           audiotitle = blockTitle[k].title,
           //time = blockTitle[k].tag1.substring(0, blockTitle[k].tag1.indexOf(','))
-          time = new Date(Number(blockTitle[k].starttime) * 1000).toLocaleString()
+          time = new Date(Number(blockTitle[k].starttime) * 1000).toLocaleDateString()
         audiocontent.append(
           '<li class="audio_item">' +
           '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
@@ -353,7 +361,7 @@ function liveInfo(liveinfo) {
       '<img class="class_type" src="' + livetagsrc + '" alt="">' +
       '<p class="is_free">免费</p>' +
       '</span>' +
-      '<img src="' + picture + '" alt="">' +
+      '<img class="live_img" src="' + picture + '" alt="">' +
       '<span class="title all-cut-time">' +
       '</span>' +
       '</span>' +
@@ -442,11 +450,8 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   var clickedIndex = swiper.clickedIndex
   // tab转场
   This.mySwiper.setWrapperTransition(10)
-  console.log(slideCenter)
-  console.log(This.swiperWidth / 2)
   if (slideCenter < This.swiperWidth / 2) {
     This.mySwiper.setWrapperTranslate(0)
-    console.log(slideCenter)
   } else if (slideCenter > This.maxWidth) {
     This.mySwiper.setWrapperTranslate(This.maxTranslate)
   } else {
@@ -485,18 +490,14 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     var tabId = slideobj.getAttribute('data-id')
     var page = 0
     var onOff = true
-    obj = {
-      id: tabId,
-      tags: '',
-      page: page
-    }
-    $('#home_advance').dropload({
+    // 分页
+    homeadvance.dropload({
       scrollArea: window,
       domDown: {
         domClass: 'dropload-down',
         domRefresh: '',
-        domLoad: '<div class="dropload-load"><img width="24" height="24" src="https://cdn2.qnzsvk.cn/static/20170919/qnvk_2.0/images/loading.gif" alt="">加载中...</div>',
-        domNoData: '<div class="dropload-noData">- 暂时没有了哦 -</div>'
+        domLoad: '<img width="24" height="24" src="https://cdn2.qnzsvk.cn/static/20170919/qnvk_2.0/images/loading.gif" alt=""><span>加载中...</span>',
+        domNoData: '- 暂时没有了哦 -'
       },
       loadDownFn: function (me) {
         page++;
@@ -513,7 +514,9 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
             page: page
           },
           success: function (data) {
-            if (onOff) {
+            console.log('分页data')
+            console.log(data)
+            if (onOff && data.infolist.length > 0) {
               if (data.infolist[0].livetype === '2') {
                 console.log('语音')
                 listcontent = $('#audio_advance .audio_content')
@@ -535,7 +538,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                 audiotitle = otherdata[i].content,
                   title = otherdata[i].title,
                   // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
-                  time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleString()
+                  time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString()
                 name = otherdata[i].name,
                   ischoes = Number(otherdata[i].ischoes),
                   price = otherdata[i].price
@@ -574,21 +577,21 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                     '</li>'
                 }
               }
-              console.log(result)
             } else {
               // 锁定
               me.lock();
               // 无数据
               me.noData();
-              $('.dropload-down').text('- 加载完毕 -')
             }
             // 插入数据到页面，放到最后面
-            listcontent.prepend(result);
+            if (listcontent) {
+              listcontent.append(result);
+            }
             // 每次数据插入，必须重置
             me.resetload();
           },
           error: function (xhr, type) {
-            alert('Ajax error!');
+            console.log('Ajax error!');
             // 即使加载出错，也得重置
             me.resetload();
           }

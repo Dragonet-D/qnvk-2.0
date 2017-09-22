@@ -1,5 +1,5 @@
 html, body {
-  font-family: "Helvetica Neue",Helvetica,STHeiTi,"Roboto Regular",Roboto,"Droid Sans","Microsoft Yahei",sans-serif;
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, "Roboto Regular", Roboto, "Droid Sans", "Microsoft Yahei", sans-serif;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   height: 100%;
@@ -46,12 +46,14 @@ audio:not([controls]) {
   height: 0;
 }
 
-img,input {
+img, input {
   border-style: none;
 }
-input{
+
+input {
   outline: none;
 }
+
 svg:not(:root) {
   overflow: hidden;
 }
@@ -83,4 +85,8 @@ html, ul, li, p, h1, h2, h3, h4 {
 
 li {
   list-style: none;
+}
+
+i, em {
+  font-style: normal;
 }

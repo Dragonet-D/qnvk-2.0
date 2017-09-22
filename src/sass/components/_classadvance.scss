@@ -1,43 +1,46 @@
 #class_advance {
-  height: r(280);
-  width: 100%;
-  display: block;
-  text-align: center;
-  position: relative;
-  p {
-    position: absolute;
-    left: 0;
-    width: 100%;
+  li {
+    margin: 0 r(20);
+  }
+  a {
     display: flex;
-    justify-content: space-between;
+    height: r(180);
     align-items: center;
-  }
-  .advance_type {
-    top: r(10);
-    .advance_type_logo {
-      width: r(126);
-      height: r(42);
-    }
-    .is_free {
-      @extend %is-free;
-    }
-  }
-  .advance_info {
-    @include back-gradient-bottom();
-    bottom: 0;
-    font-size: $font-size-small;
-    @include line_height(r(48));
-    color: $button-back-fff;
-    .advance_title {
-      @extend %no-wrap;
-      width: percent(600);
-      text-align: left;
-    }
-    .advance_status {
-      background-color: $background-ff3a5f;
+    width: 100%;
+    .list_header {
+      @extend %list_header;
       display: block;
-      @include line_height(r(40));
-      font-size: $font-size-xsmall;
+      .all-cut-time {
+        @include back-gradient-bottom();
+      }
+    }
+    .live_introdus {
+      width: r(350);
+      height: r(180);
+      margin-left: r(10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      span {
+        @extend %no-wrap;
+        width: 100%;
+        padding: 2px 0;
+      }
+      .title {
+        font-size: $font-size-medium;
+        color: $main-font-000;
+        font-weight: 600;
+        text-indent: 0;
+      }
+      .live_user {
+        font-size: $font-size-small;
+        color: $minor-font-3e4041;
+      }
+      .status {
+        font-size: $font-size-small;
+        color: $intersperse-font-76b8ff;
+      }
     }
   }
 }

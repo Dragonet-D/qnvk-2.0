@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ede71c1-6d94-4830-b821-6be3da3ab2e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/save/js/1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/save/js/tsconfig.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/index.js" afterPath="$PROJECT_DIR$/src/js/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/base/_base.scss" afterPath="$PROJECT_DIR$/src/sass/base/_base.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/base/_mixin.scss" afterPath="$PROJECT_DIR$/src/sass/base/_mixin.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/components/_classadvance.scss" afterPath="$PROJECT_DIR$/src/sass/components/_classadvance.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/components/_tab.scss" afterPath="$PROJECT_DIR$/src/sass/components/_tab.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/components/_tabmask.scss" afterPath="$PROJECT_DIR$/src/sass/components/_tabmask.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/index.scss" afterPath="$PROJECT_DIR$/src/sass/index.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stylesheets/index.css" afterPath="$PROJECT_DIR$/src/stylesheets/index.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,23 +29,28 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="596" column="7" lean-forward="true" selection-start-line="596" selection-start-column="7" selection-end-line="596" selection-end-column="7" />
+            <state relative-caret-position="434">
+              <caret line="363" column="27" lean-forward="false" selection-start-line="363" selection-start-column="27" selection-end-line="363" selection-end-column="27" />
               <folding>
+                <element signature="e#528#745#0" expanded="false" />
+                <element signature="e#764#1620#0" expanded="false" />
+                <element signature="e#821#899#0" expanded="false" />
+                <element signature="e#949#1125#0" expanded="false" />
+                <element signature="e#22531#22900#0" expanded="false" />
                 <element signature="n#!!block;n#shareFriend#0" expanded="false" />
                 <element signature="n#!!block;n#weixin#0" expanded="false" />
                 <element signature="n#!!block;n#countDown#0" expanded="false" />
-                <marker date="1506042376335" expanded="true" signature="5569:5582" ph="..." />
+                <marker date="1506074558480" expanded="true" signature="5831:5844" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="_base.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sass/base/_base.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+            <state relative-caret-position="732">
+              <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -45,8 +59,8 @@
       <file leaf-file-name="9-21.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/save/js/9-21.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1976">
-              <caret line="145" column="10" lean-forward="false" selection-start-line="145" selection-start-column="10" selection-end-line="158" selection-end-column="17" />
+            <state relative-caret-position="285">
+              <caret line="117" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="726" selection-end-column="1" />
               <folding>
                 <element signature="e#528#745#0" expanded="false" />
                 <element signature="e#764#1620#0" expanded="false" />
@@ -59,7 +73,58 @@
                 <element signature="n#!!block;n#shareFriend#0" expanded="false" />
                 <element signature="n#!!block;n#weixin#0" expanded="false" />
                 <element signature="n#!!block;n#countDown#0" expanded="false" />
+                <marker date="1506042376335" expanded="true" signature="5826:5839" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_tab.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sass/components/_tab.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="53" column="26" lean-forward="false" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_classadvance.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sass/components/_classadvance.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_mixin.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sass/base/_mixin.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_tabmask.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sass/components/_tabmask.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sass/index.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/stylesheets/index.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="9279" lean-forward="false" selection-start-line="0" selection-start-column="9279" selection-end-line="0" selection-end-column="9279" />
+              <caret line="0" column="8170" lean-forward="false" selection-start-line="0" selection-start-column="8170" selection-end-line="0" selection-end-column="8170" />
               <folding />
             </state>
           </provider>
@@ -79,33 +144,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="tsconfig.json" />
         <option value="HTML File" />
+        <option value="tsconfig.json" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TabCenter</find>
-      <find>心理健康</find>
-      <find>font-family</find>
-      <find>遮罩</find>
-      <find>ad</find>
-      <find>info</find>
-      <find>list_header_info</find>
-      <find>.title</find>
-      <find>直播</find>
-      <find>.live_introdus .ti</find>
-      <find>rem</find>
-      <find>slidesPerView</find>
       <find>video_introduce</find>
       <find>text-indent: 1</find>
       <find>text-indent:</find>
       <find>.video_in</find>
       <find>display</find>
       <find>flex</find>
-      <find>time</find>
       <find>.video</find>
       <find>live</find>
       <find>font-weight</find>
@@ -117,6 +169,19 @@
       <find>homeadvance</find>
       <find>loading</find>
       <find>noData</find>
+      <find>分页</find>
+      <find>audio_info</find>
+      <find>div</find>
+      <find>audio_item</find>
+      <find>live_introdus</find>
+      <find>live_advance</find>
+      <find>time</find>
+      <find>new Date</find>
+      <find>img</find>
+      <find>list_header</find>
+      <find>直播</find>
+      <find>liveInfo</find>
+      <find>.live_img</find>
     </findStrings>
     <replaceStrings>
       <replace>https://cdn2.qnzsvk.cn/static/20170915/</replace>
@@ -153,16 +218,18 @@
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/../index.js" />
         <option value="$PROJECT_DIR$/save/test.html" />
+        <option value="$PROJECT_DIR$/src/sass/base/_variables.scss" />
+        <option value="$PROJECT_DIR$/save/js/9-21.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/save/js/tsconfig.json" />
+        <option value="$PROJECT_DIR$/save/js/1.js" />
+        <option value="$PROJECT_DIR$/src/sass/base/_base.scss" />
+        <option value="$PROJECT_DIR$/src/sass/components/_tabmask.scss" />
         <option value="$PROJECT_DIR$/src/sass/base/_mixin.scss" />
+        <option value="$PROJECT_DIR$/src/js/index.js" />
         <option value="$PROJECT_DIR$/src/sass/components/_classadvance.scss" />
         <option value="$PROJECT_DIR$/src/sass/index.scss" />
-        <option value="$PROJECT_DIR$/src/sass/base/_base.scss" />
         <option value="$PROJECT_DIR$/src/sass/components/_tab.scss" />
-        <option value="$PROJECT_DIR$/src/sass/base/_variables.scss" />
-        <option value="$PROJECT_DIR$/src/sass/components/_tabmask.scss" />
-        <option value="$PROJECT_DIR$/save/js/9-21.js" />
-        <option value="$PROJECT_DIR$/src/js/index.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -209,6 +276,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,14 +311,32 @@
               <item name="qnvk-2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="qnvk-2.0" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sass" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="qnvk-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qnvk-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sass" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="qnvk-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qnvk-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sass" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="qnvk-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="qnvk-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,6 +368,14 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Node.js.1.js">
+    <configuration name="1.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="1.js" working-dir="$PROJECT_DIR$/save/js" />
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.1.js" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
@@ -304,12 +399,14 @@
       <workItem from="1505961375879" duration="11299000" />
       <workItem from="1505995627337" duration="30000" />
       <workItem from="1505995702347" duration="8211000" />
-      <workItem from="1506042396109" duration="29000" />
+      <workItem from="1506042396109" duration="3712000" />
+      <workItem from="1506049392181" duration="1027000" />
+      <workItem from="1506063897048" duration="11282000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163209000" />
+    <option name="totallyTimeSpent" value="179201000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -318,12 +415,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09957851" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32703003" sideWeight="0.170706" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26140156" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263158" sideWeight="0.82929397" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3259177" sideWeight="0.82929397" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="ReactNative" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -363,8 +460,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sass/index.scss" />
-    <entry file="file://$PROJECT_DIR$/index.html" />
     <entry file="file://$PROJECT_DIR$/js/index.js" />
     <entry file="file://$PROJECT_DIR$/sass/components/_tab.scss" />
     <entry file="file://$PROJECT_DIR$/sass/components/_slider.scss" />
@@ -395,7 +490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -448,25 +542,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sass/base/_index.scss" />
     <entry file="file://$PROJECT_DIR$/src/sass/components/_tabCommon.scss" />
-    <entry file="file://$PROJECT_DIR$/src/sass/base/_mixin.scss" />
-    <entry file="file://$PROJECT_DIR$/src/sass/components/_classadvance.scss" />
-    <entry file="file://$PROJECT_DIR$/src/sass/index.scss" />
-    <entry file="file://$PROJECT_DIR$/src/sass/base/_base.scss" />
-    <entry file="file://$PROJECT_DIR$/src/sass/components/_tab.scss" />
     <entry file="file://$PROJECT_DIR$/src/sass/base/_variables.scss" />
-    <entry file="file://$PROJECT_DIR$/src/sass/components/_tabmask.scss" />
-    <entry file="file://$PROJECT_DIR$/src/stylesheets/index.css">
+    <entry file="file://$PROJECT_DIR$/../autolive.js" />
+    <entry file="file://$PROJECT_DIR$/../index.js" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/save/js/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="9279" lean-forward="false" selection-start-line="0" selection-start-column="9279" selection-end-line="0" selection-end-column="9279" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/save/js/1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-209">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/base/_base.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="732">
+          <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/save/js/9-21.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1976">
-          <caret line="145" column="10" lean-forward="false" selection-start-line="145" selection-start-column="10" selection-end-line="158" selection-end-column="17" />
+        <state relative-caret-position="285">
+          <caret line="117" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="726" selection-end-column="1" />
           <folding>
             <element signature="e#528#745#0" expanded="false" />
             <element signature="e#764#1620#0" expanded="false" />
@@ -479,29 +590,73 @@
             <element signature="n#!!block;n#shareFriend#0" expanded="false" />
             <element signature="n#!!block;n#weixin#0" expanded="false" />
             <element signature="n#!!block;n#countDown#0" expanded="false" />
+            <marker date="1506042376335" expanded="true" signature="5826:5839" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../autolive.js" />
-    <entry file="file://$PROJECT_DIR$/../index.js" />
+    <entry file="file://$PROJECT_DIR$/src/sass/components/_tabmask.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/base/_mixin.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="596" column="7" lean-forward="true" selection-start-line="596" selection-start-column="7" selection-end-line="596" selection-end-column="7" />
+        <state relative-caret-position="434">
+          <caret line="363" column="27" lean-forward="false" selection-start-line="363" selection-start-column="27" selection-end-line="363" selection-end-column="27" />
           <folding>
+            <element signature="e#528#745#0" expanded="false" />
+            <element signature="e#764#1620#0" expanded="false" />
+            <element signature="e#821#899#0" expanded="false" />
+            <element signature="e#949#1125#0" expanded="false" />
+            <element signature="e#22531#22900#0" expanded="false" />
             <element signature="n#!!block;n#shareFriend#0" expanded="false" />
             <element signature="n#!!block;n#weixin#0" expanded="false" />
             <element signature="n#!!block;n#countDown#0" expanded="false" />
-            <marker date="1506042376335" expanded="true" signature="5569:5582" ph="..." />
+            <marker date="1506074558480" expanded="true" signature="5831:5844" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/stylesheets/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        <state relative-caret-position="0">
+          <caret line="0" column="8170" lean-forward="false" selection-start-line="0" selection-start-column="8170" selection-end-line="0" selection-end-column="8170" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/components/_classadvance.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/components/_tab.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="53" column="26" lean-forward="false" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
           <folding />
         </state>
       </provider>

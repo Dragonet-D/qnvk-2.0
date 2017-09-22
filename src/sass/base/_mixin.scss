@@ -73,6 +73,9 @@
     width: r(350);
     height: r(180);
     z-index: 1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
   }
   .list_header_info {
     position: absolute;
@@ -104,6 +107,11 @@
       font-size: $font-size-small;
     }
   }
+}
+// 行高和字体一样
+@mixin line_height_font($font){
+  line-height: $font;
+  font-size: $font;
 }
 // 语音课程右边介绍
 %audio_info {

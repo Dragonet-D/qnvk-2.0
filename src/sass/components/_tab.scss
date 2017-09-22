@@ -1,0 +1,252 @@
+// 选项卡
+#tab {
+  overflow: hidden;
+  border-bottom: 1px solid #f8f8f8;
+  background-color: $background-f5f5f5;
+  width: 100%;
+  .swiper-wrapper {
+    .swiper-slide {
+      height: r(98);
+      width: r(220);
+      line-height: r(60);
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      white-space: nowrap;
+      align-items: center;
+      span {
+        display: block;
+        font-size: $font-size-medium;
+        color: $minor-font-3e4041;
+      }
+    }
+    .swiper-slide:first-child {
+       width: r(180);
+     }
+    .swiper-slide:last-child {
+      margin-left: r(20);
+    }
+    .active {
+      span {
+        font-size: $font-size-large;
+        color: $main-font-000;
+        &:after {
+          content: '';
+          display: block;
+          border-bottom: 2px solid $tag-active-92c0f1;
+          margin: 0 auto;
+          width: 20px;
+        }
+      }
+    }
+  }
+
+}
+
+// 精选推荐
+.video_audios {
+  .choose_craful {
+    h2 {
+      font-size: $font-size-medium;
+      color: $minor-font-3e4041;
+      font-weight: 600;
+      line-height: r(48);
+      text-indent: r(20);
+      margin: r(10) 0;
+    }
+    .live_advance{
+      margin-top: 0!important;
+    }
+    @at-root .class_advance {
+      li {
+        margin: 0 r(20);
+      }
+      a {
+        display: flex;
+        height: r(180);
+        align-items: center;
+        width: 100%;
+        .list_header {
+          @extend %list_header;
+          display: block;
+          .all-cut-time{
+            @include back-gradient-bottom();
+          }
+        }
+        .live_introdus {
+          width: r(350);
+          height: r(180);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          span {
+            @extend %no-wrap;
+            width: 100%;
+            padding: 2px 0;
+          }
+          .title {
+            font-size: $font-size-medium;
+            color: $main-font-000;
+            font-weight: 600;
+            text-indent: 0;
+          }
+          .live_user {
+            font-size: $font-size-small;
+            color: $minor-font-3e4041;
+          }
+          .status {
+            font-size: $font-size-small;
+            color: $intersperse-font-76b8ff;
+          }
+        }
+      }
+    }
+  }
+  .audio_advance {
+    h2 {
+      margin: r(10) 0 0;
+    }
+  }
+  @at-root .video_audio {
+    background: $background-f5f5f5;
+    width: 100%;
+    .list_content {
+      margin: 0 r(20);
+      display: flex;
+      flex-flow: row wrap;
+      .single_list_wrapper {
+        display: block;
+      }
+      li:nth-child(2n+2) {
+        margin-left: r(10);
+      }
+      li:nth-child(n+3) {
+        margin-top: r(10);
+      }
+      .single_video {
+        height: r(240);
+        width: r(350);
+        border-radius: 10px;
+        flex: 0 0 percent(350);
+        background-color: $button-back-fff;
+        .list_header {
+          @extend %list_header;
+        }
+        .video_owner {
+          font-size: $font-size-small;
+          color: $font-999;
+          @include line_height(r(240 - 180));
+          @extend %no-wrap;
+          text-indent: r(10);
+        }
+      }
+    }
+  }
+}
+
+// 课程包
+.class_bags {
+  .class_bag {
+    padding-top: r(20);
+    background: $background-f5f5f5;
+    .audio_content {
+      height: 100%;
+      width: 100%;
+      @at-root .audio_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: r(160);
+        padding: 0 r(32) 0 r(20);
+        .icon {
+          img {
+            width: r(120);
+            height: r(120);
+          }
+        }
+
+        .audio_info {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          justify-content: space-around;
+          height: r(160);
+          margin-left: r(20);
+          margin-right: r(32);
+          flex: 1;
+          span {
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin-left: 0;
+            padding: 2px 0;
+          }
+          .audio_title {
+            font-size: $font-size-medium;
+            color: $minor-font-3e4041;
+            @extend %no-wrap;
+            text-indent: 0;
+            max-width: r(450);
+          }
+          .audio_owner {
+            @extend %no-wrap;
+            text-indent: 0;
+            max-width: r(550);
+            font-size: $font-size-small;
+            color: $content-font-666;
+          }
+          .audio_hot {
+            display: flex;
+            justify-content: space-between;
+            @extend .audio_owner;
+            i {
+              font-style: normal;
+            }
+            .watched_sum {
+              margin-left: r(40);
+            }
+            .bag_price {
+              font-size: $font-size-small;
+              color: $background-ff405f;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 语音课程
+.audio_lists {
+  .audio_list {
+    padding-top: r(20);
+    background: $background-f5f5f5;
+    .audio_content {
+      height: 100%;
+      width: 100%;
+      @at-root .audio_item {
+        height: r(160);
+        padding: 0 r(32) 0 r(20);
+        .audio_wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .icon {
+            img {
+              width: r(120);
+              height: r(120);
+            }
+          }
+
+          .audio_info {
+            @extend %audio_info;
+          }
+        }
+
+      }
+    }
+  }
+}
+

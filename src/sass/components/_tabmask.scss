@@ -1,0 +1,59 @@
+.header {
+  position: relative;
+  .tab_mask {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: r(240);
+    overflow-y: auto;
+    width: 100%;
+    z-index: 2;
+    background: $search-back-f6f9fa;
+    box-shadow: 0 4px 4px $search-shadow-ebeded;
+    .tab_mask_remind {
+      @include line_height(r(60));
+      font-weight: 500;
+      font-size: $font-size-large;
+      color: $main-font-000;
+      text-indent: r(20);
+      display: flex;
+      align-items: center;
+      &:after {
+        display: block;
+        content: '';
+        background-image: url("https://cdn2.qnzsvk.cn/static/20170915/images/homepage_filtrate_img@2x.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: r(40);
+        height: r(40);
+      }
+    }
+    div {
+      display: flex;
+      width: 96%;
+      align-items: center;
+      padding-left: r(20);
+      h2 {
+        @include line_height(r(80));
+        width: r(90);
+        font-weight: normal;
+        font-size: $font-size-large;
+        color: $main-font-000;
+      }
+      span {
+        font-size: $font-size-xxsmall;
+        border-radius: 8px;
+        border: 1px solid $search-item-d2d5dc;
+        padding: r(6) r(10);
+        margin-right: r(20);
+        white-space: nowrap;
+      }
+      .search_active {
+        background-color: $search-active-back-dcedff;
+        color: $search-active-font-dcedff;
+      }
+    }
+    // 单独设置年级
+  }
+}

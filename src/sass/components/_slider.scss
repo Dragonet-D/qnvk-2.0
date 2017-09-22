@@ -1,0 +1,39 @@
+#banner {
+  font-size: 0;
+  background-color: $title-back-e7eaee;
+  width: 100%;
+  overflow: hidden;
+  .swiper-pagination {
+    position: absolute !important;
+    z-index: 2;
+  }
+  .swiper_title {
+    position: absolute;
+    z-index: 1;
+    @include line_height(r(50));
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    @include back-gradient-bottom;
+    color: $button-back-fff;
+    font-size: $font-size-small;
+    font-weight: normal;
+    text-indent: r(20);
+  }
+  div {
+    position: relative;
+    .swiper-wrapper {
+      .swiper-slide {
+        background-size: cover !important;
+        a{
+          display: block;
+        }
+        img {
+          height: r(240);
+          width: 100%;
+        }
+      }
+    }
+  }
+
+}

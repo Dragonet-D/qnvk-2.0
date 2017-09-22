@@ -1,0 +1,43 @@
+#class_advance {
+  height: r(280);
+  width: 100%;
+  display: block;
+  text-align: center;
+  position: relative;
+  p {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .advance_type {
+    top: r(10);
+    .advance_type_logo {
+      width: r(126);
+      height: r(42);
+    }
+    .is_free {
+      @extend %is-free;
+    }
+  }
+  .advance_info {
+    @include back-gradient-bottom();
+    bottom: 0;
+    font-size: $font-size-small;
+    @include line_height(r(48));
+    color: $button-back-fff;
+    .advance_title {
+      @extend %no-wrap;
+      width: percent(600);
+      text-align: left;
+    }
+    .advance_status {
+      background-color: $background-ff3a5f;
+      display: block;
+      @include line_height(r(40));
+      font-size: $font-size-xsmall;
+    }
+  }
+}

@@ -1,0 +1,148 @@
+%no-wrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: r(10);
+}
+
+@mixin line_height($h) {
+  line-height: $h;
+  height: $h;
+}
+
+// 背景图片
+@mixin bg-image($url) {
+  background-image: url($url + "@2x.png");
+  background-repeat: no-repeat;
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    background-image: url($url + "@3x.png");
+  }
+}
+// 背景图片不重复
+@mixin bg-no-repeat($url){
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+// 上下居中
+%vertical_center{
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
+// 背景渐变
+@mixin back-gradient-bottom($begin:rgba(0,0,0,0), $end:rgba(0,0,0,.4)){
+  background: linear-gradient(to bottom, $begin 0%,$end 100%);
+}
+// 免费课程
+%is-free{
+  width: r(80);
+  margin-right: r(10);
+  border-radius: 6px;
+  padding: r(6) 0;
+  color: $button-back-fff;
+  font-size: $font-size-xsmall;
+  text-align: center;
+  background-color: $background-ff3600;
+}
+// flex上下居中
+%flex-center{
+  display: flex;
+  align-items: center;
+}
+// 视频头部
+%list_header {
+  position: relative;
+  width: r(350);
+  height: r(180);
+  .list_header_info, .title {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    font-size: $font-size-small;
+    color: $button-back-fff;
+    span{
+      @include line_height(r(40));
+    }
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: r(350);
+    height: r(180);
+    z-index: 1;
+  }
+  .list_header_info {
+    position: absolute;
+    top: r(10);
+    height: r(42);
+    .class_type {
+      width: r(126);
+      height: r(42);
+    }
+  }
+
+  .is_free {
+    @extend %is-free;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .title {
+    bottom: 0;
+    display: flex;
+    .video_introduce {
+      @include line_height(r(40));
+      @include back-gradient-bottom;
+      @extend %no-wrap;
+      text-indent: 0;
+      width: 100%;
+      display: block;
+      color: $button-back-fff;
+      font-size: $font-size-small;
+    }
+  }
+}
+// 语音课程右边介绍
+%audio_info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  height: r(160);
+  margin-left: r(20);
+  margin-right: r(32);
+  flex: 1;
+  span {
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 2px 0;
+  }
+  .audio_title {
+    font-size: $font-size-medium;
+    color: $minor-font-3e4041;
+    @extend %no-wrap;
+    text-indent: 0;
+    max-width: r(550);
+  }
+  .audio_owner {
+    @extend %no-wrap;
+    text-indent: 0;
+    max-width: r(550);
+    font-size: $font-size-small;
+    color: $content-font-666;
+  }
+  .audio_hot {
+    @extend .audio_owner;
+    align-items: center;
+    i {
+      font-style: normal;
+    }
+    .watched_sum {
+      margin-left: r(40);
+    }
+  }
+}

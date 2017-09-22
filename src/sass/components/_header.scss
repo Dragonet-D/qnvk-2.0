@@ -1,0 +1,168 @@
+$search_input_width: 670;
+$search_input_height: r(48);
+header {
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  background: $background-f5f5f5;
+  justify-content: center;
+  @extend %flex-center;
+  .search_input {
+    position: relative;
+    background: $button-back-fff;
+    height: $search_input_height;
+    width: percent($search_input_width);
+    border-radius: 8px;
+    input{
+      display: block;
+      border-radius: 8px;
+      width: 100%;
+      font-size: $font-size-small;
+      color: $minor-font-3e4041;
+      line-height: $font-size-small;
+      height: $search_input_height;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      background-color: transparent;
+    }
+    .input_holder {
+      &:before{
+        content: '';
+        background-image: url("https://cdn2.qnzsvk.cn/static/20170915/images/search_img@2x.png");
+        background-size: cover;
+        display: block;
+        position: absolute;
+        width: r(28);
+        height: r(28);
+      }
+      @extend %no-wrap;
+      position: absolute;
+      @include line_height(r(28));
+      font-size: $font-size-small;
+      text-indent: r(38);
+      color: $assist-font-b2b2b2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      -webkit-transform: translate(-50%,-50%);
+    }
+  }
+  .search_cancle{
+    display: none;
+  }
+  .search_result_wrapper{
+    display: none;
+    font-size: $font-size-small;
+    color: $main-font-000;
+    position: fixed;
+    top: $header-height;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,.2);
+    @at-root .search_result{
+      background-color: $background-f5f5f5;
+      border-top: 1px solid $search-border-c4c4c4;
+      padding-left: r(20);
+      h2{
+        font-weight: normal;
+        color: $minor-font-3e4041;
+        @include line_height(r(84));
+      }
+      .search_result_remind{
+        font-size: $font-size-small;
+        @include line_height(r(42));
+      }
+      .objects{
+        @extend %flex-center;
+        @include line_height(r(84));
+      }
+      .subjects{
+        display: flex;
+        h2{
+          @include line_height(r(120));
+        }
+        .subject_info{
+          flex: 1;
+          .subject{
+            display: block;
+            float: left;
+            margin-top: r(10);
+          }
+        }
+      }
+      .classes{
+        @extend %flex-center;
+      }
+      .class_ranks{
+        @extend %flex-center;
+        span{
+          padding: r(4) r(20);
+        }
+      }
+      span{
+        @include line_height(r(40));
+        padding: 0 r(14);
+        border: 1px solid $search-item-d2d5dc;
+        border-radius: 8px;
+        text-align: center;
+        color: $main-font-000;
+        font-size: $font-size-small;
+        margin-left: r(20);
+      }
+    }
+    .bottom_btn{
+      @include line_height(r(74));
+      @extend %flex-center;
+      font-size: $font-size-large;
+      color: $button-back-fff;
+      text-align: center;
+      .reset{
+        flex: 1;
+        background-color: $background-ff3a5f;
+      }
+      .sure_btn{
+        flex: 1;
+        background-color: $search-back-ffcb3a;
+      }
+    }
+  }
+}
+.search_active{
+  display: flex;
+  justify-content: space-around;
+  .search_input{
+    width: percent(600);
+    &:before{
+      content: '';
+      background-image: url("https://cdn2.qnzsvk.cn/static/20170915/images/search_img@2x.png");
+      background-size: cover;
+      display: block;
+      position: absolute;
+      width: r(28);
+      height: r(28);
+      @extend %vertical_center;
+      left: 10px;
+    }
+    input{
+      width: 100%;
+      text-indent: r(54);
+    }
+  }
+  .search_cancle{
+    display: block;
+    width: r(750 - 80 - 600);
+    font-size: $font-size-small;
+    color: $minor-font-3e4041;
+    @include line_height($search_input_height);
+    text-align: center;
+  }
+}

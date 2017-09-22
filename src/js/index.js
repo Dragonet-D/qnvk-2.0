@@ -134,7 +134,7 @@ function othertagContent(otherdata) {
         id = otherdata[i].id,
         picture = otherdata[i].picture
       audiotitle = otherdata[i].content,
-        title = otherdata[i].title,
+        title = otherdata[i].title.trim(),
         // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
         time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString()
       name = otherdata[i].name,
@@ -241,7 +241,7 @@ function tagContent(tabInfo) {
         var id = blockTitle[k].id,
           picture = blockTitle[k].picture,
           name = blockTitle[k].name,
-          audiotitle = blockTitle[k].title,
+          audiotitle = blockTitle[k].title.trim(),
           //time = blockTitle[k].tag1.substring(0, blockTitle[k].tag1.indexOf(','))
           time = new Date(Number(blockTitle[k].starttime) * 1000).toLocaleDateString()
         audiocontent.append(
@@ -536,7 +536,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                   id = otherdata[i].id,
                   picture = otherdata[i].picture
                 audiotitle = otherdata[i].content,
-                  title = otherdata[i].title,
+                  title = otherdata[i].title.trim(),
                   // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
                   time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString()
                 name = otherdata[i].name,

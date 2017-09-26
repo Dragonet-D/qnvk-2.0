@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ede71c1-6d94-4830-b821-6be3da3ab2e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bought.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/history.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/bought.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/history.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/personal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sass/bought.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sass/components/_bought.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sass/components/_history.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sass/components/_personal.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sass/history.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sass/personal.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_bought_btn_n@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_bought_btn_n@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_bought_btn_s@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_bought_btn_s@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_history_btn_n@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_history_btn_n@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_history_btn_s@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_history_btn_s@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_homepage_btn_n@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_homepage_btn_n@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_homepage_btn_s@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_homepage_btn_s@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_personal_btn_n@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_personal_btn_n@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/images/bottomnav_personal_btn_s@2x.png" afterPath="$PROJECT_DIR$/src/images/bottomnav_personal_btn_s@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/index.js" afterPath="$PROJECT_DIR$/src/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/base/_mixin.scss" afterPath="$PROJECT_DIR$/src/sass/base/_mixin.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/base/_variables.scss" afterPath="$PROJECT_DIR$/src/sass/base/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/components/_bottomnav.scss" afterPath="$PROJECT_DIR$/src/sass/components/_bottomnav.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sass/index.scss" afterPath="$PROJECT_DIR$/src/sass/index.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stylesheets/index.css" afterPath="$PROJECT_DIR$/src/stylesheets/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/personal-center.js" afterPath="$PROJECT_DIR$/src/js/personal-center.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -92,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bought.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bought.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/bought.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="202">
@@ -112,14 +86,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="personal-center.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="personal-center.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/personal-center.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="100" column="32" lean-forward="false" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+            <state relative-caret-position="181">
+              <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
               <folding>
                 <element signature="e#567#764#0" expanded="false" />
-                <marker date="1506420253175" expanded="false" signature="5596:5638" ph="{...}" />
+                <marker date="1506420788440" expanded="false" signature="5665:5707" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -197,8 +171,8 @@
       <find>audio_wrapper</find>
       <find>single_list_wrapper history</find>
       <find>./..</find>
-      <find>./</find>
       <find>'http://ubuntuhd1.server.qnzsvk.cn</find>
+      <find>./</find>
     </findStrings>
     <replaceStrings>
       <replace>https://cdn2.qnzsvk.cn/static/20170915/</replace>
@@ -206,8 +180,8 @@
       <replace>hosturl</replace>
       <replace>li</replace>
       <replace>https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0</replace>
-      <replace>https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/</replace>
       <replace>hosturl+'</replace>
+      <replace>https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -263,8 +237,8 @@
         <option value="$PROJECT_DIR$/src/bought.html" />
         <option value="$PROJECT_DIR$/src/js/history.js" />
         <option value="$PROJECT_DIR$/src/personal.html" />
-        <option value="$PROJECT_DIR$/src/js/personal-center.js" />
         <option value="$PROJECT_DIR$/src/js/bought.js" />
+        <option value="$PROJECT_DIR$/src/js/personal-center.js" />
       </list>
     </option>
   </component>
@@ -447,12 +421,12 @@
       <workItem from="1506049392181" duration="1027000" />
       <workItem from="1506063897048" duration="11972000" />
       <workItem from="1506303587886" duration="3556000" />
-      <workItem from="1506388711529" duration="27031000" />
+      <workItem from="1506388711529" duration="27294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210478000" />
+    <option name="totallyTimeSpent" value="210741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -839,17 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/personal-center.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="100" column="32" lean-forward="false" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
-          <folding>
-            <element signature="e#567#764#0" expanded="false" />
-            <marker date="1506420253175" expanded="false" signature="5596:5638" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/history.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -863,6 +826,17 @@
         <state relative-caret-position="202">
           <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/personal-center.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+          <folding>
+            <element signature="e#567#764#0" expanded="false" />
+            <marker date="1506420788440" expanded="false" signature="5665:5707" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

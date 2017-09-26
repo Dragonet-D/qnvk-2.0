@@ -39,7 +39,7 @@ PersonalCenter.prototype.indexdata = function () {
   var header = this.personalcenter.find('.header')
   var cardsum = this.personalcenter.find('.cardsum')
   $.ajax({
-    url: hosturl+'/index.php/Client/mycenter',
+    url: hosturl + '/index.php/Client/mycenter',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
     success: function (data) {
@@ -68,23 +68,25 @@ PersonalCenter.prototype.coupons = function (This) {
   This.couponclose(This)
   This.seeruleshow(This)
   $.ajax({
-    url: hosturl+'/index.php/Client/card_jilu',
+    url: hosturl + '/index.php/Client/card_jilu',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
     success: function (data) {
       console.log(data)
-      var cardcanuse = data.cardinfo
-      var cardused = data.cardinfo2
-      coupondetial.html(
-        '<div class="coupon_detial_left">' +
-        '<h3>' + cardcanuse + '</h3>' +
-        '<span>可用</span>' +
-        '</div>' +
-        '<div class="coupon_detial_right">' +
-        '<h3>' + cardused + '</h3>' +
-        '<span>已兑换</span>' +
-        '</div>'
-      )
+      if (data.cardinfo) {
+        var cardcanuse = data.cardinfo
+        var cardused = data.cardinfo2
+        coupondetial.html(
+          '<div class="coupon_detial_left">' +
+          '<h3>' + cardcanuse + '</h3>' +
+          '<span>可用</span>' +
+          '</div>' +
+          '<div class="coupon_detial_right">' +
+          '<h3>' + cardused + '</h3>' +
+          '<span>已兑换</span>' +
+          '</div>'
+        )
+      }
       if (data.usedinfo.length === 0) {
         couponcontent.html('')
       } else {
@@ -98,7 +100,7 @@ PersonalCenter.prototype.coupons = function (This) {
             '<li class="audio_item">' +
             '<a class="audio_wrapper" href="javascript:">' +
             '<span class="icon">' +
-            '<img src="'+picture+'" alt="">' +
+            '<img src="' + picture + '" alt="">' +
             '</span>' +
             '<span class="audio_info">' +
             '<span class="audio_title">' + title + '</span>' +
@@ -167,7 +169,7 @@ PersonalCenter.prototype.expenserecord = function (This) {
     This.showhide(This.expenserecords, 'none')
   })
   $.ajax({
-    url: hosturl+'/index.php/Client/expenselist',
+    url: hosturl + '/index.php/Client/expenselist',
     dataType: 'jsonp',
     jsonp: 'jsonpcallback',
     success: function (data) {

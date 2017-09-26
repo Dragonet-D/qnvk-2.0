@@ -1,0 +1,332 @@
+%img {
+  width: r(32);
+  height: r(32);
+}
+
+// 个人中心
+#person_center {
+  background-color: $background-f5f5f5;
+  font-size: $font-size-large;
+  text-align: center;
+  padding-bottom: r(20);
+  font-weight: 600;
+  .avator {
+    padding: r(40) 0 r(20);
+    img {
+      width: r(120);
+      height: r(120);
+      border-radius: 50%;
+    }
+  }
+  .user_name {
+    height: r(32);
+    padding-bottom: r(40);
+  }
+  .coupon {
+    display: flex;
+    justify-content: space-between;
+    padding: r(28) r(20) r(28) r(40);
+    align-items: center;
+    background-color: $button-back-fff;
+    div {
+      display: flex;
+      align-items: center;
+    }
+
+    .coupon_left {
+      span {
+        margin-left: r(10);
+      }
+    }
+
+    .coupon_right {
+      img {
+        margin-left: r(12);
+      }
+      .cardsum {
+        margin-right: r(10);
+      }
+    }
+
+    img {
+      @extend %img;
+    }
+  }
+  .expense {
+    @extend .coupon;
+    border-top: 1px solid $background-f5f5f5;
+  }
+  @at-root .contactus {
+    background-color: $button-back-fff;
+    margin-top: r(20);
+    .contactus_header {
+      display: flex;
+      align-items: center;
+      padding: r(28) r(20) r(28) r(40);
+      img {
+        @extend %img;
+        margin-right: r(10);
+      }
+    }
+
+    p {
+      color: $content-font-666;
+      font-size: $font-size-small;
+      padding-bottom: r(30);
+    }
+  }
+}
+
+// 消费券
+#coupon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: $background-f5f5f5;
+  width: 100%;
+  z-index: 4;
+  overflow-y: auto;
+  .coupon_content {
+    position: relative;
+    @at-root .back_wraper {
+      @extend %back-center;
+    }
+    @at-root .coupon_detial {
+      display: flex;
+      margin-top: r(10);
+      background-color: $button-back-fff;
+      div {
+        height: r(200);
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: space-between;
+        h3 {
+          font-size: r(84);
+          margin-top: r(40);
+        }
+        span {
+          margin-bottom: r(32);
+        }
+      }
+
+      .coupon_detial_left {
+        h3 {
+          color: $center-4aa1ff;
+        }
+      }
+    }
+    @at-root .exchanged {
+      .exchanged_title {
+        color: $content-font-666;
+        text-align: left;
+        margin: r(30) 0 r(10);
+        font-weight: 500;
+        text-indent: r(10);
+      }
+
+      .audio_content {
+        height: 100%;
+        width: 100%;
+        li {
+          margin-bottom: r(20);
+        }
+        .audio_wrapper {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: r(160);
+          width: 98%;
+          margin: 0 auto;
+          background: url("./../images/coupon_bgimg@2x.png") no-repeat center;
+          background-size: cover;
+          box-shadow: 0 4px 4px $box-shadow-e3e3e3;
+          .icon {
+            margin-left: r(10);
+            img {
+              width: r(120);
+              height: r(120);
+            }
+          }
+          .audio_info {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: space-around;
+            height: r(160);
+            width: 52%;
+            span {
+              display: block;
+              text-align: left;
+              width: 100%;
+              padding: 2px 0;
+            }
+            .audio_title {
+              font-size: $font-size-medium;
+              color: $minor-font-3e4041;
+              @extend %no-wrap;
+              text-indent: 0;
+              max-width: r(550);
+            }
+            .audio_owner {
+              @extend %no-wrap;
+              text-indent: 0;
+              max-width: r(550);
+              font-size: $font-size-small;
+              color: $content-font-666;
+            }
+            .audio_hot {
+              @extend .audio_owner;
+              i {
+                font-style: normal;
+              }
+              .watched_sum {
+                margin-left: r(40);
+              }
+            }
+          }
+          .status {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: r(140);
+            margin-right: r(10);
+            .used_price {
+              text-decoration: line-through;
+              color: red;
+            }
+            .is_free {
+              @extend %is-free;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    @at-root .no_coupon {
+      font-size: $font-size-medium;
+      margin: r(68) auto;
+      h3 {
+        color: $content-font-666;
+        font-weight: 500;
+      }
+
+      p {
+        color: $intersperse-font-76b8ff;
+        margin-top: r(10);
+      }
+    }
+  }
+}
+
+// 获取规则
+#rules {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .3);
+  z-index: 5;
+  .rules {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    .rules_content {
+      position: absolute;
+      background: url("./../images/popup_coupon_bgimg@2x.png") no-repeat;
+      background-size: cover;
+      width: r(500);
+      height: r(600);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      img {
+        float: right;
+        margin-top: r(-28);
+        margin-right: r(-28);
+        width: r(96);
+        height: r(96);
+      }
+      .get_rules {
+        margin-top: 45%;
+        display: flex;
+        flex-direction: column;
+        span {
+          margin-top: r(16);
+          color: $main-font-000;
+          font-size: $font-size-medium;
+        }
+      }
+      .go_share {
+        display: block;
+        margin: r(36) auto;
+        width: r(160);
+        @include line_height(r(60));
+        background-color: $background-95cfff;
+        border: 2px solid $border-535659;
+        border-radius: 12px;
+      }
+    }
+  }
+
+}
+
+// 消费记录
+#expense {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: $background-f5f5f5;
+  width: 100%;
+  z-index: 4;
+  .bought_list {
+    margin-top: r(20);
+    li {
+      display: flex;
+      justify-content: space-between;
+      background-color: $button-back-fff;
+      border-bottom: 1px solid $background-f5f5f5;
+      .used_money {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $background-ff3600;
+        width: r(140);
+        margin-right: r(26);
+      }
+    }
+    a {
+      flex: 1;
+      height: r(120);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-around;
+      @extend %no-wrap;
+      .title {
+        font-size: $font-size-medium;
+        color: $minor-font-3e4041;
+      }
+      time {
+        font-size: $font-size-small;
+        color: $content-font-666;
+      }
+
+    }
+  }
+}
+
+#nav {
+  .userCenter {
+    &:before {
+      @include bg-no-repeat('https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_s@2x.png')
+    }
+    color: $intersperse-font-76b8ff;;;
+  }
+}

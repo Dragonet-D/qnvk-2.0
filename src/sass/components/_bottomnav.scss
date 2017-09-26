@@ -1,4 +1,4 @@
-#footer {
+#nav {
   background-color: $assist-font-b2b2b2;
   position: fixed;
   box-shadow: 0 1px 4px 0 $box-shadow-ebeded;
@@ -12,54 +12,8 @@
     display: flex;
     height: $nav-height;
     justify-content: space-between;
-    .router-link-active {
-      a {
-        color: $intersperse-font-76b8ff;
-      }
-      .home {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_homepage_btn_s@2x.png')
-        }
-      }
-      .hasBought {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_bought_btn_s@2x.png')
-        }
-      }
-      .playHistory {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_history_btn_s@2x.png')
-        }
-      }
-      .userCenter {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_personal_btn_s@2x.png')
-        }
-      }
-    }
-
     li {
       position: relative;
-      .home {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_homepage_btn_s@2x.png')
-        }
-      }
-      .hasBought {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_bought_btn_n@2x.png')
-        }
-      }
-      .playHistory {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_history_btn_n@2x.png')
-        }
-      }
-      .userCenter {
-        &:before {
-          @include bg-no-repeat('../images/bottomnav_personal_btn_n@2x.png')
-        }
-      }
       a {
         color: $font-999;
         font-size: $font-size-xsmall;
@@ -68,12 +22,32 @@
         height: 100%;
         &:before {
           display: block;
-          width: r(50);
-          height: r(40);
+          width: r(44);
+          height: r(44);
           top: 0;
           left: 0;
           content: '';
-          margin: r(12) auto r(12);
+          margin: r(6) auto r(4);
+        }
+      }
+      .home {
+        &:before {
+          @include bg-no-repeat('https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_homepage_btn_n@2x.png')
+        }
+      }
+      .hasBought {
+        &:before {
+          @include bg-no-repeat('https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_bought_btn_n@2x.png')
+        }
+      }
+      .playHistory {
+        &:before {
+          @include bg-no-repeat('https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_n@2x.png')
+        }
+      }
+      .userCenter {
+        &:before {
+          @include bg-no-repeat('https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_n@2x.png')
         }
       }
     }

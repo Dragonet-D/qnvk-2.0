@@ -113,6 +113,7 @@ function advanceData(chooseObj) {
       console.log(err)
     }
   }).done(function () {
+    history()
   })
 }
 
@@ -145,7 +146,7 @@ function othertagContent(otherdata) {
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
         audioadvance.prepend(
           '<li class="audio_item">' +
-          '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+          '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
           '<i class="icon">' +
           '<img src="' + picture + '" alt="">' +
           '</i>' +
@@ -163,7 +164,7 @@ function othertagContent(otherdata) {
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
         videoaudio.prepend(
           '<li class="single_video">' +
-          '<a class="single_list_wrapper" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
+          '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
           '<section class="list_header">' +
           '<span class="list_header_info">' +
           '<img class="class_type" src="' + logourl + '" alt="">' +
@@ -246,7 +247,7 @@ function tagContent(tabInfo) {
           time = new Date(Number(blockTitle[k].starttime) * 1000).toLocaleDateString()
         audiocontent.append(
           '<li class="audio_item">' +
-          '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+          '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
           '<i class="icon">' +
           '<img src="' + picture + '" alt="">' +
           '</i>' +
@@ -298,7 +299,7 @@ function tagContent(tabInfo) {
         }
         str +=
           '<li class="single_video">' +
-          '<a class="single_list_wrapper" href="' + hosturl + '/index.php/Index/' + playurl + '/id/' + ids + '">' +
+          '<a class="single_list_wrapper history" data-id="' + ids + '" href="' + hosturl + '/index.php/Index/' + playurl + '/id/' + ids + '">' +
           '<section class="list_header">' +
           '<span class="list_header_info">' +
           '<img class="class_type" src="' + logourl + '" alt="">' +
@@ -355,7 +356,7 @@ function liveInfo(liveinfo) {
     advanveWrapper.css('display', 'block')
     classadvanve.html(
       '<li class="live">' +
-      '<a href="' + hosturl + '/index.php/Index/' + liveurl + '/id/' + id + '">' +
+      '<a  class="history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/' + liveurl + '/id/' + id + '">' +
       '<span class="list_header">' +
       '<span class="list_header_info">' +
       '<img class="class_type" src="' + livetagsrc + '" alt="">' +
@@ -545,7 +546,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                 if (livetype === 2) {
                   result +=
                     '<li class="audio_item">' +
-                    '<a class="audio_wrapper" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+                    '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
                     '<i class="icon">' +
                     '<img src="' + picture + '" alt="">' +
                     '</i>' +
@@ -561,7 +562,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                 } else if (livetype === 1) {
                   result +=
                     '<li class="single_video">' +
-                    '<a class="single_list_wrapper" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
+                    '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
                     '<section class="list_header">' +
                     '<span class="list_header_info">' +
                     '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">' +
@@ -595,6 +596,8 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
             // 即使加载出错，也得重置
             me.resetload();
           }
+        }).done(function () {
+          history()
         });
       }
     });
@@ -836,4 +839,28 @@ function countDown(intDiff, living) {
 // loading样式
 function loading(showhide) {
   $('.loading').css('display', showhide)
+}
+
+// 历史记录
+function history() {
+  setTimeout(function () {
+    var history = document.querySelectorAll('.history')
+    for (var i = 0; i < history.length; i++) {
+      history[i].addEventListener('click', function () {
+        $.ajax({
+          url: hosturl + '/index.php/Index/addsee',
+          type: 'get',
+          dataType: 'jsonp',
+          jsonp: 'jsonpcallback',
+          data: {
+            live_id: this.getAttribute('data-id'),
+            playtime: new Date().getTime()
+          },
+          success: function (data) {
+            console.log(data)
+          }
+        })
+      })
+    }
+  }, 200)
 }

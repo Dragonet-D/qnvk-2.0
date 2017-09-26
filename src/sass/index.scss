@@ -2,7 +2,8 @@
 "components/slider",
 "components/tab",
 "components/tabmask",
-"components/classadvance";
+"components/classadvance",
+"components/bottomnav";
 
 body {
   background-color: $background-f5f5f5;
@@ -29,6 +30,15 @@ body {
   justify-content: center;
   align-items: center;
 }
-.live_img{
-  border-radius: 0!important;
+
+.live_img {
+  border-radius: 0 !important;
+}
+
+#nav {
+  .home {
+    &:before {
+      @include bg-no-repeat('https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_homepage_btn_s@2x.png')
+    }
+  }
 }

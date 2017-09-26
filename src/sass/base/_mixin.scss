@@ -154,3 +154,24 @@
     }
   }
 }
+// 返回
+%back-center{
+  background-color: $button-back-fff;
+  .back{
+    padding: r(10) 0 r(10) r(10);
+    display: flex;
+    align-items: center;
+    width: 30%;
+    img{
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+      width: r(48);
+      height: r(48);
+    }
+    span{
+      font-size: $font-size-medium;
+      color: $content-font-666;
+      display: block;
+    }
+  }
+}

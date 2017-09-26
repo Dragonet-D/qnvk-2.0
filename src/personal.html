@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>个人中心</title>
+  <link rel="stylesheet" href="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/css/personal.css">
+  <script>
+    (function () {
+      setRem()
+      window.addEventListener('orientation' in window ? 'deviceorientation' : 'resize', setRem)
+
+      function setRem() {
+        var html = document.documentElement
+        var width = html.clientWidth
+        html.style.fontSize = width / 15 + 'px'
+      }
+    })()
+  </script>
+</head>
+<body>
+<div id="person_center">
+  <header class="header">
+
+  </header>
+  <!--消费券-->
+  <section class="coupon">
+    <div class="coupon_left">
+      <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/personal_coupon_img@2x.png" alt="">
+      <span>听课券</span>
+    </div>
+    <div class="coupon_right">
+      <span class="cardsum">0</span>
+      <span>张可用</span>
+      <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/list_more_btn@2x.png" alt="">
+    </div>
+  </section>
+  <section class="expense">
+    <div class="coupon_left">
+      <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/personal_expense_img@2x.png" alt="">
+      <span>消费记录</span>
+    </div>
+    <div class="coupon_right">
+      <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/list_more_btn@2x.png" alt="">
+    </div>
+  </section>
+  <section class="contactus">
+    <div class="contactus_header">
+      <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/personal_contactus_img@2x.png" alt="">
+      <span>联系我们</span>
+    </div>
+    <p>您可在公众号后台给我们留言,"青年小胖"可以看到哦!</p>
+  </section>
+  <!--消费券-->
+  <section id="coupon" class="center_box" style="display:none;">
+    <div class="coupon_content">
+      <section class="back_wraper">
+        <div class="back" @click="hide">
+          <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/list_more_btn@2x.png" alt="">
+          <span>个人中心</span>
+        </div>
+      </section>
+      <section class="coupon_detial">
+      </section>
+      <section class="exchanged">
+        <h3 class="exchanged_title">已兑换</h3>
+        <ul class="audio_content">
+
+        </ul>
+      </section>
+      <section class="no_coupon">
+        <h3>更多听课券可通过分享任意视频获得</h3>
+        <p class="see_rules">查看规则>></p>
+      </section>
+    </div>
+    <rules ref="rules" @closeall="hideSelf"></rules>
+  </section>
+  <!--分享规则-->
+  <section id="rules" class="center_box" style="display: none;">
+    <div class="rules">
+      <div class="rules_content">
+        <img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/popup_coupon_close_btn@3x.png"/>
+        <p class="get_rules">
+          <span>将我们的视频分享给好友</span>
+          <span>即可免费获得一张听课券</span>
+          <span>用于兑换制定课程</span>
+          <span>(每天仅得一张)</span>
+        </p>
+        <a href="http://www3.qnzsvk.cn" class="go_share">去分享</a>
+      </div>
+    </div>
+  </section>
+  <!--消费记录-->
+  <section id="expense" class="center_box" style="display: none;">
+    <div class="expense_record">
+      <section class="back_wraper">
+        <div class="back">
+          <img src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/list_more_btn@2x.png" alt="">
+          <span>个人中心</span>
+        </div>
+      </section>
+      <ul class="bought_list">
+      </ul>
+    </div>
+  </section>
+</div>
+<nav id="nav">
+  <ul class="nav">
+    <li>
+      <a href="index.html" class="home">首页</a>
+    </li>
+    <li>
+      <a href="bought.html" class="hasBought">已购</a>
+    </li>
+    <li>
+      <a href="history.html" class="playHistory">播放历史</a>
+    </li>
+    <li>
+      <a href="#" class="userCenter">个人中心</a>
+    </li>
+  </ul>
+</nav>
+<script src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/vendor/jquery.min.js"></script>
+<script src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/js/public/commt.js"></script>
+<script src="https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/js/personal-center.js"></script>
+</body>
+</html>

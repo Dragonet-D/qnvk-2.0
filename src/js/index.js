@@ -1,36 +1,10 @@
 $(function () {
   // 主页默认数据接口
   advanceData()
-  // 微信接口
-  weixinconfig()
-  // 分享朋友圈
-  shareFriend()
+  // 分享提示
+  var shareremind = new ShareRemind()
+  shareremind.init()
 })
-
-// 微信配置数据
-var urls = location.href.split('#')[0]
-var config = ''
-
-// 微信config
-function weixinconfig() {
-  $.ajax({
-    url: hosturl + '/index.php/Index/sing',
-    type: 'post',
-    dataType: 'json',
-    async: false,
-    data: {
-      data: urls
-    },
-    success: function (data) {
-      config = data;
-      console.log(config)
-    },
-    error: function (err) {
-      console.log(err)
-    }
-  });
-}
-
 // 广告 和 分类接口
 $.ajax({
   url: hosturl + '/index.php/Newindex/ad',
@@ -212,11 +186,14 @@ function defaultTagContent(list) {
       var title = list[i].tag1
       console.log(title)
       var id = list[i].id
-      tabwrapper.append(
-        '<div class="swiper-slide" data-id="' + id + '">' +
-        '<span>' + title + '</span>' +
-        '</div>'
-      )
+      if (title) {
+        tabwrapper.append(
+          '<div class="swiper-slide" data-id="' + id + '">' +
+          '<span>' + title + '</span>' +
+          '</div>'
+        )
+      }
+
     }
   }
 }
@@ -751,47 +728,6 @@ TabFixed.prototype.init = function () {
   })
 };
 
-// 分享朋友圈
-function shareFriend() {
-  weixin();
-  var title = '青年之声V课堂直播间'
-  var link = window.location.href;
-  var description = '青年V课堂邀请名校名师走进直播间从学习方法、升学攻略、心理健康等全方位为青少年成长助力。';
-  var imgUrl = 'https://cdn2.qnzsvk.cn/live/Home/images/share_logo.png'
-  var shareObj = {
-    title: title,
-    link: link,
-    imgUrl: imgUrl,
-    desc: description
-  }
-  wx.ready(function () {
-    wx.onMenuShareTimeline(shareObj);
-    wx.onMenuShareAppMessage(shareObj);
-    wx.onMenuShareQQ(shareObj);
-    wx.onMenuShareWeibo(shareObj);
-    wx.onMenuShareQZone(shareObj);
-  })
-}
-
-//微信配置
-function weixin() {
-  wx.config({
-    // debug: true,
-    appId: config.appId, // 必填，公众号的唯一标识
-    timestamp: config.timestamp, // 必填，生成签名的时间戳
-    nonceStr: config.nonceStr, // 必填，生成签名的随机串
-    signature: config.signature, // 必填，签名，见附录1 ba939f772c41cadd1175bcedb4f9ec6627578484
-    jsApiList: [
-      'checkJsApi',
-      'onMenuShareTimeline',
-      'onMenuShareAppMessage',
-      'onMenuShareQQ',
-      'onMenuShareWeibo',
-      'onMenuShareQZone'
-    ]
-  });
-}
-
 // 直播倒计时函数
 function countDown(intDiff, living) {
   // 设置定时器
@@ -850,8 +786,7 @@ function history() {
         $.ajax({
           url: hosturl + '/index.php/Index/addsee',
           type: 'get',
-          dataType: 'jsonp',
-          jsonp: 'jsonpcallback',
+          dataType: 'json',
           data: {
             live_id: this.getAttribute('data-id'),
             playtime: new Date().getTime()
@@ -863,4 +798,51 @@ function history() {
       })
     }
   }, 200)
+}
+
+// 分享提示
+function ShareRemind() {
+  this.body = $('body')
+}
+
+ShareRemind.prototype.init = function () {
+  var This = this
+  this.body.append(
+    '<section id="rules" class="center_box">' +
+    '<div class="rules">' +
+    '<div class="rules_content">' +
+    '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
+    '<p class="get_rules">' +
+    '<span>将我们的视频分享给好友</span>' +
+    '<span>即可免费获得一张听课券</span>' +
+    '<span>用于兑换制定课程</span>' +
+    '<span>(每天仅得一张)</span>' +
+    '</p>' +
+    '</div>' +
+    '</div>' +
+    '</section>'
+  )
+  this.close()
+}
+ShareRemind.prototype.close = function () {
+  setTimeout(function () {
+    var closebtn = $('#rules .close_btn')
+    var rules = $('#rules')
+    var rulescontent = document.querySelector('#rules .rules')
+    closebtn.on('click', function () {
+      rules.css({
+        display: 'none'
+      })
+    })
+    rules.on('click', function () {
+      console.log(this)
+      this.css({
+        display: 'none'
+      })
+    })
+    rulescontent.addEventListener('click', function (e) {
+      e.stopPropagation()
+    })
+    console.log(rules)
+  }, 500)
 }

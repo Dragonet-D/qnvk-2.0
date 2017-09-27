@@ -10,6 +10,14 @@
   background-color: $background-f5f5f5;
   display: flex;
   flex-direction: column;
+  padding-bottom: $nav-height;
+  .bought_record{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-small;
+    color: $font-999;
+  }
   li{
     padding: 0 r(20);
     background-color: $button-back-fff;

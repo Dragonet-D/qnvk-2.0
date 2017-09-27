@@ -3,6 +3,7 @@ $(function () {
   var personalcenter = new PersonalCenter()
   personalcenter.init()
   personalcenter.indexdata()
+  personalcenter.sharelink()
 })
 
 // 个人中心构造函数
@@ -40,8 +41,8 @@ PersonalCenter.prototype.indexdata = function () {
   var cardsum = this.personalcenter.find('.cardsum')
   $.ajax({
     url: hosturl + '/index.php/Client/mycenter',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
+    dataType: 'json',
+    type: 'get',
     success: function (data) {
       console.log(data)
       var avatar = data.uinfo.cimge
@@ -53,6 +54,9 @@ PersonalCenter.prototype.indexdata = function () {
         '<h3 class="user_name">' + username + '</h3>'
       )
       cardsum.text(data.cardsum)
+    },
+    error: function (err) {
+      console.log(err)
     }
   }).done(function () {
 
@@ -69,57 +73,62 @@ PersonalCenter.prototype.coupons = function (This) {
   This.seeruleshow(This)
   $.ajax({
     url: hosturl + '/index.php/Client/card_jilu',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
+    dataType: 'json',
+    type: 'get',
     success: function (data) {
       console.log(data)
-      if (data.cardinfo) {
-        var cardcanuse = data.cardinfo
-        var cardused = data.cardinfo2
-        coupondetial.html(
-          '<div class="coupon_detial_left">' +
-          '<h3>' + cardcanuse + '</h3>' +
-          '<span>可用</span>' +
-          '</div>' +
-          '<div class="coupon_detial_right">' +
-          '<h3>' + cardused + '</h3>' +
-          '<span>已兑换</span>' +
-          '</div>'
-        )
-      }
-      if (data.usedinfo.length === 0) {
-        couponcontent.html('')
+      if (data.resultmsg) {
+        couponcontent.html('暂无听课券')
       } else {
-        for (var i = 0; i < data.usedinfo.length; i++) {
-          var picture = data.usedinfo[i].picture
-          var title = data.usedinfo[i].title
-          var name = data.usedinfo[i].name
-          var time = new Date(Number(data.usedinfo[i].starttime) * 1000).toLocaleString()
-          var price = data.usedinfo[i].price
-          couponcontent.append(
-            '<li class="audio_item">' +
-            '<a class="audio_wrapper" href="javascript:">' +
-            '<span class="icon">' +
-            '<img src="' + picture + '" alt="">' +
-            '</span>' +
-            '<span class="audio_info">' +
-            '<span class="audio_title">' + title + '</span>' +
-            '<span class="audio_owner">' + name + '</span>' +
-            '<span class="audio_hot">' +
-            '<time>' + time + '</time>' +
-            '<i class="watched_sum"></i>' +
-            '<i></i>' +
-            '</span>' +
-            '</span>' +
-            '<span class="status">' +
-            '<span class="used_price">￥' + price + '</span>' +
-            '<span class="is_free">免费观看</span>' +
-            '</span>' +
-            '</a>' +
-            '</li>'
+        if (data.cardinfo) {
+          var cardcanuse = data.cardinfo
+          var cardused = data.cardinfo2
+          coupondetial.html(
+            '<div class="coupon_detial_left">' +
+            '<h3>' + cardcanuse + '</h3>' +
+            '<span>可用</span>' +
+            '</div>' +
+            '<div class="coupon_detial_right">' +
+            '<h3>' + cardused + '</h3>' +
+            '<span>已兑换</span>' +
+            '</div>'
           )
         }
+        if (data.usedinfo.length === 0) {
+          couponcontent.html('')
+        } else {
+          for (var i = 0; i < data.usedinfo.length; i++) {
+            var picture = data.usedinfo[i].picture
+            var title = data.usedinfo[i].title
+            var name = data.usedinfo[i].name
+            var time = new Date(Number(data.usedinfo[i].starttime) * 1000).toLocaleString()
+            var price = data.usedinfo[i].price
+            couponcontent.append(
+              '<li class="audio_item">' +
+              '<a class="audio_wrapper" href="javascript:">' +
+              '<span class="icon">' +
+              '<img src="' + picture + '" alt="">' +
+              '</span>' +
+              '<span class="audio_info">' +
+              '<span class="audio_title">' + title + '</span>' +
+              '<span class="audio_owner">' + name + '</span>' +
+              '<span class="audio_hot">' +
+              '<time>' + time + '</time>' +
+              '<i class="watched_sum"></i>' +
+              '<i></i>' +
+              '</span>' +
+              '</span>' +
+              '<span class="status">' +
+              '<span class="used_price">￥' + price + '</span>' +
+              '<span class="is_free">免费观看</span>' +
+              '</span>' +
+              '</a>' +
+              '</li>'
+            )
+          }
+        }
       }
+
 
     }
   })
@@ -170,22 +179,30 @@ PersonalCenter.prototype.expenserecord = function (This) {
   })
   $.ajax({
     url: hosturl + '/index.php/Client/expenselist',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
+    type: 'get',
+    dataType: 'json',
     success: function (data) {
-      for (var i = 0; i < data.length; i++) {
-        var title = data[i].titlename
-        var price = data[i].payprice
-        var time = new Date(Number(data[i].paytime) * 1000).toLocaleString()
-        boughtlist.append(
-          '<li>' +
-          '<a href="javascript:">' +
-          '<span class="title">' + title + '</span>' +
-          '<time>' + time + '</time>' +
-          '</a>' +
-          '<span class="used_money">' +
-          '<span>-' + price + '</span>' +
-          '</span>' +
+      if (data.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+          var title = data[i].titlename
+          var price = data[i].payprice
+          var time = new Date(Number(data[i].paytime) * 1000).toLocaleString()
+          boughtlist.append(
+            '<li>' +
+            '<a href="javascript:">' +
+            '<span class="title">' + title + '</span>' +
+            '<time>' + time + '</time>' +
+            '</a>' +
+            '<span class="used_money">' +
+            '<span>-' + price + '</span>' +
+            '</span>' +
+            '</li>'
+          )
+        }
+      } else {
+        boughtlist.html(
+          '<li class="bought_record">'+
+          '<span>您还没有任何消费</span>'+
           '</li>'
         )
       }
@@ -198,5 +215,12 @@ PersonalCenter.prototype.expenserecord = function (This) {
 PersonalCenter.prototype.showhide = function (obj, showhide) {
   obj.css({
     display: showhide
+  })
+}
+// 分享链接
+PersonalCenter.prototype.sharelink = function () {
+  var sharelink = $('.go_share')
+  sharelink.on('click', function () {
+    this.href = hosturl
   })
 }

@@ -8,6 +8,14 @@
 }
 
 #play_history {
+  padding-bottom: $nav-height;
+  .no_record {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-small;
+    color: $font-999;
+  }
   li {
     display: flex;
     height: r(160);
@@ -39,6 +47,11 @@
           @extend %no-wrap;
         }
         .class_user {
+          color: $content-font-666;
+          font-size: $font-size-small;
+          @extend %no-wrap;
+        }
+        .play_time {
           color: $content-font-666;
           font-size: $font-size-small;
           @extend %no-wrap;

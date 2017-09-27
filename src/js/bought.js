@@ -9,13 +9,14 @@ function HasBought() {
 }
 
 HasBought.prototype.init = function () {
-  // this.bought.html('')
+  this.bought.html('')
   var This = this
   $.ajax({
     url: hosturl + '/index.php/Client/buyedcourse',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
+    type: 'get',
+    dataType: 'json',
     success: function (data) {
+      console.log(data)
       if (data.length > 0) {
         for (var i = 0; i < data.length; i++) {
           var picture = data[i].picture
@@ -37,6 +38,12 @@ HasBought.prototype.init = function () {
           '</span>' +
           '<span class="price">￥' + price + '</span>' +
           '</a>' +
+          '</li>'
+        )
+      }else {
+        This.bought.html(
+          '<li class="bought_record">'+
+          '<span>您还未购买任何课程</span>'+
           '</li>'
         )
       }

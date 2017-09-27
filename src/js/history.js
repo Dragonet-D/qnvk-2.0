@@ -15,8 +15,7 @@ PlayHistory.prototype.init = function () {
   $.ajax({
     url: hosturl + '/index.php/Client/playhistory',
     type: 'get',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
+    dataType: 'json',
     success: function (data) {
       if (data.length > 0) {
         for (var i = 0; i < data.length; i++) {
@@ -24,13 +23,23 @@ PlayHistory.prototype.init = function () {
           var name = data[i].name
           var title = data[i].title
           var historyid = data[i].historyid
+          var time = new Date(Number(data[i].starttime) * 1000).toLocaleString()
+          var id = data[i].liveid
+          var livetype = data[i].livetype
+          var playurl = ''
+          if (livetype === '2') {
+            playurl = 'livedeil_0'
+          } else {
+            playurl = 'livedeil'
+          }
           This.playhistory.append(
             '<li class="history_wrapper">' +
-            '<a class="history_title" href="javascript:">' +
+            '<a class="history_title" href="' + hosturl + '/index.php/Index/' + playurl + '/id/' + id + '">' +
             '<img src="' + picture + '" alt="">' +
             '<span class="history_info">' +
             '<span class="class_title">' + title + '</span>' +
             '<span class="class_user">' + name + '</span>' +
+            '<span class="play_time">' + time + '</span>' +
             '</span>' +
             '</a>' +
             '<span data-id="' + historyid + '"  class="deleteone" ">' +
@@ -39,6 +48,12 @@ PlayHistory.prototype.init = function () {
             '</li>'
           )
         }
+      } else {
+        This.playhistory.html(
+          '<li class="no_record">' +
+          '<span>暂无播放记录</span>' +
+          '</li>'
+        )
       }
       console.log(data)
     }
@@ -51,8 +66,7 @@ PlayHistory.prototype.init = function () {
       $.ajax({
         url: hosturl + '/index.php/Client/delplayhistory',
         type: 'get',
-        dataType: 'jsonp',
-        jsonp: 'jsonpcallback',
+        dataType: 'json',
         data: {
           id: id
         },

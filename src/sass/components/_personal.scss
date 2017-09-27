@@ -8,7 +8,7 @@
   background-color: $background-f5f5f5;
   font-size: $font-size-large;
   text-align: center;
-  padding-bottom: r(20);
+  padding-bottom: $nav-height;
   font-weight: 600;
   .avator {
     padding: r(40) 0 r(20);
@@ -221,61 +221,6 @@
   }
 }
 
-// 获取规则
-#rules {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .3);
-  z-index: 5;
-  .rules {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    .rules_content {
-      position: absolute;
-      background: url("./../images/popup_coupon_bgimg@2x.png") no-repeat;
-      background-size: cover;
-      width: r(500);
-      height: r(600);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      img {
-        float: right;
-        margin-top: r(-28);
-        margin-right: r(-28);
-        width: r(96);
-        height: r(96);
-      }
-      .get_rules {
-        margin-top: 45%;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-top: r(16);
-          color: $main-font-000;
-          font-size: $font-size-medium;
-        }
-      }
-      .go_share {
-        display: block;
-        margin: r(36) auto;
-        width: r(160);
-        @include line_height(r(60));
-        background-color: $background-95cfff;
-        border: 2px solid $border-535659;
-        border-radius: 12px;
-      }
-    }
-  }
-
-}
-
 // 消费记录
 #expense {
   position: fixed;
@@ -287,6 +232,13 @@
   z-index: 4;
   .bought_list {
     margin-top: r(20);
+    .bought_record {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size-small;
+      color: $font-999;
+    }
     li {
       display: flex;
       justify-content: space-between;

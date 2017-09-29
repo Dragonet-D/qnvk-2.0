@@ -201,8 +201,8 @@ PersonalCenter.prototype.expenserecord = function (This) {
         }
       } else {
         boughtlist.html(
-          '<li class="bought_record">'+
-          '<span>您还没有任何消费</span>'+
+          '<li class="bought_record">' +
+          '<span>您还没有任何消费</span>' +
           '</li>'
         )
       }

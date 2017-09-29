@@ -1,53 +1,101 @@
 $(function () {
   // 主页默认数据接口
   advanceData()
-  // 分享提示
+  // 分享弹框提示
   var shareremind = new ShareRemind()
   shareremind.init()
+  // 广告和分类筛选tab构造函数
+  var adandtabs = new AdAndTabs()
+  adandtabs.init()
 })
-// 广告 和 分类接口
-$.ajax({
-  url: hosturl + '/index.php/Newindex/ad',
-  type: 'get',
-  dataType: 'json',
-  success: function (data) {
-    console.log(data);
-    // 轮播数据
-    getAds(data.ad);
-    // 默认选项卡内容
-    defaultTagContent(data.cat)
-  }
-}).done(function () {
-  // 轮播图
-  var lunbo = new Swiper('.swiper-container', {
-    loop: true,
-    autoplay: 5000,
-    pagination: '.swiper-pagination'
-  });
-  // 选项卡滑块
-  var mySwiper = new Swiper('#tab', {
-    freeMode: true,
-    freeModeMomentumRatio: 0,
-    slidesPerView: 'auto',
-    freeModeMomentumVelocityRatio: 0,
-    freeModeMomentumBounceRatio: 0,
-    touchRatio: 0.5
-  });
+
+// 广告和分类筛选tab构造函数
+function AdAndTabs() {
+  // 广告外框
+  this.adWrapper = $('#banner .swiper-wrapper')
+  // 点击选项卡内容
+  this.tabwrapper = $('#tab .swiper-wrapper')
   // 选项卡外层
-  var tab = $('#tab');
-  var tabContents = document.querySelectorAll('.tabs');
+  this.tab = $('#tab');
+  this.tabContents = document.querySelectorAll('.tabs');
   // 头部遮罩
-  var tabMsk = $('.tab_mask');
-  var header = $('.header');
-  var homeadvance = $('#home_advance');
-  // 选项卡构造函数
-  var tabcenter = new TabCenter(tab, tabContents, tabMsk, mySwiper, homeadvance);
-  tabcenter.init();
-  var tabwrapper = $('#tab .swiper-wrapper').find('.swiper-slide').eq(0).addClass('active')
-  // tab固定
-  // var tabfixed = new TabFixed('#tab', '.header')
-  // tabfixed.init()
-});
+  this.tabMsk = $('.tab_mask');
+  this.header = $('.header');
+  this.homeadvance = $('#home_advance');
+}
+
+AdAndTabs.prototype.init = function () {
+  var This = this
+  $.ajax({
+    url: hosturl + '/index.php/Newindex/ad',
+    type: 'get',
+    dataType: 'json',
+    success: function (data) {
+      // 广告数据
+      This.getAds(data.ad)
+      // 默认选项卡内容
+      This.defaultTagContent(data.cat)
+    }
+  }).done(function () {
+    // 轮播图
+    var banner = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: 5000,
+      pagination: '.swiper-pagination'
+    });
+    // 选项卡滑块
+    var mySwiper = new Swiper('#tab', {
+      freeMode: true,
+      freeModeMomentumRatio: 0,
+      slidesPerView: 'auto',
+      freeModeMomentumVelocityRatio: 0,
+      freeModeMomentumBounceRatio: 0,
+      touchRatio: 0.5
+    });
+    // 选项卡构造函数
+    var tabcenter = new TabCenter(This.tab, This.tabContents, This.tabMsk, mySwiper, This.homeadvance);
+    tabcenter.init();
+    // 选项卡active样式添加
+    This.activeStyle(This)
+  })
+}
+// 轮播数据
+AdAndTabs.prototype.getAds = function (adlist) {
+  for (var i = 0; i < adlist.length; i++) {
+    var adjieshao = adlist[i].ad_jieshao
+    var imgUrl = adlist[i].adpath
+    var adurl = adlist[i].adurl
+    this.adWrapper.append(
+      '<div class="swiper-slide">' +
+      '<a href="' + adurl + '">' +
+      '<img src="' + imgUrl + '" alt="">' +
+      '</a>' +
+      '<h2 class="swiper_title">' + adjieshao + '</h2>' +
+      '</div>'
+    )
+  }
+}
+// 默认推荐选项卡内容
+AdAndTabs.prototype.defaultTagContent = function (list) {
+  for (var i = 0; i < list.length; i++) {
+    if (list[i].tag1 !== ' ') {
+      var title = list[i].tag1
+      console.log(title)
+      var id = list[i].id
+      if (title) {
+        this.tabwrapper.append(
+          '<div class="swiper-slide" data-id="' + id + '">' +
+          '<span>' + title + '</span>' +
+          '</div>'
+        )
+      }
+    }
+  }
+}
+// 选项卡active样式添加
+AdAndTabs.prototype.activeStyle = function (This) {
+  This.tabwrapper.find('.swiper-slide').eq(0).addClass('active')
+}
 
 var homeadvance = $('#home_advance');
 // 传入后端的对象
@@ -56,7 +104,7 @@ var chooseObj = {
   tags: ''
 };
 
-// 主页默认数据接口
+// 主页默认推荐选项卡数据接口
 function advanceData(chooseObj) {
   console.log('chooseObj')
   $.ajax({
@@ -118,7 +166,7 @@ function othertagContent(otherdata) {
       // 语音消息
       if (livetype === 2) {
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
-        audioadvance.prepend(
+        audioadvance.append(
           '<li class="audio_item">' +
           '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
           '<i class="icon">' +
@@ -136,7 +184,7 @@ function othertagContent(otherdata) {
         )
       } else if (livetype === 1) {
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
-        videoaudio.prepend(
+        videoaudio.append(
           '<li class="single_video">' +
           '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
           '<section class="list_header">' +
@@ -176,26 +224,6 @@ function getTagMask(id) {
   }).done(function () {
 
   })
-}
-
-// 横向选项卡内容
-function defaultTagContent(list) {
-  var tabwrapper = $('#tab .swiper-wrapper')
-  for (var i = 0; i < list.length; i++) {
-    if (list[i].tag1 !== ' ') {
-      var title = list[i].tag1
-      console.log(title)
-      var id = list[i].id
-      if (title) {
-        tabwrapper.append(
-          '<div class="swiper-slide" data-id="' + id + '">' +
-          '<span>' + title + '</span>' +
-          '</div>'
-        )
-      }
-
-    }
-  }
 }
 
 // 纵向选项卡内容
@@ -366,23 +394,6 @@ function liveInfo(liveinfo) {
   countDown(intDiff, living);
 }
 
-// 轮播广告
-function getAds(adlist) {
-  var adWrapper = $('#banner .swiper-wrapper')
-  for (var i = 0; i < adlist.length; i++) {
-    var adjieshao = adlist[i].ad_jieshao
-    var imgUrl = adlist[i].adpath
-    var adurl = adlist[i].adurl
-    adWrapper.append(
-      '<div class="swiper-slide">' +
-      '<a href="' + adurl + '">' +
-      '<img src="' + imgUrl + '" alt="">' +
-      '</a>' +
-      '<h2 class="swiper_title">' + adjieshao + '</h2>' +
-      '</div>'
-    )
-  }
-}
 
 // 选项卡构造函数
 function TabCenter(tab, tabContents, tabMsk, Swiper, homeadvance) {
@@ -448,15 +459,17 @@ TabCenter.prototype.slideClick = function (swiper, This) {
 TabCenter.prototype.slideActive = function (clickedIndex, tab) {
   tab.find('.active').removeClass('active')
   tab.find('.swiper-slide').eq(clickedIndex).addClass('active')
-  var tabId = tab.find('.swiper-slide').eq(clickedIndex).attr('data-id')
 };
 // 选项卡内容切换
 TabCenter.prototype.tabListChange = function (tabContents, index, This, slideContent, slideobj) {
+  console.log(index)
   if (index === 0) {
     This.tabMsk.css('display', 'none')
     advanceData('')
+    console.log('执行0了')
   } else {
-    homeadvance.html(
+    console.log('执行的不是0')
+    This.homeadvance.html(
       '<div id="audio_advance" class="audio_advance choose_craful">' +
       '<ul class="audio_content">' + '</ul>' +
       '</div>' +
@@ -469,7 +482,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     var page = 0
     var onOff = true
     // 分页
-    homeadvance.dropload({
+    This.homeadvance.dropload({
       scrollArea: window,
       domDown: {
         domClass: 'dropload-down',
@@ -477,6 +490,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
         domLoad: '<img width="24" height="24" src="https://cdn2.qnzsvk.cn/static/20170919/qnvk_2.0/images/loading.gif" alt=""><span>加载中...</span>',
         domNoData: '- 暂时没有了哦 -'
       },
+      distance: 50,
       loadDownFn: function (me) {
         page++;
         // 拼接HTML
@@ -604,13 +618,11 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     })
   }
   This.cid[0] = tabId
-}
-;
+};
 // 页面滚动
 TabCenter.prototype.windowScroll = function () {
   $(window).scroll(function () {
     var bodyScroll = document.body.scrollTop || document.documentElement.scrollTop
-    console.log(bodyScroll)
   })
 }
 // 遮罩数据点击过滤
@@ -732,6 +744,8 @@ TabFixed.prototype.init = function () {
 function countDown(intDiff, living) {
   // 设置定时器
   var timer = null;
+  var allCutTime = $('.all-cut-time')
+  var liveingMark = $('#living_mark')
   timer = setInterval(function () {
     var day = 0,
       hour = 0,
@@ -748,23 +762,23 @@ function countDown(intDiff, living) {
       if (second <= 9)
         second = '0' + second;
     } else if (intDiff < 0 && living === 1) {
-      $('.all-cut-time').html(
+      allCutTime.html(
         '<span class="video_introduce">直播进行中...</span>'
       );
-      $('#living_mark').html('直播中...')
+      liveingMark.html('直播中...')
       // 清除定时器
       clearInterval(timer);
       return;
     } else if (living === 2) {
-      $('.all-cut-time').html(
+      allCutTime.html(
         '<span class="video_introduce">直播进行中...</span>'
       );
-      $('#living_mark').html('直播中...')
+      liveingMark.html('直播中...')
       // 清除定时器
       clearInterval(timer);
       return;
     }
-    $('.all-cut-time').html(
+    allCutTime.html(
       '<span>倒计时：</span>' +
       '<span>' + day + '天' + hour + '时' + minute + '分' + second + '秒' + '</span>'
     )

@@ -1,6 +1,9 @@
 $(function () {
   // 微信接口
   weixinconfig()
+  /*setInterval(function () {
+    weixinconfig()
+  }, 60 * 1000)*/
   // 分享朋友圈
   shareFriend()
 })

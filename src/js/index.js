@@ -420,6 +420,8 @@ function TabCenter(tab, tabContents, tabMsk, Swiper, homeadvance) {
   this.cid = {0: ''}
   // 开关
   this.onOff = true
+  // 后端遮罩筛选数据
+  this.tagsstr = ''
 }
 
 // 选项卡构造函数 初始化函数
@@ -427,6 +429,9 @@ TabCenter.prototype.init = function () {
   var This = this
   this.mySwiper.on('tap', function (swiper) {
     This.slideClick(swiper, This)
+    chooseObj.tags = ''
+    This.tagsstr = ''
+    This.clearObj(This.tagss)
   })
 };
 // 选项卡点击居中
@@ -635,32 +640,33 @@ TabCenter.prototype.tabFilter = function (maskcontent, This) {
     for (var m = 0; m < itemA.length; m++) {
       itemA[m].onOff = true
       itemA[m].addEventListener('touchstart', function () {
+        chooseObj.tags = ' '
+        This.tagsstr = ''
         var parent = this.parentNode;
         if (parent.prevNode) {
           parent.prevNode.className = ''
         }
-        var str = ''
         // 点击切换筛选明细状态
         if (this.onOff) {
           this.className = 'search_active';
           this.onOff = false
           This.tagss[parent.index + 1] = this.getAttribute('data-id')
           for (var attr in This.tagss) {
-            str += This.tagss[attr] + ','
+            This.tagsstr += This.tagss[attr] + ','
           }
         } else {
           this.className = ''
           This.tagss[parent.index + 1] = ''
           this.onOff = true
           for (var key in This.tagss) {
-            str += This.tagss[key] + ','
+            This.tagsstr += This.tagss[key] + ','
           }
         }
         parent.prevNode = this;
         // 传给后台筛选数据的参数
         var reg = /\d+/g
-        if (reg.test(str)) {
-          chooseObj.tags = str.match(reg).join(',') + ','
+        if (reg.test(This.tagsstr)) {
+          chooseObj.tags = This.tagsstr.match(reg).join(',') + ','
         } else {
           chooseObj.tags = ''
         }
@@ -709,9 +715,9 @@ TabCenter.prototype.maskData = function (data, This) {
   }
 };
 // 清空筛选对象
-TabCenter.prototype.clearChooseObj = function (This) {
-  for (var attr in This.chooseObj) {
-    delete This.chooseObj[attr]
+TabCenter.prototype.clearObj = function (obj) {
+  for (var attr in obj) {
+    delete obj[attr]
   }
 };
 
@@ -821,22 +827,40 @@ function ShareRemind() {
 
 ShareRemind.prototype.init = function () {
   var This = this
-  this.body.append(
-    '<section id="rules" class="center_box">' +
-    '<div class="rules">' +
-    '<div class="rules_content">' +
-    '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
-    '<p class="get_rules">' +
-    '<span>将我们的视频分享给好友</span>' +
-    '<span>即可免费获得一张听课券</span>' +
-    '<span>用于兑换制定课程</span>' +
-    '<span>(每天仅得一张)</span>' +
-    '</p>' +
-    '</div>' +
-    '</div>' +
-    '</section>'
-  )
-  this.close()
+  $.ajax({
+    url: hosturl + '/index.php/Newindex/tanchu',
+    type: 'get',
+    dataType: 'json',
+    success: function (data) {
+      console.log(data)
+      if (!data.status) {
+        $.ajax({
+          url: hosturl + '/index.php/Newindex/tanchu2',
+          type: 'get',
+          dataType: 'json',
+          success: function (data) {
+            console.log(data)
+          }
+        })
+        This.body.append(
+          '<section id="rules" class="center_box">' +
+          '<div class="rules">' +
+          '<div class="rules_content">' +
+          '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
+          '<p class="get_rules">' +
+          '<span>将我们的视频分享给好友</span>' +
+          '<span>即可免费获得一张听课券</span>' +
+          '<span>用于兑换制定课程</span>' +
+          '<span>(每天仅得一张)</span>' +
+          '</p>' +
+          '</div>' +
+          '</div>' +
+          '</section>'
+        )
+        This.close()
+      }
+    }
+  })
 }
 ShareRemind.prototype.close = function () {
   setTimeout(function () {

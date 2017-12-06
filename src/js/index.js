@@ -295,19 +295,21 @@ windowGuidance.prototype.maskclose = function () {
 
 // 线下活动
 function offLine(info) {
+  var str = ''
+  var cat38 = 'cat' + info[0].cid
+  var categoryname = 'categoryname' + info[0].cid
+  console.log(cat38)
+  var dataInfo = info[0][cat38]
+  console.log(dataInfo)
   homeadvance.append(
     `
       <div class="off_line_activity history">
-        <h2>线下活动</h2>
+        <h2>${info[0][categoryname]}</h2>
         <ul class="activity_content"></ul>
       </div>
     `
   )
-  var str = ''
-  var cat38 = 'cat' + info[0].cid
-  console.log(cat38)
-  var dataInfo = info[0][cat38]
-  console.log(dataInfo)
+
   for (var i = 0; i < dataInfo.length; i++) {
     str += `
       <li class="activity_item" data-id="${dataInfo[i].id}">

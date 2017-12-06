@@ -283,12 +283,14 @@ windowGuidance.prototype.maskclose = function () {
 
 // 线下活动
 function offLine(info) {
-  homeadvance.append('\n      <div class="off_line_activity history">\n        <h2>\u7EBF\u4E0B\u6D3B\u52A8</h2>\n        <ul class="activity_content"></ul>\n      </div>\n    ');
   var str = '';
   var cat38 = 'cat' + info[0].cid;
+  var categoryname = 'categoryname' + info[0].cid;
   console.log(cat38);
   var dataInfo = info[0][cat38];
   console.log(dataInfo);
+  homeadvance.append('\n      <div class="off_line_activity history">\n        <h2>' + info[0][categoryname] + '</h2>\n        <ul class="activity_content"></ul>\n      </div>\n    ');
+
   for (var i = 0; i < dataInfo.length; i++) {
     str += '\n      <li class="activity_item" data-id="' + dataInfo[i].id + '">\n        <div class="activity_left">\n          <img src="' + dataInfo[i].tickets_picture + '" alt="">\n        </div>\n        <div class="activity_right">\n          <div class="activity_title">\n            <h2>' + dataInfo[i].tickets_name + '</h2>\n          </div>\n          <div class="time_where">\n            <time>' + dataInfo[i].tickets_crettime + ' | ' + dataInfo[i].tikeaddress + '</time>\n          </div>\n          <div class="activity_money">\n            <span class="money_sum">' + dataInfo[i].tickets_oldprice + '</span>\n            <span class="money_unit">\u5143</span>\n          </div>\n          <div class="owner_info">\n            <div class="activity_sponsor">\u4E3B\u529E\u65B9: ' + dataInfo[i].zuzhizhe + '</div>\n            <div class="activity_speaker">\u4E3B\u8BB2\u4EBA: ' + dataInfo[i].zhujiangren + '</div>\n          </div>\n        </div>\n      </li>\n    ';
   }

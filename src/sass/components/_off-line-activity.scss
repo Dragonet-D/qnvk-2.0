@@ -1,5 +1,13 @@
 .off_line_activity {
   background-color: #fff;
+  h2{
+    color: #3e4041;
+    font-weight: 600;
+    text-indent: .4rem;
+    padding-top: .48rem;
+    line-height: .64rem;
+    font-size: .64rem;
+  }
   .activity_item {
     display: flex;
     justify-content: space-between;
@@ -27,6 +35,7 @@
       .time_where {
         font-size: $font-size-small;
         color: $content-font-666;
+        @extend %no-wrap;
         padding: r(10) 0;
       }
       .activity_money {

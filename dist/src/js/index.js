@@ -119,10 +119,10 @@ function advanceData(chooseObj) {
       if (liveinfo) {
         liveInfo(liveinfo);
       }
-      // 切换筛选数据
-      var otherdata = data.infolist;
-      if (otherdata) {
-        othertagContent(otherdata);
+      // 线下活动
+      var offLineActivity = data.ticketinfo;
+      if (offLineActivity) {
+        offLine(offLineActivity);
       }
     },
     error: function error(err) {
@@ -132,6 +132,7 @@ function advanceData(chooseObj) {
     history();
     livingNums();
     bagClick();
+    offLineClick();
   });
 }
 
@@ -158,6 +159,34 @@ function bagClick() {
           }
         }
       });
+    };
+  }
+}
+
+// 线下活动点击
+function offLineClick() {
+  var offLineItem = document.querySelectorAll('.off_line_activity .activity_item');
+  for (var i = 0; i < offLineItem.length; i++) {
+    offLineItem[i].index = i;
+    offLineItem[i].onclick = function () {
+      var id = this.getAttribute('data-id');
+      console.log(id);
+      /*$.ajax({
+        url: hosturl + '/index.php/Newindex/ispay',
+        type: 'get',
+        dataType: 'json',
+        data: {
+          id: id
+        },
+        success: function (data) {
+          // 支付成功
+          if (data.status === 1) {
+            window.location.href = hosturl + '/index.php/Newautolive/index/id/' + id
+          } else {
+            window.location.href = hosturl + '/index.php/Newindex/curdetail/id/' + data.id
+          }
+        }
+      })*/
     };
   }
 }
@@ -252,125 +281,21 @@ windowGuidance.prototype.maskclose = function () {
   });
 };
 
-// 关闭全部弹窗引导面板
-function winguidanClose(This) {
-  This.maskList.css({
-    display: 'none'
-  });
-  $('.box').css({
-    overflow: 'scroll',
-    width: 'auto',
-    height: 'auto'
-  });
-  This.mask.css({
-    display: 'none'
-  });
-}
-
-// 主页弹窗引导页显示
-function indexMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
-  console.log(afterObj);
-  maskList.css({
-    display: 'block'
-  });
-  $('.box').css({
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%'
-  });
-  btn.css({
-    display: 'block'
-  });
-  maskPale.css({
-    display: 'block'
-  });
-  beforObj.css({
-    display: 'block'
-  });
-  afterObj.css({
-    display: 'none'
-  });
-}
-
-function otherMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
-  console.log(afterObj);
-  maskList.css({
-    display: 'block'
-  });
-  $('.box').css({
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%'
-  });
-  btn.css({
-    display: 'block'
-  });
-  maskPale.css({
-    display: 'block'
-  });
-  beforObj.css({
-    display: 'block'
-  });
-}
-
-// 关闭请求
-function closePost() {
-  $.ajax({
-    url: hosturl + '/index.php/Newindex/sesstanchu',
-    type: 'post',
-    dataType: 'json',
-    success: function success(data) {},
-    error: function error(err) {
-      console.log(err);
-    }
-  });
-}
-
-// 其他选项卡内容
-function othertagContent(otherdata) {
-  homeadvance.html('<div id="audio_advance" class="audio_advance choose_craful">' + '<ul class="audio_content">' + '</ul>' + '</div>' + '<div class="video_audio choose_craful">' + '<ul class="list_content">' + '</ul>' + '</div>');
-  var audioadvance = $('#audio_advance .audio_content');
-  var videoaudio = $('.video_audio .list_content');
-  for (var i = 0; i < otherdata.length; i++) {
-    if (otherdata[i]) {
-      var livetype = Number(otherdata[i].livetype) || '',
-          id = otherdata[i].id,
-          picture = otherdata[i].picture;
-      audiotitle = otherdata[i].content, title = otherdata[i].title.trim(),
-      // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
-      time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString();
-      name = otherdata[i].name, ischoes = Number(otherdata[i].ischoes), price = otherdata[i].price;
-      // 语音消息
-      if (livetype === 2) {
-        logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png';
-        audioadvance.append('<li class="audio_item">' + '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' + '<i class="icon">' + '<img src="' + picture + '" alt="">' + '</i>' + '<span class="audio_info">' + '<span class="audio_title">' + title + '</span>' + '<span class="audio_owner">' + name + '</span>' + '<span class="audio_hot">' + '<time>' + time + '</time>' + '</span>' + '</span>' + '</a>' + '</li>');
-      } else if (livetype === 1) {
-        logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png';
-        videoaudio.append('<li class="single_video">' + '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Newautolive/index/id/' + id + '">' + '<section class="list_header">' + '<span class="list_header_info">' + '<img class="class_type" src="' + logourl + '" alt="">' + '<p class="is_free">免费</p>' + '</span>' + '<img src="' + picture + '" alt="">' + '<span class="title">' + '<title class="video_introduce">' + title + '</title>' + '</span>' + '</section>' + '<p class="video_owner">' + name + '</p>' + '</a>' + '</li>');
-      }
-    }
+// 线下活动
+function offLine(info) {
+  homeadvance.append('\n      <div class="off_line_activity history">\n        <h2>\u7EBF\u4E0B\u6D3B\u52A8</h2>\n        <ul class="activity_content"></ul>\n      </div>\n    ');
+  var str = '';
+  var cat38 = 'cat' + info[0].cid;
+  console.log(cat38);
+  var dataInfo = info[0][cat38];
+  console.log(dataInfo);
+  for (var i = 0; i < dataInfo.length; i++) {
+    str += '\n      <li class="activity_item" data-id="' + dataInfo[i].id + '">\n        <div class="activity_left">\n          <img src="' + dataInfo[i].tickets_picture + '" alt="">\n        </div>\n        <div class="activity_right">\n          <div class="activity_title">\n            <h2>' + dataInfo[i].tickets_name + '</h2>\n          </div>\n          <div class="time_where">\n            <time>' + dataInfo[i].tickets_crettime + ' | ' + dataInfo[i].tikeaddress + '</time>\n          </div>\n          <div class="activity_money">\n            <span class="money_sum">' + dataInfo[i].tickets_oldprice + '</span>\n            <span class="money_unit">\u5143</span>\n          </div>\n          <div class="owner_info">\n            <div class="activity_sponsor">\u4E3B\u529E\u65B9: ' + dataInfo[i].zuzhizhe + '</div>\n            <div class="activity_speaker">\u4E3B\u8BB2\u4EBA: ' + dataInfo[i].zhujiangren + '</div>\n          </div>\n        </div>\n      </li>\n    ';
   }
-  // loading样式消失
-  loading('none');
+  $('.off_line_activity .activity_content').html(str);
 }
 
-// 获取遮罩数据接口
-function getTagMask(id) {
-  $.ajax({
-    url: hosturl + '/index.php/Newindex/tags/id/' + id,
-    type: 'get',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
-    success: function success(data) {
-      console.log(data);
-    },
-    error: function error(err) {
-      console.log(err);
-    }
-  }).done(function () {});
-}
-
-// 纵向选项卡内容
+// 精品推荐
 function tagContent(tabInfo) {
   var onFalse = true;
   homeadvance.html('<div id="class_advance" class="class_advance choose_craful" style="display: none">' + '<h2 class="live_advance">直播预告</h2>' + '<ul class="class_advance"></ul>' + '</div>');
@@ -452,6 +377,96 @@ function tagContent(tabInfo) {
   setTimeout(function () {
     loading('none');
   }, 300);
+}
+
+// 关闭全部弹窗引导面板
+function winguidanClose(This) {
+  This.maskList.css({
+    display: 'none'
+  });
+  $('.box').css({
+    overflow: 'scroll',
+    width: 'auto',
+    height: 'auto'
+  });
+  This.mask.css({
+    display: 'none'
+  });
+}
+
+// 主页弹窗引导页显示
+function indexMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
+  console.log(afterObj);
+  maskList.css({
+    display: 'block'
+  });
+  $('.box').css({
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%'
+  });
+  btn.css({
+    display: 'block'
+  });
+  maskPale.css({
+    display: 'block'
+  });
+  beforObj.css({
+    display: 'block'
+  });
+  afterObj.css({
+    display: 'none'
+  });
+}
+
+function otherMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
+  console.log(afterObj);
+  maskList.css({
+    display: 'block'
+  });
+  $('.box').css({
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%'
+  });
+  btn.css({
+    display: 'block'
+  });
+  maskPale.css({
+    display: 'block'
+  });
+  beforObj.css({
+    display: 'block'
+  });
+}
+
+// 关闭请求
+function closePost() {
+  $.ajax({
+    url: hosturl + '/index.php/Newindex/sesstanchu',
+    type: 'post',
+    dataType: 'json',
+    success: function success(data) {},
+    error: function error(err) {
+      console.log(err);
+    }
+  });
+}
+
+// 获取遮罩数据接口
+function getTagMask(id) {
+  $.ajax({
+    url: hosturl + '/index.php/Newindex/tags/id/' + id,
+    type: 'get',
+    dataType: 'jsonp',
+    jsonp: 'jsonpcallback',
+    success: function success(data) {
+      console.log(data);
+    },
+    error: function error(err) {
+      console.log(err);
+    }
+  }).done(function () {});
 }
 
 // 直播信息函数
@@ -569,7 +584,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
     This.tabMsk.css('display', 'none');
     advanceData('');
   } else {
-    This.homeadvance.html('<div id="audio_advance" class="audio_advance choose_craful">' + '<ul class="audio_content">' + '</ul>' + '</div>' + '<div class="video_audio choose_craful">' + '<ul class="list_content">' + '</ul>' + '</div>' + '<div class="class_bag choose_craful">' + '<ul class="bag_content">' + '</ul>' + '</div>');
+    This.homeadvance.html('<div id="audio_advance" class="audio_advance choose_craful">' + '<ul class="audio_content">' + '</ul>' + '</div>' + '<div class="video_audio choose_craful">' + '<ul class="list_content">' + '</ul>' + '</div>' + '<div class="class_bag choose_craful">' + '<ul class="bag_content">' + '</ul>' + '</div>' + '<div class="off_line_activity history">' + '<ul class="activity_content">' + '</ul>' + '</div>');
     var listcontent = '';
     var tabId = slideobj.getAttribute('data-id');
     var page = 0;
@@ -610,6 +625,9 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
               } else if (data.infolist[0].ischoes === '2') {
                 // '精选课程包'
                 listcontent = $('.class_bag .bag_content');
+              } else if (data.infolist[0].tickettype === '2') {
+                // '线下活动'
+                listcontent = $('.off_line_activity .activity_content');
               }
               onOff = false;
             }
@@ -617,10 +635,17 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
             var otherdata = data.infolist;
             if (arrLen > 0) {
               for (var i = 0; i < arrLen; i++) {
-                var livetype = Number(otherdata[i].livetype),
+                var livetype = Number(otherdata[i].livetype ? otherdata[i].livetype : ''),
                     id = otherdata[i].id,
-                    picture = otherdata[i].picture;
-                audiotitle = otherdata[i].content, title = otherdata[i].title.trim(), time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString(), name = otherdata[i].name, ischoes = Number(otherdata[i].ischoes), price = otherdata[i].price, sumi = otherdata[i].sumi, suming = otherdata[i].suming;
+                    picture = otherdata[i].picture ? otherdata[i].picture : '',
+                    audiotitle = otherdata[i].content ? otherdata[i].content : '',
+                    title = otherdata[i].title ? otherdata[i].title.trim() : '',
+                    time = new Date(Number(otherdata[i].starttime ? otherdata[i].starttime : '') * 1000).toLocaleDateString(),
+                    ischoes = Number(otherdata[i].ischoes),
+                    price = otherdata[i].price ? otherdata[i].price : '',
+                    sumi = otherdata[i].sumi ? otherdata[i].sumi : '',
+                    suming = otherdata[i].suming ? otherdata[i].suming : '',
+                    tickettype = otherdata[i].tickettype ? otherdata[i].tickettype : '';
                 // 语音课程
                 if (livetype === 2 && ischoes !== 2) {
                   result += '<li class="audio_item" data-id="' + id + '">' + '<a class="audio_wrapper history"  href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' + '<i class="icon">' + '<img src="' + picture + '" alt="">' + '</i>' + '<span class="audio_info">' + '<span class="audio_title">' + title + '</span>' + '<span class="audio_owner">' + name + '</span>' + '<span class="audio_hot">' + '<time>' + time + '</time>' + '</span>' + '</span>' + '</a>' + '</li>';
@@ -630,6 +655,8 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                   // 课程包
                 } else if (livetype && ischoes === 2) {
                   result += '\n                    <li class="bag_item" data-id="' + id + '">\n                      <a class="bag_wrapper history" href="javascript:">\n                        <i class="icon">\n                          <img\n                              src="' + picture + '"\n                              alt=""> \n                        </i>\n                        <span class="audio_info">\n                          <span class="audio_title">' + title + '</span>\n                          <span class="audio_owner">' + name + '</span>\n                          <span class="audio_hot">\n                            <span>\u66F4\u65B0\u81F3\u7B2C' + suming + '\u8BFE/\u5171' + sumi + '\u8BFE</span>\n                            <!--<span>126\u8D2D\u4E70</span>-->\n                            <span class="bag_price">\uFFE5' + price + '</span>\n                          </span>\n                        </span>\n              \n                      </a>\n                    </li>\n                  ';
+                } else if (tickettype) {
+                  result += '\n                    <li class="activity_item"  data-id="' + otherdata[i].id + '">\n                      <div class="activity_left">\n                        <img \n                           src="' + otherdata[i].tickets_picture + '"\n                           alt=""\n                        >\n                      </div>\n                      <div class="activity_right">\n                        <div class="activity_title">\n                          <h2>' + otherdata[i].tickets_name + '</h2>\n                        </div>\n                        <div class="time_where">\n                          <time>' + otherdata[i].tickets_crettime + ' | ' + otherdata[i].tikeaddress + '</time>\n                        </div>\n                        <div class="activity_money">\n                          <span class="money_sum">' + otherdata[i].tickets_oldprice + '</span>\n                          <span class="money_unit">\u5143</span>\n                        </div>\n                        <div class="owner_info">\n                          <div class="activity_sponsor">\u4E3B\u529E\u65B9: ' + otherdata[i].zuzhizhe + '</div>\n                          <div class="activity_speaker">\u4E3B\u8BB2\u4EBA: ' + otherdata[i].zhujiangren + '</div>\n                        </div>\n                      </div>\n                    </li>\n                  ';
                 }
               }
             } else {
@@ -655,6 +682,8 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
           history();
           // 课程包点击
           bagClick();
+          // 线下活动点击
+          offLineClick();
         });
       }
     });

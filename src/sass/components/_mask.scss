@@ -1,0 +1,112 @@
+%absolute {
+  position: absolute;
+}
+%top{
+  @extend %absolute;
+  top: 0;
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+}
+%bottom{
+  @extend %absolute;
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+
+}
+.mask_list {
+  //display: none;
+  .mask{
+    display: none;
+    z-index: 10;
+  }
+  .mask_all,.mask_center{
+    @extend %absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 9;
+  }
+  .mask_all{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .mask_center{
+    .top{
+      @extend %top;
+      height: r(260);
+    }
+    .bottom{
+      @extend %bottom;
+      height: r(950);
+      top:r(340);
+    }
+    .personal_top{
+      @extend %top;
+      height: r(267);
+    }
+    .personal_bottom{
+      @extend %bottom;
+      top: r(367);
+      bottom:0;
+    }
+  }
+  .share_mask {
+    @extend %absolute;
+    top: r(4);
+    right: r(26);
+    z-index: 10;
+  }
+  .nav_mask {
+    @extend %absolute;
+    top: r(295);
+    right: r(88);
+  }
+  .tabs_mask {
+    @extend %absolute;
+    top: r(150);
+    right: r(57);
+  }
+  .personal_mask {
+    @extend %absolute;
+    top: r(350);
+    right: r(195);
+    z-index: 10;
+  }
+  .mask_item {
+    position: relative;
+    img {
+      margin-left: r(170);
+      width: r(32);
+      height: r(64);
+    }
+    p {
+      width: r(200);
+      border-radius: r(8);
+      border: r(2) solid #000;
+      padding: r(6) r(12);
+      background-color: #fff;
+      font-size: r(20);
+      color: #000;
+    }
+  }
+  .mask_btn {
+    z-index: 10;
+    position: absolute;
+    bottom: r(130);
+    width: 100%;
+    p {
+      display: none;
+      width: r(200);
+      margin: 0 auto;
+      text-align: center;
+      border-radius: r(10);
+      border: r(2) solid #605f5c;
+      background-color: #ffd400;
+      color: #000;
+      padding: r(15);
+      font-size: r(30);
+    }
+  }
+}

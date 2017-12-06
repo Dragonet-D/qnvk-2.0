@@ -1,1 +1,705 @@
-html,body{font-family:"Helvetica Neue", Helvetica, STHeiTi, "Roboto Regular", Roboto, "Droid Sans", "Microsoft Yahei", sans-serif;user-select:none;-webkit-tap-highlight-color:transparent;height:100%;font-weight:500}article,aside,footer,header,nav,section{display:block}figcaption,figure,main{display:block}a{background-color:transparent;text-decoration:none}b,strong{font-weight:inherit}mark{background-color:#ff0;color:#000}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img,input{border-style:none}input{outline:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-size:100%;margin:0}button,input{overflow:visible}button,select{text-transform:none}body,html,ul,li,p,h1,h2,h3,h4{margin:0;padding:0}li{list-style:none}i,em{font-style:normal}.exchanged .audio_content .audio_wrapper .audio_info .audio_title,.exchanged .audio_content .audio_wrapper .audio_info .audio_owner,.exchanged .audio_content .audio_wrapper .audio_info .audio_hot,#expense .bought_list a{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;text-indent:.2rem}.exchanged .audio_content .audio_wrapper .status .is_free{width:1.6rem;margin-right:.2rem;border-radius:6px;padding:.12rem 0;color:#fff;font-size:.48rem;text-align:center;background-color:#ff3600}.back_wraper{background-color:#fff}.back_wraper .back{padding:.2rem 0 .2rem .2rem;display:flex;align-items:center;width:30%}.back_wraper .back img{transform:rotate(180deg);-webkit-transform:rotate(180deg);width:.96rem;height:.96rem}.back_wraper .back span{font-size:.64rem;color:#666;display:block}body{background-color:#f5f5f5}#rules{position:fixed;top:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.3);z-index:5;text-align:center}#rules .rules{position:relative;height:100%;width:100%}#rules .rules .rules_content{position:absolute;background:url("./../images/popup_coupon_bgimg@2x.png") no-repeat;background-size:cover;width:10rem;height:12rem;top:50%;left:50%;transform:translate(-50%, -50%);-webkit-transform:translate(-50%, -50%)}#rules .rules .rules_content img{float:right;margin-top:-.56rem;margin-right:-.56rem;width:1.92rem;height:1.92rem}#rules .rules .rules_content .get_rules{margin-top:45%;display:flex;flex-direction:column}#rules .rules .rules_content .get_rules span{margin-top:.32rem;color:#000;font-size:.64rem;text-align:center}#rules .rules .rules_content .go_share{display:block;margin:.72rem auto;width:3.2rem;line-height:1.2rem;height:1.2rem;background-color:#95cfff;border:2px solid #535659;border-radius:12px}#person_center .coupon img,#person_center .expense img,.contactus .contactus_header img{width:.64rem;height:.64rem}#person_center{background-color:#f5f5f5;font-size:.72rem;text-align:center;padding-bottom:1.8rem;font-weight:600}#person_center .avator{padding:.8rem 0 .4rem}#person_center .avator img{width:2.4rem;height:2.4rem;border-radius:50%}#person_center .user_name{height:.64rem;padding-bottom:.8rem}#person_center .coupon,#person_center .expense{display:flex;justify-content:space-between;padding:.56rem .4rem .56rem .8rem;align-items:center;background-color:#fff}#person_center .coupon div,#person_center .expense div{display:flex;align-items:center}#person_center .coupon .coupon_left span,#person_center .expense .coupon_left span{margin-left:.2rem}#person_center .coupon .coupon_right img,#person_center .expense .coupon_right img{margin-left:.24rem}#person_center .coupon .coupon_right .cardsum,#person_center .expense .coupon_right .cardsum{margin-right:.2rem}#person_center .expense{border-top:1px solid #f5f5f5}.contactus{background-color:#fff;margin-top:.4rem}.contactus .contactus_header{display:flex;align-items:center;padding:.56rem .4rem .56rem .8rem}.contactus .contactus_header img{margin-right:.2rem}.contactus p{color:#666;font-size:.56rem;padding-bottom:.6rem}#coupon{position:fixed;top:0;left:0;bottom:0;background-color:#f5f5f5;width:100%;z-index:4;overflow-y:auto}#coupon .coupon_content{position:relative}.coupon_detial{display:flex;margin-top:.2rem;background-color:#fff}.coupon_detial div{height:4rem;width:50%;display:flex;flex-direction:column;text-align:center;justify-content:space-between}.coupon_detial div h3{font-size:1.68rem;margin-top:.8rem}.coupon_detial div span{margin-bottom:.64rem}.coupon_detial .coupon_detial_left h3{color:#4aa1ff}.exchanged .exchanged_title{color:#666;text-align:left;margin:.6rem 0 .2rem;font-weight:500;text-indent:.2rem}.exchanged .audio_content{height:100%;width:100%}.exchanged .audio_content li{margin-bottom:.4rem}.exchanged .audio_content .audio_wrapper{display:flex;justify-content:space-between;align-items:center;height:3.2rem;width:98%;margin:0 auto;background:url("./../images/coupon_bgimg@2x.png") no-repeat center;background-size:cover;box-shadow:0 4px 4px #e3e3e3}.exchanged .audio_content .audio_wrapper .icon{margin-left:.2rem}.exchanged .audio_content .audio_wrapper .icon img{width:2.4rem;height:2.4rem}.exchanged .audio_content .audio_wrapper .audio_info{display:flex;flex-direction:column;align-items:left;justify-content:space-around;height:3.2rem;width:52%}.exchanged .audio_content .audio_wrapper .audio_info span{display:block;text-align:left;width:100%;padding:2px 0}.exchanged .audio_content .audio_wrapper .audio_info .audio_title{font-size:.64rem;color:#3e4041;text-indent:0;max-width:11rem}.exchanged .audio_content .audio_wrapper .audio_info .audio_owner,.exchanged .audio_content .audio_wrapper .audio_info .audio_hot{text-indent:0;max-width:11rem;font-size:.56rem;color:#666}.exchanged .audio_content .audio_wrapper .audio_info .audio_hot i{font-style:normal}.exchanged .audio_content .audio_wrapper .audio_info .audio_hot .watched_sum{margin-left:.8rem}.exchanged .audio_content .audio_wrapper .status{display:flex;flex-direction:column;justify-content:center;width:2.8rem;margin-right:.2rem}.exchanged .audio_content .audio_wrapper .status .used_price{text-decoration:line-through;color:red}.exchanged .audio_content .audio_wrapper .status .is_free{width:100%}.no_coupon{font-size:.64rem;margin:1.36rem auto}.no_coupon h3{color:#666;font-weight:500}.no_coupon p{color:#76b8ff;margin-top:.2rem}#expense{position:fixed;top:0;left:0;bottom:0;background-color:#f5f5f5;width:100%;z-index:4}#expense .bought_list{margin-top:.4rem}#expense .bought_list .bought_record{display:flex;align-items:center;justify-content:center;font-size:.56rem;color:#999}#expense .bought_list li{display:flex;justify-content:space-between;background-color:#fff;border-bottom:1px solid #f5f5f5}#expense .bought_list li .used_money{display:flex;align-items:center;justify-content:space-between;color:#ff3600;width:2.8rem;margin-right:.52rem}#expense .bought_list a{flex:1;height:2.4rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-around}#expense .bought_list a .title{font-size:.64rem;color:#3e4041}#expense .bought_list a time{font-size:.56rem;color:#666}#nav .userCenter{color:#76b8ff}#nav .userCenter:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_s@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}#nav{background-color:#b2b2b2;position:fixed;box-shadow:0 1px 4px 0 #ebeded;bottom:0;left:0;z-index:3;width:100%;text-align:center;background:#f6f9fa}.nav{display:flex;height:1.8rem;justify-content:space-between}.nav li{position:relative}.nav li a{color:#999;font-size:.48rem;display:block;width:3.72rem;height:100%}.nav li a:before{display:block;width:.88rem;height:.88rem;top:0;left:0;content:'';margin:.12rem auto .08rem}.nav li .home:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_homepage_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}.nav li .hasBought:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_bought_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}.nav li .playHistory:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}.nav li .userCenter:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}
+/* line 1, ../sass/base/_base.scss */
+html, body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, "Roboto Regular", Roboto, "Droid Sans", "Microsoft Yahei", sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  font-weight: 500;
+}
+
+/* line 9, ../sass/base/_base.scss */
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+/* line 18, ../sass/base/_base.scss */
+figcaption,
+figure,
+main {
+  display: block;
+}
+
+/* line 24, ../sass/base/_base.scss */
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* line 29, ../sass/base/_base.scss */
+b,
+strong {
+  font-weight: inherit;
+}
+
+/* line 34, ../sass/base/_base.scss */
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/* line 39, ../sass/base/_base.scss */
+audio,
+video {
+  display: inline-block;
+}
+
+/* line 44, ../sass/base/_base.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/* line 49, ../sass/base/_base.scss */
+img, input {
+  border-style: none;
+}
+
+/* line 53, ../sass/base/_base.scss */
+input {
+  outline: none;
+}
+
+/* line 57, ../sass/base/_base.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* line 61, ../sass/base/_base.scss */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+}
+
+/* line 70, ../sass/base/_base.scss */
+button,
+input {
+  overflow: visible;
+}
+
+/* line 75, ../sass/base/_base.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/* line 80, ../sass/base/_base.scss */
+body,
+html, ul, li, p, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 86, ../sass/base/_base.scss */
+li {
+  list-style: none;
+}
+
+/* line 90, ../sass/base/_base.scss */
+i, em {
+  font-style: normal;
+}
+
+/* line 1, ../sass/base/_mixin.scss */
+.exchanged .audio_content .audio_wrapper .audio_info .audio_title, .exchanged .audio_content .audio_wrapper .audio_info .audio_owner, .exchanged .audio_content .audio_wrapper .audio_info .audio_hot, #expense .bought_list a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 0.2rem;
+}
+
+/* line 39, ../sass/base/_mixin.scss */
+.exchanged .audio_content .audio_wrapper .status .is_free {
+  width: 1.6rem;
+  margin-right: 0.2rem;
+  border-radius: 6px;
+  padding: 0.12rem 0;
+  color: #fff;
+  font-size: 0.48rem;
+  text-align: center;
+  background-color: #ff3600;
+}
+
+/* line 158, ../sass/base/_mixin.scss */
+.back_wraper {
+  background-color: #fff;
+}
+/* line 160, ../sass/base/_mixin.scss */
+.back_wraper .back {
+  padding: 0.2rem 0 0.2rem 0.2rem;
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+/* line 165, ../sass/base/_mixin.scss */
+.back_wraper .back img {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  width: 0.96rem;
+  height: 0.96rem;
+}
+/* line 171, ../sass/base/_mixin.scss */
+.back_wraper .back span {
+  font-size: 0.64rem;
+  color: #666;
+  display: block;
+}
+
+/* line 1, ../sass/components/_common.scss */
+body {
+  background-color: #f5f5f5;
+}
+
+/* line 6, ../sass/components/_common.scss */
+#rules {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  text-align: center;
+}
+/* line 16, ../sass/components/_common.scss */
+#rules .rules {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+/* line 20, ../sass/components/_common.scss */
+#rules .rules .rules_content {
+  position: absolute;
+  width: 10rem;
+  height: 12rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+/* line 28, ../sass/components/_common.scss */
+#rules .rules .rules_content .close_btn {
+  position: absolute;
+  top: -0.56rem;
+  right: -0.56rem;
+  width: 1.92rem;
+  height: 1.92rem;
+  z-index: 10;
+}
+/* line 36, ../sass/components/_common.scss */
+#rules .rules .rules_content .get_rules {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 43, ../sass/components/_common.scss */
+#rules .rules .rules_content .go_share {
+  display: block;
+  margin: 0.72rem auto;
+  width: 3.2rem;
+  line-height: 1.2rem;
+  height: 1.2rem;
+  background-color: #95cfff;
+  border: 2px solid #535659;
+  border-radius: 12px;
+}
+
+/* line 1, ../sass/components/_personal.scss */
+#person_center .coupon img, #person_center .expense img, .contactus .contactus_header img {
+  width: 0.64rem;
+  height: 0.64rem;
+}
+
+/* line 7, ../sass/components/_personal.scss */
+#person_center {
+  background-color: #f5f5f5;
+  font-size: 0.72rem;
+  text-align: center;
+  padding-bottom: 1.8rem;
+  font-weight: 600;
+}
+/* line 13, ../sass/components/_personal.scss */
+#person_center .avator {
+  padding: 0.8rem 0 0.4rem;
+}
+/* line 15, ../sass/components/_personal.scss */
+#person_center .avator img {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+}
+/* line 21, ../sass/components/_personal.scss */
+#person_center .user_name {
+  height: 0.64rem;
+  padding-bottom: 0.8rem;
+}
+/* line 25, ../sass/components/_personal.scss */
+#person_center .coupon, #person_center .expense {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.52rem 0.4rem 0.52rem 0.8rem;
+  align-items: center;
+  background-color: #fff;
+}
+/* line 31, ../sass/components/_personal.scss */
+#person_center .coupon div, #person_center .expense div {
+  display: flex;
+  align-items: center;
+}
+/* line 37, ../sass/components/_personal.scss */
+#person_center .coupon .coupon_left span, #person_center .expense .coupon_left span {
+  margin-left: 0.2rem;
+}
+/* line 43, ../sass/components/_personal.scss */
+#person_center .coupon .coupon_right img, #person_center .expense .coupon_right img {
+  margin-left: 0.24rem;
+}
+/* line 46, ../sass/components/_personal.scss */
+#person_center .coupon .coupon_right .cardsum, #person_center .expense .coupon_right .cardsum {
+  margin-right: 0.2rem;
+}
+/* line 55, ../sass/components/_personal.scss */
+#person_center .expense {
+  border-top: 1px solid #f5f5f5;
+}
+/* line 59, ../sass/components/_personal.scss */
+.contactus {
+  background-color: #fff;
+  margin-top: 0.4rem;
+}
+/* line 62, ../sass/components/_personal.scss */
+.contactus .contactus_header {
+  display: flex;
+  align-items: center;
+  padding: 0.56rem 0.4rem 0.56rem 0.8rem;
+}
+/* line 66, ../sass/components/_personal.scss */
+.contactus .contactus_header img {
+  margin-right: 0.2rem;
+}
+/* line 72, ../sass/components/_personal.scss */
+.contactus p {
+  color: #666;
+  font-size: 0.56rem;
+  padding-bottom: 0.6rem;
+}
+
+/* line 81, ../sass/components/_personal.scss */
+#coupon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  width: 100%;
+  z-index: 4;
+  overflow-y: auto;
+}
+/* line 90, ../sass/components/_personal.scss */
+#coupon .coupon_content {
+  position: relative;
+}
+/* line 95, ../sass/components/_personal.scss */
+.coupon_detial {
+  display: flex;
+  margin-top: 0.2rem;
+  background-color: #fff;
+}
+/* line 99, ../sass/components/_personal.scss */
+.coupon_detial div {
+  height: 4rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+}
+/* line 106, ../sass/components/_personal.scss */
+.coupon_detial div h3 {
+  font-size: 1.68rem;
+  margin-top: 0.8rem;
+}
+/* line 110, ../sass/components/_personal.scss */
+.coupon_detial div span {
+  margin-bottom: 0.64rem;
+}
+/* line 116, ../sass/components/_personal.scss */
+.coupon_detial .coupon_detial_left h3 {
+  color: #4aa1ff;
+}
+/* line 122, ../sass/components/_personal.scss */
+.exchanged .exchanged_title {
+  color: #666;
+  text-align: left;
+  margin: 0.6rem 0 0.2rem;
+  font-weight: 500;
+  text-indent: 0.2rem;
+}
+/* line 130, ../sass/components/_personal.scss */
+.exchanged .audio_content {
+  height: 100%;
+  width: 100%;
+}
+/* line 133, ../sass/components/_personal.scss */
+.exchanged .audio_content li {
+  margin-bottom: 0.4rem;
+}
+/* line 136, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.2rem;
+  width: 98%;
+  margin: 0 auto;
+  background: url("./../images/coupon_bgimg@2x.png") no-repeat center;
+  background-size: cover;
+  box-shadow: 0 4px 4px #e3e3e3;
+}
+/* line 146, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .icon {
+  margin-left: 0.2rem;
+}
+/* line 148, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .icon img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+/* line 153, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .audio_info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  height: 3.2rem;
+  width: 52%;
+}
+/* line 160, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .audio_info span {
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 2px 0;
+}
+/* line 166, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .audio_info .audio_title {
+  font-size: 0.64rem;
+  color: #3e4041;
+  text-indent: 0;
+  max-width: 11rem;
+}
+/* line 173, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .audio_info .audio_owner, .exchanged .audio_content .audio_wrapper .audio_info .audio_hot {
+  text-indent: 0;
+  max-width: 11rem;
+  font-size: 0.56rem;
+  color: #666;
+}
+/* line 182, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .audio_info .audio_hot i {
+  font-style: normal;
+}
+/* line 185, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .audio_info .audio_hot .watched_sum {
+  margin-left: 0.8rem;
+}
+/* line 190, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 2.8rem;
+  margin-right: 0.2rem;
+}
+/* line 196, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .status .used_price {
+  text-decoration: line-through;
+  color: red;
+}
+/* line 200, ../sass/components/_personal.scss */
+.exchanged .audio_content .audio_wrapper .status .is_free {
+  width: 100%;
+}
+/* line 208, ../sass/components/_personal.scss */
+.no_coupon {
+  font-size: 0.64rem;
+  margin: 1.36rem auto;
+}
+/* line 211, ../sass/components/_personal.scss */
+.no_coupon h3 {
+  color: #666;
+  font-weight: 500;
+}
+/* line 216, ../sass/components/_personal.scss */
+.no_coupon p {
+  color: #76b8ff;
+  margin-top: 0.2rem;
+}
+
+/* line 225, ../sass/components/_personal.scss */
+#expense {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  width: 100%;
+  z-index: 4;
+}
+/* line 233, ../sass/components/_personal.scss */
+#expense .bought_list {
+  margin-top: 0.4rem;
+}
+/* line 235, ../sass/components/_personal.scss */
+#expense .bought_list .bought_record {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.56rem;
+  color: #999;
+}
+/* line 242, ../sass/components/_personal.scss */
+#expense .bought_list li {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid #f5f5f5;
+}
+/* line 247, ../sass/components/_personal.scss */
+#expense .bought_list li .used_money {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ff3600;
+  width: 2.8rem;
+  margin-right: 0.52rem;
+}
+/* line 256, ../sass/components/_personal.scss */
+#expense .bought_list a {
+  flex: 1;
+  height: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+/* line 264, ../sass/components/_personal.scss */
+#expense .bought_list a .title {
+  font-size: 0.64rem;
+  color: #3e4041;
+}
+/* line 268, ../sass/components/_personal.scss */
+#expense .bought_list a time {
+  font-size: 0.56rem;
+  color: #666;
+}
+
+/* line 278, ../sass/components/_personal.scss */
+#nav .userCenter {
+  color: #76b8ff;
+}
+/* line 279, ../sass/components/_personal.scss */
+#nav .userCenter:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_s@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* line 1, ../sass/components/_bottomnav.scss */
+#nav {
+  background-color: #b2b2b2;
+  position: fixed;
+  box-shadow: 0 1px 4px 0 #ebeded;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  background: #f6f9fa;
+}
+/* line 11, ../sass/components/_bottomnav.scss */
+.nav {
+  display: flex;
+  height: 1.8rem;
+  justify-content: space-between;
+}
+/* line 15, ../sass/components/_bottomnav.scss */
+.nav li {
+  position: relative;
+}
+/* line 17, ../sass/components/_bottomnav.scss */
+.nav li a {
+  color: #999;
+  font-size: 0.48rem;
+  display: block;
+  width: 3.72rem;
+  height: 100%;
+}
+/* line 23, ../sass/components/_bottomnav.scss */
+.nav li a:before {
+  display: block;
+  width: 0.88rem;
+  height: 0.88rem;
+  top: 0;
+  left: 0;
+  content: '';
+  margin: 0.12rem auto 0.08rem;
+}
+/* line 34, ../sass/components/_bottomnav.scss */
+.nav li .home:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_homepage_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* line 39, ../sass/components/_bottomnav.scss */
+.nav li .hasBought:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_bought_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* line 44, ../sass/components/_bottomnav.scss */
+.nav li .playHistory:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* line 49, ../sass/components/_bottomnav.scss */
+.nav li .userCenter:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* line 1, ../sass/components/_mask.scss */
+.mask_list .mask_center .top, .mask_list .mask_center .personal_top, .mask_list .mask_center .bottom, .mask_list .mask_center .personal_bottom, .mask_list .mask_all, .mask_list .mask_center, .mask_list .share_mask, .mask_list .nav_mask, .mask_list .tabs_mask, .mask_list .personal_mask {
+  position: absolute;
+}
+
+/* line 4, ../sass/components/_mask.scss */
+.mask_list .mask_center .top, .mask_list .mask_center .personal_top {
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+/* line 10, ../sass/components/_mask.scss */
+.mask_list .mask_center .bottom, .mask_list .mask_center .personal_bottom {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+/* line 18, ../sass/components/_mask.scss */
+.mask_list .mask {
+  display: none;
+  z-index: 10;
+}
+/* line 22, ../sass/components/_mask.scss */
+.mask_list .mask_all, .mask_list .mask_center {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 9;
+}
+/* line 30, ../sass/components/_mask.scss */
+.mask_list .mask_all {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 36, ../sass/components/_mask.scss */
+.mask_list .mask_center .top {
+  height: 5.2rem;
+}
+/* line 40, ../sass/components/_mask.scss */
+.mask_list .mask_center .bottom {
+  height: 19rem;
+  top: 6.8rem;
+}
+/* line 45, ../sass/components/_mask.scss */
+.mask_list .mask_center .personal_top {
+  height: 5.34rem;
+}
+/* line 49, ../sass/components/_mask.scss */
+.mask_list .mask_center .personal_bottom {
+  top: 7.34rem;
+  bottom: 0;
+}
+/* line 55, ../sass/components/_mask.scss */
+.mask_list .share_mask {
+  top: 0.08rem;
+  right: 0.52rem;
+  z-index: 10;
+}
+/* line 61, ../sass/components/_mask.scss */
+.mask_list .nav_mask {
+  top: 5.9rem;
+  right: 1.76rem;
+}
+/* line 66, ../sass/components/_mask.scss */
+.mask_list .tabs_mask {
+  top: 3rem;
+  right: 1.14rem;
+}
+/* line 71, ../sass/components/_mask.scss */
+.mask_list .personal_mask {
+  top: 7rem;
+  right: 3.9rem;
+  z-index: 10;
+}
+/* line 77, ../sass/components/_mask.scss */
+.mask_list .mask_item {
+  position: relative;
+}
+/* line 79, ../sass/components/_mask.scss */
+.mask_list .mask_item img {
+  margin-left: 3.4rem;
+  width: 0.64rem;
+  height: 1.28rem;
+}
+/* line 84, ../sass/components/_mask.scss */
+.mask_list .mask_item p {
+  width: 4rem;
+  border-radius: 0.16rem;
+  border: 0.04rem solid #000;
+  padding: 0.12rem 0.24rem;
+  background-color: #fff;
+  font-size: 0.4rem;
+  color: #000;
+}
+/* line 94, ../sass/components/_mask.scss */
+.mask_list .mask_btn {
+  z-index: 10;
+  position: absolute;
+  bottom: 2.6rem;
+  width: 100%;
+}
+/* line 99, ../sass/components/_mask.scss */
+.mask_list .mask_btn p {
+  display: none;
+  width: 4rem;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 0.2rem;
+  border: 0.04rem solid #605f5c;
+  background-color: #ffd400;
+  color: #000;
+  padding: 0.3rem;
+  font-size: 0.6rem;
+}

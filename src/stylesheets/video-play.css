@@ -1,0 +1,160 @@
+/* line 1, ../sass/base/_base.scss */
+html, body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, "Roboto Regular", Roboto, "Droid Sans", "Microsoft Yahei", sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  font-weight: 500;
+}
+
+/* line 9, ../sass/base/_base.scss */
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+/* line 18, ../sass/base/_base.scss */
+figcaption,
+figure,
+main {
+  display: block;
+}
+
+/* line 24, ../sass/base/_base.scss */
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* line 29, ../sass/base/_base.scss */
+b,
+strong {
+  font-weight: inherit;
+}
+
+/* line 34, ../sass/base/_base.scss */
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/* line 39, ../sass/base/_base.scss */
+audio,
+video {
+  display: inline-block;
+}
+
+/* line 44, ../sass/base/_base.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/* line 49, ../sass/base/_base.scss */
+img, input {
+  border-style: none;
+}
+
+/* line 53, ../sass/base/_base.scss */
+input {
+  outline: none;
+}
+
+/* line 57, ../sass/base/_base.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* line 61, ../sass/base/_base.scss */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+}
+
+/* line 70, ../sass/base/_base.scss */
+button,
+input {
+  overflow: visible;
+}
+
+/* line 75, ../sass/base/_base.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/* line 80, ../sass/base/_base.scss */
+body,
+html, ul, li, p, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 86, ../sass/base/_base.scss */
+li {
+  list-style: none;
+}
+
+/* line 90, ../sass/base/_base.scss */
+i, em {
+  font-style: normal;
+}
+
+/* line 1, ../sass/components/_video-play.scss */
+#video {
+  height: 7.6rem;
+  background: #f5f5f5;
+}
+
+/* line 1, ../sass/components/_slider.scss */
+#banner {
+  font-size: 0;
+  background-color: #e7eaee;
+  width: 100%;
+  overflow: hidden;
+}
+/* line 6, ../sass/components/_slider.scss */
+#banner .swiper-pagination {
+  position: absolute !important;
+  z-index: 2;
+}
+/* line 10, ../sass/components/_slider.scss */
+#banner .swiper_title {
+  position: absolute;
+  z-index: 1;
+  line-height: 1rem;
+  height: 1rem;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  color: #fff;
+  font-size: 0.56rem;
+  font-weight: normal;
+  text-indent: 0.4rem;
+}
+/* line 23, ../sass/components/_slider.scss */
+#banner div {
+  position: relative;
+}
+/* line 26, ../sass/components/_slider.scss */
+#banner div .swiper-wrapper .swiper-slide {
+  background-size: cover !important;
+}
+/* line 28, ../sass/components/_slider.scss */
+#banner div .swiper-wrapper .swiper-slide a {
+  display: block;
+}
+/* line 31, ../sass/components/_slider.scss */
+#banner div .swiper-wrapper .swiper-slide img {
+  height: 5.2rem;
+  width: 100%;
+}

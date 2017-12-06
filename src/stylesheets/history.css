@@ -1,1 +1,263 @@
-html,body{font-family:"Helvetica Neue", Helvetica, STHeiTi, "Roboto Regular", Roboto, "Droid Sans", "Microsoft Yahei", sans-serif;user-select:none;-webkit-tap-highlight-color:transparent;height:100%;font-weight:500}article,aside,footer,header,nav,section{display:block}figcaption,figure,main{display:block}a{background-color:transparent;text-decoration:none}b,strong{font-weight:inherit}mark{background-color:#ff0;color:#000}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img,input{border-style:none}input{outline:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-size:100%;margin:0}button,input{overflow:visible}button,select{text-transform:none}body,html,ul,li,p,h1,h2,h3,h4{margin:0;padding:0}li{list-style:none}i,em{font-style:normal}#play_history li .history_title .history_info .class_title,#play_history li .history_title .history_info .class_user,#play_history li .history_title .history_info .play_time{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;text-indent:.2rem}#nav{background-color:#b2b2b2;position:fixed;box-shadow:0 1px 4px 0 #ebeded;bottom:0;left:0;z-index:3;width:100%;text-align:center;background:#f6f9fa}.nav{display:flex;height:1.8rem;justify-content:space-between}.nav li{position:relative}.nav li a{color:#999;font-size:.48rem;display:block;width:3.72rem;height:100%}.nav li a:before{display:block;width:.88rem;height:.88rem;top:0;left:0;content:'';margin:.12rem auto .08rem}.nav li .home:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_homepage_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}.nav li .hasBought:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_bought_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}.nav li .playHistory:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}.nav li .userCenter:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_n@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}#nav .playHistory{color:#76b8ff}#nav .playHistory:before{background-image:url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_s@2x.png");background-repeat:no-repeat;background-size:cover;background-position:center}#play_history{padding-bottom:1.8rem}#play_history .no_record{display:flex;justify-content:center;align-items:center;font-size:.56rem;color:#999}#play_history li{display:flex;height:3.2rem;justify-content:space-between;background-color:#fff;margin-bottom:.4rem}#play_history li .history_title{display:flex;flex:1;align-items:center;height:100%;margin-left:.4rem}#play_history li .history_title img{width:2.4rem;height:2.4rem}#play_history li .history_title .history_info{flex:1;height:100%;margin:0 .4rem;width:1rem;display:flex;flex-direction:column;justify-content:space-around;text-indent:0}#play_history li .history_title .history_info .class_title{color:#000;font-size:.64rem}#play_history li .history_title .history_info .class_user{color:#666;font-size:.56rem}#play_history li .history_title .history_info .play_time{color:#666;font-size:.56rem}#play_history li .delete{width:.96rem;height:.96rem}
+/* line 1, ../sass/base/_base.scss */
+html, body {
+  font-family: "Helvetica Neue", Helvetica, STHeiTi, "Roboto Regular", Roboto, "Droid Sans", "Microsoft Yahei", sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  font-weight: 500;
+}
+
+/* line 9, ../sass/base/_base.scss */
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+/* line 18, ../sass/base/_base.scss */
+figcaption,
+figure,
+main {
+  display: block;
+}
+
+/* line 24, ../sass/base/_base.scss */
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* line 29, ../sass/base/_base.scss */
+b,
+strong {
+  font-weight: inherit;
+}
+
+/* line 34, ../sass/base/_base.scss */
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/* line 39, ../sass/base/_base.scss */
+audio,
+video {
+  display: inline-block;
+}
+
+/* line 44, ../sass/base/_base.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/* line 49, ../sass/base/_base.scss */
+img, input {
+  border-style: none;
+}
+
+/* line 53, ../sass/base/_base.scss */
+input {
+  outline: none;
+}
+
+/* line 57, ../sass/base/_base.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* line 61, ../sass/base/_base.scss */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+}
+
+/* line 70, ../sass/base/_base.scss */
+button,
+input {
+  overflow: visible;
+}
+
+/* line 75, ../sass/base/_base.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/* line 80, ../sass/base/_base.scss */
+body,
+html, ul, li, p, h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 86, ../sass/base/_base.scss */
+li {
+  list-style: none;
+}
+
+/* line 90, ../sass/base/_base.scss */
+i, em {
+  font-style: normal;
+}
+
+/* line 1, ../sass/base/_mixin.scss */
+#play_history li .history_title .history_info .class_title, #play_history li .history_title .history_info .class_user, #play_history li .history_title .history_info .play_time {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 0.2rem;
+}
+
+/* line 1, ../sass/components/_bottomnav.scss */
+#nav {
+  background-color: #b2b2b2;
+  position: fixed;
+  box-shadow: 0 1px 4px 0 #ebeded;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  background: #f6f9fa;
+}
+/* line 11, ../sass/components/_bottomnav.scss */
+.nav {
+  display: flex;
+  height: 1.8rem;
+  justify-content: space-between;
+}
+/* line 15, ../sass/components/_bottomnav.scss */
+.nav li {
+  position: relative;
+}
+/* line 17, ../sass/components/_bottomnav.scss */
+.nav li a {
+  color: #999;
+  font-size: 0.48rem;
+  display: block;
+  width: 3.72rem;
+  height: 100%;
+}
+/* line 23, ../sass/components/_bottomnav.scss */
+.nav li a:before {
+  display: block;
+  width: 0.88rem;
+  height: 0.88rem;
+  top: 0;
+  left: 0;
+  content: '';
+  margin: 0.12rem auto 0.08rem;
+}
+/* line 34, ../sass/components/_bottomnav.scss */
+.nav li .home:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_homepage_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* line 39, ../sass/components/_bottomnav.scss */
+.nav li .hasBought:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_bought_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* line 44, ../sass/components/_bottomnav.scss */
+.nav li .playHistory:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* line 49, ../sass/components/_bottomnav.scss */
+.nav li .userCenter:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_personal_btn_n@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* line 2, ../sass/components/_history.scss */
+#nav .playHistory {
+  color: #76b8ff;
+}
+/* line 3, ../sass/components/_history.scss */
+#nav .playHistory:before {
+  background-image: url("https://cdn2.qnzsvk.cn/static/20170925/qnvk_2.0/images/bottomnav_history_btn_s@2x.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* line 10, ../sass/components/_history.scss */
+#play_history {
+  padding-bottom: 1.8rem;
+}
+/* line 12, ../sass/components/_history.scss */
+#play_history .no_record {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.56rem;
+  color: #999;
+}
+/* line 19, ../sass/components/_history.scss */
+#play_history li {
+  display: flex;
+  height: 3.2rem;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-bottom: 0.4rem;
+}
+/* line 25, ../sass/components/_history.scss */
+#play_history li .history_title {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 100%;
+  margin-left: 0.4rem;
+}
+/* line 31, ../sass/components/_history.scss */
+#play_history li .history_title img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+/* line 35, ../sass/components/_history.scss */
+#play_history li .history_title .history_info {
+  flex: 1;
+  height: 100%;
+  margin: 0 0.4rem;
+  width: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-indent: 0;
+}
+/* line 44, ../sass/components/_history.scss */
+#play_history li .history_title .history_info .class_title {
+  color: #000;
+  font-size: 0.64rem;
+}
+/* line 49, ../sass/components/_history.scss */
+#play_history li .history_title .history_info .class_user {
+  color: #666;
+  font-size: 0.56rem;
+}
+/* line 54, ../sass/components/_history.scss */
+#play_history li .history_title .history_info .play_time {
+  color: #666;
+  font-size: 0.56rem;
+}
+/* line 61, ../sass/components/_history.scss */
+#play_history li .delete {
+  width: 0.96rem;
+  height: 0.96rem;
+}

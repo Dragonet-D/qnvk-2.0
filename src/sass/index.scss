@@ -5,7 +5,10 @@
 "components/tab",
 "components/tabmask",
 "components/classadvance",
-"components/bottomnav";
+"components/bottomnav",
+"components/mask.scss",
+"components/classbag",
+"components/off-line-activity";
 
 body {
   background-color: $background-f5f5f5;
@@ -22,7 +25,6 @@ body {
     color: $main-font-000;
   }
 }
-
 .dropload-down {
   font-size: $font-size-small;
   color: $assist-font-b2b2b2;
@@ -32,7 +34,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .live_img {
   border-radius: 0 !important;
 }

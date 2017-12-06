@@ -1,0 +1,72 @@
+.class_bag {
+  background: $background-f5f5f5;
+  .bag_content {
+    height: 100%;
+    width: 100%;
+    .bag_item {
+      height: r(120);
+      padding: r(20);
+      background: $button-back-fff;
+      border-bottom: 1px solid $background-f5f5f5;
+      .bag_wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: r(120);
+        .icon {
+          float: left;
+          width: r(120);
+          height: r(120);
+          img {
+            width: r(120);
+            height: r(120);
+          }
+        }
+        .audio_info {
+          float: left;
+          margin-left: r(20);
+          height: 100%;
+          width: percent(600);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          span {
+            display: block;
+            text-align: left;
+            margin-left: 0;
+            padding: 2px 0;
+          }
+          .audio_title {
+            @include line_height_font($font-size-medium);
+            color: $minor-font-3e4041;
+            @extend %no-wrap;
+            text-indent: 0;
+            width: 99%;
+          }
+          .audio_owner {
+            @extend %no-wrap;
+            text-indent: 0;
+            max-width: r(550);
+            @include line_height_font($font-size-small);
+            color: $content-font-666;
+          }
+          .audio_hot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @extend .audio_owner;
+            .bag_price {
+              font-size: $font-size-small;
+              color: $background-ff405f;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

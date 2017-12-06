@@ -1,9 +1,6 @@
 $(function () {
   // 主页默认数据接口
   advanceData()
-  // 分享弹框提示
-  var shareremind = new ShareRemind()
-  shareremind.init()
   // 广告和分类筛选tab构造函数
   var adandtabs = new AdAndTabs()
   adandtabs.init()
@@ -57,7 +54,7 @@ AdAndTabs.prototype.init = function () {
     tabcenter.init();
     // 选项卡active样式添加
     This.activeStyle(This)
-  })
+  });
 }
 // 轮播数据
 AdAndTabs.prototype.getAds = function (adlist) {
@@ -80,7 +77,6 @@ AdAndTabs.prototype.defaultTagContent = function (list) {
   for (var i = 0; i < list.length; i++) {
     if (list[i].tag1 !== ' ') {
       var title = list[i].tag1
-      console.log(title)
       var id = list[i].id
       if (title) {
         this.tabwrapper.append(
@@ -97,45 +93,251 @@ AdAndTabs.prototype.activeStyle = function (This) {
   This.tabwrapper.find('.swiper-slide').eq(0).addClass('active')
 }
 
+
 var homeadvance = $('#home_advance');
 // 传入后端的对象
 var chooseObj = {
   id: '',
   tags: ''
 };
+var data_tanchu;
 
 // 主页默认推荐选项卡数据接口
 function advanceData(chooseObj) {
-  console.log('chooseObj')
   $.ajax({
-    url: hosturl + '/index.php/Newindex/info',
-    type: 'get',
-    dataType: 'json',
-    data: chooseObj,
-    success: function (data) {
-      console.log(data)
+      url: hosturl + '/index.php/Newindex/info',
+      type: 'get',
+      dataType: 'json',
+      data: chooseObj,
+      success: function (data) {
+        console.log(data);
+        if (data.tanchu === '2') {
+          var shareremind = new ShareRemind()
+          shareremind.init();
+        } else if (data.tanchu === '1') {
+          data_tanchu = data.tanchu;
+          // 弹窗引导页
+          winguidan.init(data_tanchu);
+        }
+        // 首页选项卡数据
+        var tabInfo = data.info
+        if (tabInfo) {
+          tagContent(tabInfo)
+        }
+        // 直播数据
+        var liveinfo = data.liveinfo
+        if (liveinfo) {
+          liveInfo(liveinfo)
+        }
+        // 切换筛选数据
+        var otherdata = data.infolist
+        if (otherdata) {
+          othertagContent(otherdata)
+        }
+      },
+      error: function (err) {
+        console.log(err)
+      }
+    }
+  ).done(function () {
+    history()
+    livingNums()
+    bagClick()
+  })
+}
 
-      // 首页选项卡数据
-      var tabInfo = data.info
-      if (tabInfo) {
-        tagContent(tabInfo)
-      }
-      // 直播数据
-      var liveinfo = data.liveinfo
-      if (liveinfo) {
-        liveInfo(liveinfo)
-      }
-      // 切换筛选数据
-      var otherdata = data.infolist
-      if (otherdata) {
-        othertagContent(otherdata)
-      }
+// 课程包点击
+function bagClick() {
+  var bagitem = document.querySelectorAll('.bag_content .bag_item')
+  for (var i = 0; i < bagitem.length; i++) {
+    bagitem[i].index = i
+    bagitem[i].onclick = function () {
+      var id = this.getAttribute('data-id')
+      $.ajax({
+        url: hosturl + '/index.php/Newindex/ispay',
+        type: 'get',
+        dataType: 'json',
+        data: {
+          id: id
+        },
+        success: function (data) {
+          // 支付成功
+          if (data.status === 1) {
+            window.location.href = hosturl + '/index.php/Newautolive/index/id/' + id
+          } else {
+            window.location.href = hosturl + '/index.php/Newindex/curdetail/id/' + data.id
+          }
+        }
+      })
+    }
+  }
+}
+
+// 弹窗引导
+var winguidan = new windowGuidance();
+var maskList, shareMask, navMask, tabsMask, knowBtn, nextBtn, mask, maskAll, maskCenter;
+var pageState = true;
+var clickState = true;
+
+function windowGuidance() {
+  mask = this.maskList = $('.mask')
+  maskList = this.mask = $('.mask_list')
+  shareMask = this.shareMask = $('.share_mask')
+  navMask = this.navMask = $('.nav_mask')
+  tabsMask = this.tabsMask = $('.tabs_mask')
+  knowBtn = this.knowBtn = $('.know_btn')
+  nextBtn = this.nextBtn = $('.next_btn')
+  maskAll = this.maskAll = $('.mask_all')
+  maskCenter = this.maskCenter = $('.mask_center')
+}
+
+windowGuidance.prototype.init = function (data_tanchu) {
+  console.log(clickState)
+  if (pageState) {
+    if (data_tanchu == 1) {
+      winguidan.indexPage()
+      console.log(0)
+    }
+  } else {
+    if (data_tanchu == 1 && clickState) {
+      winguidan.otherPage()
+
+    }
+  }
+}
+
+windowGuidance.prototype.indexPage = function () {
+  var This = this
+  indexMaskShow(maskList, nextBtn, maskAll, shareMask, navMask, This)
+  This.nextPlay()
+  This.maskclose()
+}
+windowGuidance.prototype.otherPage = function () {
+  console.log(2)
+  var This = this
+  otherMaskShow(maskList, knowBtn, maskCenter, tabsMask, mask, This);
+  maskCenter.find('.top').css({
+    height: 0
+  })
+  maskCenter.find('.bottom').css({
+    top: '4.8rem',
+    height: '21rem'
+  })
+  This.maskclose()
+}
+windowGuidance.prototype.nextPlay = function () {
+  var This = this
+  nextBtn.on('click', function () {
+    maskAll.css({
+      display: 'none'
+    })
+    nextBtn.css({
+      display: 'none'
+    })
+    indexMaskShow(maskList, knowBtn, maskCenter, navMask, shareMask, This);
+  })
+}
+
+windowGuidance.prototype.maskclose = function () {
+  var This = this
+  This.knowBtn.on('click', function () {
+    winguidanClose(This)
+    closePost();
+  })
+  This.shareMask.on('click', function () {
+    maskAll.css({
+      display: 'none'
+    })
+    nextBtn.css({
+      display: 'none'
+    })
+    indexMaskShow(maskList, knowBtn, maskCenter, navMask, shareMask, This);
+    closePost()
+  });
+  This.navMask.on('click', function () {
+    winguidanClose(This)
+    closePost()
+  })
+  This.tabsMask.on('click', function () {
+    winguidanClose(This)
+    closePost()
+  })
+}
+
+// 关闭全部弹窗引导面板
+function winguidanClose(This) {
+  This.maskList.css({
+    display: 'none'
+  })
+  $('.box').css({
+    overflow: 'scroll',
+    width: 'auto',
+    height: 'auto'
+  })
+  This.mask.css({
+    display: 'none'
+  })
+}
+
+// 主页弹窗引导页显示
+function indexMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
+  console.log(afterObj)
+  maskList.css({
+    display: 'block'
+  });
+  $('.box').css({
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%'
+  });
+  btn.css({
+    display: 'block'
+  })
+  maskPale.css({
+    display: 'block'
+  })
+  beforObj.css({
+    display: 'block'
+  })
+  afterObj.css({
+    display: 'none'
+  })
+
+}
+
+function otherMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
+  console.log(afterObj)
+  maskList.css({
+    display: 'block'
+  });
+  $('.box').css({
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%'
+  });
+  btn.css({
+    display: 'block'
+  })
+  maskPale.css({
+    display: 'block'
+  })
+  beforObj.css({
+    display: 'block'
+  })
+
+}
+
+// 关闭请求
+function closePost() {
+  $.ajax({
+    url: hosturl + '/index.php/Newindex/sesstanchu',
+    type: 'post',
+    dataType: 'json',
+    success: function (data) {
     },
     error: function (err) {
       console.log(err)
     }
-  }).done(function () {
-    history()
   })
 }
 
@@ -186,7 +388,7 @@ function othertagContent(otherdata) {
         logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
         videoaudio.append(
           '<li class="single_video">' +
-          '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
+          '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Newautolive/index/id/' + id + '">' +
           '<section class="list_header">' +
           '<span class="list_header_info">' +
           '<img class="class_type" src="' + logourl + '" alt="">' +
@@ -228,18 +430,27 @@ function getTagMask(id) {
 
 // 纵向选项卡内容
 function tagContent(tabInfo) {
+  var onFalse = true
   homeadvance.html(
     '<div id="class_advance" class="class_advance choose_craful" style="display: none">' +
     '<h2 class="live_advance">直播预告</h2>' +
     '<ul class="class_advance"></ul>' +
     '</div>'
   )
+  var strr = ''
   for (var i = 0; i < tabInfo.length; i++) {
     var categoryname = tabInfo[i]['categoryname' + tabInfo[i].cid]
+    console.log(categoryname)
     var blockTitle = tabInfo[i]['cat' + tabInfo[i].cid]
     var str = ''
     // 心理健康
     if (categoryname === '心理健康课' || categoryname === '心理健康课') {
+      homeadvance.append(
+        '<div id="audio_advance" class="audio_advance choose_craful">' +
+        '<h2 class="audio_title"></h2>' +
+        '<ul class="audio_content"></ul>' +
+        '</div>'
+      )
       var audiotitle = $('#audio_advance .audio_title')
       audiotitle.text(categoryname)
       var audiocontent = $('#audio_advance .audio_content')
@@ -248,7 +459,6 @@ function tagContent(tabInfo) {
           picture = blockTitle[k].picture,
           name = blockTitle[k].name,
           audiotitle = blockTitle[k].title.trim(),
-          //time = blockTitle[k].tag1.substring(0, blockTitle[k].tag1.indexOf(','))
           time = new Date(Number(blockTitle[k].starttime) * 1000).toLocaleDateString()
         audiocontent.append(
           '<li class="audio_item">' +
@@ -267,6 +477,45 @@ function tagContent(tabInfo) {
           '</li>'
         )
       }
+    } else if (categoryname === '精品课程包') {
+      console.log('精品课程包')
+      homeadvance.append(
+        `<div class="class_bag choose_craful">
+            <h2>${categoryname}</h2>
+            <ul class="bag_content">    
+            </ul>
+          </div>`
+      )
+      var bagcontent = $('.class_bag .bag_content')
+      for (var l = 0; l < blockTitle.length; l++) {
+        var ids = blockTitle[l].id,
+          pictures = blockTitle[l].picture,
+          names = blockTitle[l].name,
+          audiotitles = blockTitle[l].title.trim(),
+          bagprice = blockTitle[l].price,
+          sumi = blockTitle[l].sumi,
+          suming = blockTitle[l].suming
+        bagcontent.append(`
+        <li class="bag_item" data-id="${ids}">
+        <a class="bag_wrapper history" href="javascript:">
+          <i class="icon">
+            <img
+                src="${pictures}"
+                alt="">
+          </i>
+          <span class="audio_info">
+            <span class="audio_title">${audiotitles}</span>
+            <span class="audio_owner">${names}</span>
+            <span class="audio_hot">
+              <span>更新至第${suming}课/共${sumi}课</span>
+              <!--<span>126购买</span>-->
+              <span class="bag_price">￥${bagprice}</span>
+            </span>
+          </span>
+        </a>
+      </li>
+        `)
+      }
     } else {
       var str = ''
       for (var j = 0; j < blockTitle.length; j++) {
@@ -283,14 +532,14 @@ function tagContent(tabInfo) {
           price = Number(blockTitle[j].price)
         // 语音课程
         if (livetype === 2) {
-          playurl = 'livedeil_0'
+          playurl = 'Index/livedeil_0'
           logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
         } else { // 视频课程
-          playurl = 'livedeil'
+          playurl = 'Newautolive/index'
           logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
           if (statuss === 2) {
             if (price === 0.00) {
-              playurl = 'livedeil'
+              playurl = 'Newautolive/index'
             } else {
               if (ischoes === 2) {
                 playurl = 'curdetailpage'
@@ -299,12 +548,12 @@ function tagContent(tabInfo) {
               }
             }
           } else if (statuss === 1) {
-            playurl = 'livedeil'
+            playurl = 'Newautolive/index'
           }
         }
         str +=
           '<li class="single_video">' +
-          '<a class="single_list_wrapper history" data-id="' + ids + '" href="' + hosturl + '/index.php/Index/' + playurl + '/id/' + ids + '">' +
+          '<a class="single_list_wrapper history" data-id="' + ids + '" href="' + hosturl + '/index.php/' + playurl + '/id/' + ids + '">' +
           '<section class="list_header">' +
           '<span class="list_header_info">' +
           '<img class="class_type" src="' + logourl + '" alt="">' +
@@ -323,10 +572,6 @@ function tagContent(tabInfo) {
         '<div class="video_audio choose_craful">' +
         '<h2>' + categoryname + '</h2>' +
         '<ul class="list_content">' + str + '</ul>' +
-        '</div>' +
-        '<div id="audio_advance" class="audio_advance choose_craful">' +
-        '<h2 class="audio_title"></h2>' +
-        '<ul class="audio_content"></ul>' +
         '</div>'
       )
     }
@@ -352,16 +597,16 @@ function liveInfo(liveinfo) {
     liveurl = ''
   if (livetype === 1) {
     livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png"
-    liveurl = 'livedeil'
+    liveurl = 'Newautolive/index'
   } else if (livetype === 2) {
     livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png"
-    liveurl = 'autolive'
+    liveurl = 'Index/autolive'
   }
   if (liveoff === 1) {
     advanveWrapper.css('display', 'block')
     classadvanve.html(
       '<li class="live">' +
-      '<a  class="history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/' + liveurl + '/id/' + id + '">' +
+      '<a  class="history" data-id="' + id + '" href="' + hosturl + '/index.php/' + liveurl + '/id/' + id + '">' +
       '<span class="list_header">' +
       '<span class="list_header_info">' +
       '<img class="class_type" src="' + livetagsrc + '" alt="">' +
@@ -459,6 +704,7 @@ TabCenter.prototype.slideClick = function (swiper, This) {
   var slideContent = swiper.slides[clickedIndex].getElementsByTagName('span')[0].innerText;
   var slideobj = swiper.slides[clickedIndex]
   This.tabListChange(tabContents, clickedIndex, This, slideContent, slideobj)
+
 };
 // 选项卡加样式
 TabCenter.prototype.slideActive = function (clickedIndex, tab) {
@@ -467,19 +713,19 @@ TabCenter.prototype.slideActive = function (clickedIndex, tab) {
 };
 // 选项卡内容切换
 TabCenter.prototype.tabListChange = function (tabContents, index, This, slideContent, slideobj) {
-  console.log(index)
   if (index === 0) {
     This.tabMsk.css('display', 'none')
     advanceData('')
-    console.log('执行0了')
   } else {
-    console.log('执行的不是0')
     This.homeadvance.html(
       '<div id="audio_advance" class="audio_advance choose_craful">' +
       '<ul class="audio_content">' + '</ul>' +
       '</div>' +
       '<div class="video_audio choose_craful">' +
       '<ul class="list_content">' + '</ul>' +
+      '</div>' +
+      '<div class="class_bag choose_craful">' +
+      '<ul class="bag_content">' + '</ul>' +
       '</div>'
     )
     var listcontent = ''
@@ -511,38 +757,40 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
             page: page
           },
           success: function (data) {
-            console.log('分页data')
             console.log(data)
             if (onOff && data.infolist.length > 0) {
-              if (data.infolist[0].livetype === '2') {
-                console.log('语音')
+              if (data.infolist[0].livetype === '2' && data.infolist[0].ischoes !== '2') {
+                // '语音'
                 listcontent = $('#audio_advance .audio_content')
-              } else if (data.infolist[0].livetype === '1') {
-                console.log('视频')
+              } else if (data.infolist[0].livetype === '1' && data.infolist[0].ischoes !== '2') {
+                // '视频'
                 listcontent = $('#home_advance .list_content')
+              } else if (data.infolist[0].ischoes === '2') {
+                // '精选课程包'
+                listcontent = $('.class_bag .bag_content')
               }
               onOff = false
             }
             var arrLen = data.infolist.length;
             var otherdata = data.infolist
             if (arrLen > 0) {
-              console.log(data)
-              // 如果没有数据
               for (var i = 0; i < arrLen; i++) {
                 var livetype = Number(otherdata[i].livetype),
                   id = otherdata[i].id,
                   picture = otherdata[i].picture
                 audiotitle = otherdata[i].content,
                   title = otherdata[i].title.trim(),
-                  // time = otherdata[i].tag1.substring(0, otherdata[i].tag1.indexOf(',')),
-                  time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString()
-                name = otherdata[i].name,
+                  time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString(),
+                  name = otherdata[i].name,
                   ischoes = Number(otherdata[i].ischoes),
-                  price = otherdata[i].price
-                if (livetype === 2) {
+                  price = otherdata[i].price,
+                  sumi = otherdata[i].sumi,
+                  suming = otherdata[i].suming
+                // 语音课程
+                if (livetype === 2 && ischoes !== 2) {
                   result +=
-                    '<li class="audio_item">' +
-                    '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+                    '<li class="audio_item" data-id="' + id + '">' +
+                    '<a class="audio_wrapper history"  href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
                     '<i class="icon">' +
                     '<img src="' + picture + '" alt="">' +
                     '</i>' +
@@ -555,10 +803,11 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                     '</span>' +
                     '</a>' +
                     '</li>'
-                } else if (livetype === 1) {
+                  // 视频
+                } else if (livetype === 1 && ischoes !== 2) {
                   result +=
-                    '<li class="single_video">' +
-                    '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil/id/' + id + '">' +
+                    '<li class="single_video" data-id="' + id + '" >' +
+                    '<a class="single_list_wrapper history" href="' + hosturl + '/index.php/Newautolive/index/id/' + id + '">' +
                     '<section class="list_header">' +
                     '<span class="list_header_info">' +
                     '<img class="class_type" src="https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png" alt="">' +
@@ -572,6 +821,29 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                     '<p class="video_owner">' + name + '</p>' +
                     '</a>' +
                     '</li>'
+                  // 课程包
+                } else if (livetype && ischoes === 2) {
+                  result += `
+                    <li class="bag_item" data-id="${id}">
+                      <a class="bag_wrapper history" href="javascript:">
+                        <i class="icon">
+                          <img
+                              src="${picture}"
+                              alt=""> 
+                        </i>
+                        <span class="audio_info">
+                          <span class="audio_title">${title}</span>
+                          <span class="audio_owner">${name}</span>
+                          <span class="audio_hot">
+                            <span>更新至第${suming}课/共${sumi}课</span>
+                            <!--<span>126购买</span>-->
+                            <span class="bag_price">￥${price}</span>
+                          </span>
+                        </span>
+              
+                      </a>
+                    </li>
+                  `
                 }
               }
             } else {
@@ -593,7 +865,10 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
             me.resetload();
           }
         }).done(function () {
+          // 记录历史记录
           history()
+          // 课程包点击
+          bagClick()
         });
       }
     });
@@ -604,7 +879,6 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
       type: 'get',
       dataType: 'json',
       success: function (data) {
-        console.log(data.tagslist)
         // 遮罩数据渲染函数
         This.maskData(data.tagslist, This)
         if (data.tagslist.length) {
@@ -695,12 +969,21 @@ TabCenter.prototype.maskData = function (data, This) {
       str1 += '<span data-id="' + id2 + '">' + tag2 + '</span>'
       This.tabMsk.find('.objects').find('h2').css('display', 'block')
       This.tabMsk.find('.objects').html('<h2>学科:</h2>' + str1)
+      // 弹窗引导
+      pageState = false
+      winguidan.init(data_tanchu)
+      clickState = false
     }
 
     if (tag3) {
       str2 += '<span data-id="' + id3 + '">' + tag3 + '</span>'
       This.tabMsk.find('.stages').find('h2').css('display', 'block')
       This.tabMsk.find('.stages').html('<h2>学段:</h2>' + str2)
+      // 弹窗引导
+      pageState = false
+      winguidan.init(data_tanchu)
+      clickState = false
+
     } else {
       sum++
       if (sum === data.length) {
@@ -713,6 +996,7 @@ TabCenter.prototype.maskData = function (data, This) {
       This.tabMsk.find('.classes').html('<h2>年级:</h2>' + str3)
     }
   }
+
 };
 // 清空筛选对象
 TabCenter.prototype.clearObj = function (obj) {
@@ -815,6 +1099,20 @@ function history() {
             console.log(data)
           }
         })
+        $.ajax({
+          url: hosturl + '/index.php/Newautolive/seecount',
+          type: 'get',
+          dataType: 'json',
+          data: {
+            id: this.getAttribute('data-id')
+          },
+          success: function (data) {
+            console.log(data)
+          },
+          error: function (err) {
+            console.log(err)
+          }
+        })
       })
     }
   }, 200)
@@ -833,31 +1131,31 @@ ShareRemind.prototype.init = function () {
     dataType: 'json',
     success: function (data) {
       console.log(data)
-      if (!data.status) {
+      if (data == null) {
         $.ajax({
           url: hosturl + '/index.php/Newindex/tanchu2',
           type: 'get',
           dataType: 'json',
           success: function (data) {
             console.log(data)
+            var imgSrc = data.tanchupath;
+            var imgUrl = data.tanchuurl;
+            This.body.append(
+              '<section id="rules" class="center_box">' +
+              '<div class="rules">' +
+              '<div class="rules_content">' +
+              '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
+              '<a href="' + imgUrl + '">' +
+              '<img class="get_rules" src=" ' + imgSrc + ' ">' +
+              '</a>' +
+              '</div>' +
+              '</div>' +
+              '</section>'
+            )
+            This.close()
           }
         })
-        This.body.append(
-          '<section id="rules" class="center_box">' +
-          '<div class="rules">' +
-          '<div class="rules_content">' +
-          '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
-          '<p class="get_rules">' +
-          '<span>将我们的视频分享给好友</span>' +
-          '<span>即可免费获得一张听课券</span>' +
-          '<span>用于兑换制定课程</span>' +
-          '<span>(每天仅得一张)</span>' +
-          '</p>' +
-          '</div>' +
-          '</div>' +
-          '</section>'
-        )
-        This.close()
+
       }
     }
   })
@@ -873,7 +1171,6 @@ ShareRemind.prototype.close = function () {
       })
     })
     rules.on('click', function () {
-      console.log(this)
       this.css({
         display: 'none'
       })
@@ -881,6 +1178,27 @@ ShareRemind.prototype.close = function () {
     rulescontent.addEventListener('click', function (e) {
       e.stopPropagation()
     })
-    console.log(rules)
   }, 500)
+}
+
+// 直播播放次数统计
+function livingNums() {
+  var livingSum = $('#class_advance').find('.history')
+  // livingSum.attr('href', 'javascript:')
+  livingSum.on('click', function () {
+    $.ajax({
+      url: hosturl + '/index.php/Newautolive/seecount',
+      type: 'get',
+      dataType: 'json',
+      data: {
+        id: this.getAttribute('data-id')
+      },
+      success: function (data) {
+        console.log(data)
+      },
+      error: function (err) {
+        console.log(err)
+      }
+    })
+  })
 }

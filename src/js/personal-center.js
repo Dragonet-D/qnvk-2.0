@@ -128,8 +128,6 @@ PersonalCenter.prototype.coupons = function (This) {
           }
         }
       }
-
-
     }
   })
 }

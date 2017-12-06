@@ -62,7 +62,15 @@ PlayHistory.prototype.init = function () {
     var historywrapper = $('#play_history .history_wrapper')
     deletebtn.on('click', function () {
       var id = this.getAttribute('data-id')
-      this.parentNode.parentNode.removeChild(this.parentNode)
+      if (this.parentNode.parentNode.childNodes.length <= 2) {
+        This.playhistory.html(
+          '<li class="no_record">' +
+          '<span>暂无播放记录</span>' +
+          '</li>'
+        )
+      } else {
+        this.parentNode.parentNode.removeChild(this.parentNode)
+      }
       $.ajax({
         url: hosturl + '/index.php/Client/delplayhistory',
         type: 'get',

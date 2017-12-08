@@ -100,7 +100,6 @@ var chooseObj = {
   id: '',
   tags: ''
 };
-var data_tanchu;
 
 // 主页默认推荐选项卡数据接口
 function advanceData(chooseObj) {
@@ -111,19 +110,20 @@ function advanceData(chooseObj) {
       data: chooseObj,
       success: function (data) {
         console.log(data);
-        if (data.tanchu === '2') {
-          var shareremind = new ShareRemind()
-          shareremind.init();
-        } else if (data.tanchu === '1') {
-          data_tanchu = data.tanchu;
-          // 弹窗引导页
-          winguidan.init(data_tanchu);
-        }
         // 首页选项卡数据
         var tabInfo = data.info
         if (tabInfo) {
           tagContent(tabInfo)
         }
+        if (data.tanchu === '2') {
+          // 分享引导
+          var shareremind = new ShareRemind()
+          shareremind.init();
+        } else if (data.tanchu === '1') {
+          // 弹窗引导
+          var guidance = new Guidance();
+        }
+
         // 直播数据
         var liveinfo = data.liveinfo
         if (liveinfo) {
@@ -146,6 +146,116 @@ function advanceData(chooseObj) {
     offLineClick()
   })
 }
+
+
+//  推荐页弹窗引导
+class Guidance {
+  constructor() {
+    this.box = $('.box');
+    this.mask_list = $('.mask_list');
+    this.share_mask = $('.share_mask');
+    this.nav_mask = $('.nav_mask');
+    this.tab_mask = $('.tabs_mask');
+    this.btn_group = $('.btn_group');
+    this.know_btn = $('.know_btn');
+    this.next_btn = $('.next_btn');
+    this.all_mask = this.mask_list.find('li');
+    this.all_btn = this.btn_group.find('div');
+    this.swiper_slide = $('.swiper-slide');
+    this.init();
+    this.nextClick();
+    this.knowClick();
+    this.tabClick();
+  }
+
+  // 初始化
+  init() {
+    boxHide(this);
+    pageHide(this.all_mask, this.share_mask);
+    pageHide(this.all_btn, this.next_btn);
+  }
+
+  // 点击下一步
+  nextClick() {
+    let _this = this;
+    this.next_btn.on('click', function () {
+      pageHide(_this.all_mask, _this.nav_mask);
+      pageHide(_this.all_btn, _this.know_btn);
+    })
+    this.share_mask.find('.share_mask_item').on('click', function () {
+      pageHide(_this.all_mask, _this.nav_mask);
+      pageHide(_this.all_btn, _this.know_btn);
+    })
+    this.tab_mask.find('.tab_mask_item').on('click', function () {
+      knowHide(_this);
+    })
+  }
+
+  // 点击我知道了
+  knowClick() {
+    let _this = this;
+    this.know_btn.on('click', function () {
+      knowHide(_this)
+    })
+    this.nav_mask.find('.nav_mask_item').on('click', function () {
+      knowHide(_this)
+    })
+  }
+
+  // 点击Tab
+  tabClick() {
+    let _this = this;
+    this.swiper_slide.on('click', function () {
+      const swiper_text = $(this).children('span').text();
+      if (swiper_text === '名师公益课' || swiper_text === '心理健康课') {
+        boxHide(_this);
+        pageHide(_this.all_mask, _this.tab_mask);
+        pageHide(_this.all_btn, _this.know_btn);
+      }
+    })
+  }
+}
+
+function knowHide(_this) {
+  _this.mask_list.css({
+    display: 'none'
+  })
+  _this.box.css({
+    overflow: 'auto',
+    height: 'auto'
+  })
+  closePost();
+}
+
+function pageHide(obj, show_obj) {
+  obj.addClass('none');
+  show_obj.removeClass('none')
+}
+
+function boxHide(_this) {
+  _this.mask_list.css({
+    display: 'block'
+  });
+  _this.box.css({
+    overflow: 'hidden',
+    height: '100%'
+  })
+}
+
+// 关闭请求接口
+function closePost() {
+  $.ajax({
+    url: hosturl + '/index.php/Newindex/sesstanchu',
+    type: 'post',
+    dataType: 'json',
+    success: function (data) {
+    },
+    error: function (err) {
+      console.log(err)
+    }
+  })
+}
+
 
 // 课程包点击
 function bagClick() {
@@ -182,8 +292,8 @@ function offLineClick() {
     offLineItem[i].onclick = function () {
       var id = this.getAttribute('data-id')
       console.log(id)
-      /*$.ajax({
-        url: hosturl + '/index.php/Newindex/ispay',
+      $.ajax({
+        url: hosturl + '/index.php/Share/ticketdata',
         type: 'get',
         dataType: 'json',
         data: {
@@ -191,107 +301,17 @@ function offLineClick() {
         },
         success: function (data) {
           // 支付成功
-          if (data.status === 1) {
-            window.location.href = hosturl + '/index.php/Newautolive/index/id/' + id
+          if (data.ispay === 2) {
+            window.location.href = `${hosturl}/index.php/Client/ticket/id/${id}`
           } else {
-            window.location.href = hosturl + '/index.php/Newindex/curdetail/id/' + data.id
+            window.location.href = `${hosturl}/index.php/Client/playticket/id/${id}`
           }
         }
-      })*/
+      })
     }
   }
 }
 
-// 弹窗引导
-var winguidan = new windowGuidance();
-var maskList, shareMask, navMask, tabsMask, knowBtn, nextBtn, mask, maskAll, maskCenter;
-var pageState = true;
-var clickState = true;
-
-function windowGuidance() {
-  mask = this.maskList = $('.mask')
-  maskList = this.mask = $('.mask_list')
-  shareMask = this.shareMask = $('.share_mask')
-  navMask = this.navMask = $('.nav_mask')
-  tabsMask = this.tabsMask = $('.tabs_mask')
-  knowBtn = this.knowBtn = $('.know_btn')
-  nextBtn = this.nextBtn = $('.next_btn')
-  maskAll = this.maskAll = $('.mask_all')
-  maskCenter = this.maskCenter = $('.mask_center')
-}
-
-windowGuidance.prototype.init = function (data_tanchu) {
-  console.log(clickState)
-  if (pageState) {
-    if (data_tanchu == 1) {
-      winguidan.indexPage()
-      console.log(0)
-    }
-  } else {
-    if (data_tanchu == 1 && clickState) {
-      winguidan.otherPage()
-
-    }
-  }
-}
-
-windowGuidance.prototype.indexPage = function () {
-  var This = this
-  indexMaskShow(maskList, nextBtn, maskAll, shareMask, navMask, This)
-  This.nextPlay()
-  This.maskclose()
-}
-windowGuidance.prototype.otherPage = function () {
-  console.log(2)
-  var This = this
-  otherMaskShow(maskList, knowBtn, maskCenter, tabsMask, mask, This);
-  maskCenter.find('.top').css({
-    height: 0
-  })
-  maskCenter.find('.bottom').css({
-    top: '4.8rem',
-    height: '21rem'
-  })
-  This.maskclose()
-}
-windowGuidance.prototype.nextPlay = function () {
-  var This = this
-  nextBtn.on('click', function () {
-    maskAll.css({
-      display: 'none'
-    })
-    nextBtn.css({
-      display: 'none'
-    })
-    indexMaskShow(maskList, knowBtn, maskCenter, navMask, shareMask, This);
-  })
-}
-
-windowGuidance.prototype.maskclose = function () {
-  var This = this
-  This.knowBtn.on('click', function () {
-    winguidanClose(This)
-    closePost();
-  })
-  This.shareMask.on('click', function () {
-    maskAll.css({
-      display: 'none'
-    })
-    nextBtn.css({
-      display: 'none'
-    })
-    indexMaskShow(maskList, knowBtn, maskCenter, navMask, shareMask, This);
-    closePost()
-  });
-  This.navMask.on('click', function () {
-    winguidanClose(This)
-    closePost()
-  })
-  This.tabsMask.on('click', function () {
-    winguidanClose(This)
-    closePost()
-  })
-}
 
 // 线下活动
 function offLine(info) {
@@ -491,84 +511,6 @@ function tagContent(tabInfo) {
   }, 300)
 }
 
-// 关闭全部弹窗引导面板
-function winguidanClose(This) {
-  This.maskList.css({
-    display: 'none'
-  })
-  $('.box').css({
-    overflow: 'scroll',
-    width: 'auto',
-    height: 'auto'
-  })
-  This.mask.css({
-    display: 'none'
-  })
-}
-
-// 主页弹窗引导页显示
-function indexMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
-  console.log(afterObj)
-  maskList.css({
-    display: 'block'
-  });
-  $('.box').css({
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%'
-  });
-  btn.css({
-    display: 'block'
-  })
-  maskPale.css({
-    display: 'block'
-  })
-  beforObj.css({
-    display: 'block'
-  })
-  afterObj.css({
-    display: 'none'
-  })
-
-}
-
-function otherMaskShow(maskList, btn, maskPale, beforObj, afterObj, This) {
-  console.log(afterObj)
-  maskList.css({
-    display: 'block'
-  });
-  $('.box').css({
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%'
-  });
-  btn.css({
-    display: 'block'
-  })
-  maskPale.css({
-    display: 'block'
-  })
-  beforObj.css({
-    display: 'block'
-  })
-
-}
-
-// 关闭请求
-function closePost() {
-  $.ajax({
-    url: hosturl + '/index.php/Newindex/sesstanchu',
-    type: 'post',
-    dataType: 'json',
-    success: function (data) {
-    },
-    error: function (err) {
-      console.log(err)
-    }
-  })
-}
-
-
 // 获取遮罩数据接口
 function getTagMask(id) {
   $.ajax({
@@ -601,7 +543,8 @@ function liveInfo(liveinfo) {
     willlivetime = new Date(Number(liveinfo.starttime) * 1000).toLocaleString(),
     liveoff = Number(liveinfo.status),
     livetype = Number(liveinfo.livetype),
-    liveurl = ''
+    liveurl = '',
+    livetagsrc = ''
   if (livetype === 1) {
     livetagsrc = "https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png"
     liveurl = 'Newautolive/index'
@@ -796,6 +739,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                   title = otherdata[i].title ? otherdata[i].title.trim() : '',
                   time = new Date(Number(otherdata[i].starttime ? otherdata[i].starttime : '') * 1000).toLocaleDateString(),
                   ischoes = Number(otherdata[i].ischoes),
+                  name = otherdata[i].name ? otherdata[i].name : '',
                   price = otherdata[i].price ? otherdata[i].price : '',
                   sumi = otherdata[i].sumi ? otherdata[i].sumi : '',
                   suming = otherdata[i].suming ? otherdata[i].suming : '',
@@ -1012,20 +956,12 @@ TabCenter.prototype.maskData = function (data, This) {
       str1 += '<span data-id="' + id2 + '">' + tag2 + '</span>'
       This.tabMsk.find('.objects').find('h2').css('display', 'block')
       This.tabMsk.find('.objects').html('<h2>学科:</h2>' + str1)
-      // 弹窗引导
-      pageState = false
-      winguidan.init(data_tanchu)
-      clickState = false
     }
 
     if (tag3) {
       str2 += '<span data-id="' + id3 + '">' + tag3 + '</span>'
       This.tabMsk.find('.stages').find('h2').css('display', 'block')
       This.tabMsk.find('.stages').html('<h2>学段:</h2>' + str2)
-      // 弹窗引导
-      pageState = false
-      winguidan.init(data_tanchu)
-      clickState = false
 
     } else {
       sum++

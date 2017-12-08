@@ -9,7 +9,10 @@
   line-height: $h;
   height: $h;
 }
-
+@mixin width_height($h) {
+  width: $h;
+  height: $h;
+}
 // 背景图片
 @mixin bg-image($url) {
   background-image: url($url + "@2x.png");
@@ -35,6 +38,19 @@
 @mixin back-gradient-bottom($begin:rgba(0,0,0,0), $end:rgba(0,0,0,.4)){
   background: linear-gradient(to bottom, $begin 0%,$end 100%);
 }
+// 首页引导
+%mask_before_after{
+  content: '';
+  display: block;
+  position: fixed;
+  width: 100%;
+  background: $background-mask;
+}
+@mixin mask_item($top,$right){
+  position: fixed;
+  top: r($top);
+  right: r($right);
+}
 // 免费课程
 %is-free{
   width: r(80);
@@ -44,7 +60,7 @@
   color: $button-back-fff;
   font-size: $font-size-xsmall;
   text-align: center;
-  background-color: $background-ff3600;
+  background-color: $background-ff3600
 }
 // flex上下居中
 %flex-center{

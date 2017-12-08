@@ -1,78 +1,43 @@
-%absolute {
-  position: absolute;
-}
-%top{
-  @extend %absolute;
-  top: 0;
-  background: rgba(0,0,0,0.5);
-  width: 100%;
-}
-%bottom{
-  @extend %absolute;
-  background: rgba(0,0,0,0.5);
-  width: 100%;
-
-}
 .mask_list {
-  //display: none;
-  .mask{
-    display: none;
-    z-index: 10;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  display: none;
+  @include width_height(100%);
+  .share_mask{
+
+    @include width_height(100%);
+    background: $background-mask;
+    .share_mask_item{
+      @include mask_item(6,26);
+      z-index: 11;
+    }
   }
-  .mask_all,.mask_center{
-    @extend %absolute;
-    top: 0;
+  .nav_mask{
+      &:after{
+        @extend %mask_before_after;
+        height: r(950);
+        top: r(340);
+      }
+      &:before{
+        @extend %mask_before_after;
+        height: r(260);
+        top: r(0);
+      }
+      .nav_mask_item{
+        @include mask_item(295,57);
+        z-index: 11;
+      }
+  }
+  .tabs_mask{
+    position: fixed;
     width: 100%;
-    height: 100%;
-    display: none;
-    z-index: 9;
-  }
-  .mask_all{
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  .mask_center{
-    .top{
-      @extend %top;
-      height: r(260);
+    top: r(265);
+    height: r(1050);
+    background: $background-mask;
+    .tab_mask_item{
+      @include mask_item(-200,26);
     }
-    .bottom{
-      @extend %bottom;
-      height: r(950);
-      top:r(340);
-    }
-    .personal_top{
-      @extend %top;
-      height: r(267);
-    }
-    .personal_bottom{
-      @extend %bottom;
-      top: r(367);
-      bottom:0;
-    }
-  }
-  .share_mask {
-    @extend %absolute;
-    top: r(4);
-    right: r(26);
-    z-index: 10;
-  }
-  .nav_mask {
-    @extend %absolute;
-    top: r(295);
-    right: r(88);
-  }
-  .tabs_mask {
-    @extend %absolute;
-    top: r(150);
-    right: r(57);
-  }
-  .personal_mask {
-    @extend %absolute;
-    top: r(350);
-    right: r(195);
-    z-index: 10;
   }
   .mask_item {
     position: relative;
@@ -91,13 +56,12 @@
       color: #000;
     }
   }
-  .mask_btn {
+  .btn_group {
     z-index: 10;
     position: absolute;
     bottom: r(130);
     width: 100%;
     p {
-      display: none;
       width: r(200);
       margin: 0 auto;
       text-align: center;
@@ -108,5 +72,8 @@
       padding: r(15);
       font-size: r(30);
     }
+  }
+  .none{
+    display: none;
   }
 }

@@ -54,6 +54,56 @@ AdAndTabs.prototype.init = function () {
     tabcenter.init();
     // 选项卡active样式添加
     This.activeStyle(This)
+    let swipperWrapper = $('#banner .swiper-wrapper').get(0);
+    let swiperSlide = swipperWrapper.querySelectorAll('.swiper-slide')
+    console.log(swiperSlide)
+    for (let i = 0; i < swiperSlide.length; i++) {
+      // swiperSlide[i].getElementsByTagName('a')[0].href = 'javascript:'
+      swiperSlide[i].index = i
+      swiperSlide[i].addEventListener('click', function () {
+        let herfSrc = swiperSlide[this.index].getElementsByTagName('a')[0].href
+        let ifId = herfSrc.indexOf('id')
+        if (ifId > 0) {
+          let id = herfSrc.substring(ifId + 3)
+          // console.log(id)
+          swiperSlide[this.index].getElementsByTagName('a')[0].href = 'javascript:'
+          $.ajax({
+            url: hosturl + '/index.php/Newindex/ispay',
+            type: 'get',
+            dataType: 'json',
+            data: {
+              id: id
+            },
+            success: function (data) {
+              var _aurl
+              /*
+                 status:是否支持成功：1.支付成功，2.支付不成功
+                 id:没有支付成功的付费ID
+                 ischoes:是否是付费课程，0.不收费课程  2.收费课程
+                 livetype:语音和视频判断：1.视频，2.语音
+              */
+              let {status, id, ischoes, livetype} = data
+              if (ischoes === '0') {
+                if (livetype === '1') {
+                  _aurl = `${hosturl}/index.php/Newautolive/index/id/${id}`
+                } else if (livetype === '2') {
+                  _aurl = `${hosturl}/index.php/Indexvedeil_0/id/${id}`
+                }
+              } else if (ischoes === '2') {
+                if (status === 1) {
+                  _aurl = `${hosturl}/index.php/Newautolive/index/id/${id}`
+                } else if (status === 2) {
+                  _aurl = `${hosturl}/index.php/Newindex/curdetail/id/${id}`
+                }
+              }
+              window.location.href = _aurl
+            }
+          })
+        } else {
+          window.location.href = herfSrc
+        }
+      })
+    }
   });
 }
 // 轮播数据
@@ -117,12 +167,18 @@ function advanceData(chooseObj) {
         }
         if (data.tanchu === '2') {
           // 分享引导
-          var shareremind = new ShareRemind()
-          shareremind.init();
+          // var shareremind = new ShareRemind()
+          // shareremind.init();
         } else if (data.tanchu === '1') {
           // 弹窗引导
           var guidance = new Guidance();
         }
+        // 遮罩数据筛选
+        var maskData = data.infolist;
+        if (maskData) {
+          masktagContent(maskData)
+        }
+
 
         // 直播数据
         var liveinfo = data.liveinfo
@@ -131,7 +187,7 @@ function advanceData(chooseObj) {
         }
         // 线下活动
         var offLineActivity = data.ticketinfo
-        if (offLineActivity) {
+        if (offLineActivity && offLineActivity.length) {
           offLine(offLineActivity)
         }
       },
@@ -511,24 +567,74 @@ function tagContent(tabInfo) {
   }, 300)
 }
 
-// 获取遮罩数据接口
-function getTagMask(id) {
-  $.ajax({
-    url: hosturl + '/index.php/Newindex/tags/id/' + id,
-    type: 'get',
-    dataType: 'jsonp',
-    jsonp: 'jsonpcallback',
-    success: function (data) {
-      console.log(data)
-    },
-    error: function (err) {
-      console.log(err)
+// 遮罩数据筛选
+function masktagContent(otherdata) {
+  homeadvance.html(
+    '<div id="audio_advance" class="audio_advance choose_craful">' +
+    '<ul class="audio_content">' + '</ul>' +
+    '</div>' +
+    '<div class="video_audio choose_craful">' +
+    '<ul class="list_content">' + '</ul>' +
+    '</div>'
+  )
+  var audioadvance = $('#audio_advance .audio_content')
+  var videoaudio = $('.video_audio .list_content')
+  for (var i = 0; i < otherdata.length; i++) {
+    if (otherdata[i]) {
+      var livetype = Number(otherdata[i].livetype) || '',
+        id = otherdata[i].id,
+        picture = otherdata[i].picture,
+        audiotitle = otherdata[i].content,
+        title = otherdata[i].title.trim(),
+        time = new Date(Number(otherdata[i].starttime) * 1000).toLocaleDateString(),
+        ischoes = Number(otherdata[i].ischoes),
+        price = otherdata[i].price,
+        logourl = '',
+        name = otherdata[i].name
+      // 语音消息
+      if (livetype === 2) {
+        logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_audio@2x.png'
+        audioadvance.append(
+          '<li class="audio_item">' +
+          '<a class="audio_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Index/livedeil_0/id/' + id + '">' +
+          '<i class="icon">' +
+          '<img src="' + picture + '" alt="">' +
+          '</i>' +
+          '<span class="audio_info">' +
+          '<span class="audio_title">' + title + '</span>' +
+          '<span class="audio_owner">' + name + '</span>' +
+          '<span class="audio_hot">' +
+          '<time>' + time + '</time>' +
+          '</span>' +
+          '</span>' +
+          '</a>' +
+          '</li>'
+        )
+      } else if (livetype === 1) {
+        logourl = 'https://cdn2.qnzsvk.cn/static/20170915/images/all_live_video@2x.png'
+        videoaudio.append(
+          '<li class="single_video">' +
+          '<a class="single_list_wrapper history" data-id="' + id + '" href="' + hosturl + '/index.php/Newautolive/index/id/' + id + '">' +
+          '<section class="list_header">' +
+          '<span class="list_header_info">' +
+          '<img class="class_type" src="' + logourl + '" alt="">' +
+          '<p class="is_free">免费</p>' +
+          '</span>' +
+          '<img src="' + picture + '" alt="">' +
+          '<span class="title">' +
+          '<title class="video_introduce">' + title + '</title>' +
+          '</span>' +
+          '</section>' +
+          '<p class="video_owner">' + name + '</p>' +
+          '</a>' +
+          '</li>'
+        )
+      }
     }
-  }).done(function () {
-
-  })
+  }
+  // loading样式消失
+  loading('none')
 }
-
 
 // 直播信息函数
 function liveInfo(liveinfo) {
@@ -787,7 +893,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                         <i class="icon">
                           <img
                               src="${picture}"
-                              alt=""> 
+                              alt="">
                         </i>
                         <span class="audio_info">
                           <span class="audio_title">${title}</span>
@@ -798,7 +904,6 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                             <span class="bag_price">￥${price}</span>
                           </span>
                         </span>
-              
                       </a>
                     </li>
                   `
@@ -806,7 +911,7 @@ TabCenter.prototype.tabListChange = function (tabContents, index, This, slideCon
                   result += `
                     <li class="activity_item"  data-id="${otherdata[i].id}">
                       <div class="activity_left">
-                        <img 
+                        <img
                            src="${otherdata[i].tickets_picture}"
                            alt=""
                         >
@@ -894,12 +999,14 @@ TabCenter.prototype.windowScroll = function () {
 // 遮罩数据点击过滤
 TabCenter.prototype.tabFilter = function (maskcontent, This) {
   var itemA = null;
+  var prevMsk = null;
   for (var k = 0; k < maskcontent.length; k++) {
     itemA = maskcontent[k].querySelectorAll("span");
     maskcontent[k].prevNode = null;
     maskcontent[k].index = k;
     for (var m = 0; m < itemA.length; m++) {
       itemA[m].onOff = true
+      itemA[m].index = m
       itemA[m].addEventListener('touchstart', function () {
         chooseObj.tags = ' '
         This.tagsstr = ''
@@ -908,7 +1015,7 @@ TabCenter.prototype.tabFilter = function (maskcontent, This) {
           parent.prevNode.className = ''
         }
         // 点击切换筛选明细状态
-        if (this.onOff) {
+        if (this.onOff && prevMsk !== this) {
           this.className = 'search_active';
           this.onOff = false
           This.tagss[parent.index + 1] = this.getAttribute('data-id')
@@ -916,14 +1023,24 @@ TabCenter.prototype.tabFilter = function (maskcontent, This) {
             This.tagsstr += This.tagss[attr] + ','
           }
         } else {
-          this.className = ''
-          This.tagss[parent.index + 1] = ''
-          this.onOff = true
-          for (var key in This.tagss) {
-            This.tagsstr += This.tagss[key] + ','
+          if (prevMsk === this && !this.onOff) {
+            this.className = ''
+            this.onOff = true
+            This.tagss[parent.index + 1] = ''
+            for (var key in This.tagss) {
+              This.tagsstr += This.tagss[key] + ','
+            }
+          } else {
+            this.className = 'search_active';
+            this.onOff = false
+            This.tagss[parent.index + 1] = this.getAttribute('data-id')
+            for (var attr in This.tagss) {
+              This.tagsstr += This.tagss[attr] + ','
+            }
           }
         }
         parent.prevNode = this;
+        prevMsk = this;
         // 传给后台筛选数据的参数
         var reg = /\d+/g
         if (reg.test(This.tagsstr)) {
@@ -1117,20 +1234,22 @@ ShareRemind.prototype.init = function () {
           dataType: 'json',
           success: function (data) {
             console.log(data)
-            var imgSrc = data.tanchupath;
-            var imgUrl = data.tanchuurl;
-            This.body.append(
-              '<section id="rules" class="center_box">' +
-              '<div class="rules">' +
-              '<div class="rules_content">' +
-              '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
-              '<a href="' + imgUrl + '">' +
-              '<img class="get_rules" src=" ' + imgSrc + ' ">' +
-              '</a>' +
-              '</div>' +
-              '</div>' +
-              '</section>'
-            )
+            if (data) {
+              var imgSrc = data.tanchupath;
+              var imgUrl = data.tanchuurl;
+              This.body.append(
+                '<section id="rules" class="center_box">' +
+                '<div class="rules">' +
+                '<div class="rules_content">' +
+                '<img class="close_btn" src="https://cdn2.qnzsvk.cn/static/20170927_/qnvk_2.0/images/popup_coupon_close_btn@3x.png">' +
+                '<a href="' + imgUrl + '">' +
+                '<img class="get_rules" src=" ' + imgSrc + ' ">' +
+                '</a>' +
+                '</div>' +
+                '</div>' +
+                '</section>'
+              )
+            }
             This.close()
           }
         })

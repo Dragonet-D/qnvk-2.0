@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/js/test.js"],"names":["a","b","console","log","c"],"mappings":";;AAAA,IAAIA,IAAI,GAAR;AACA,IAAIC,IAAI,IAAR;AACAC,QAAQC,GAAR,CAAY,CAAZ;AACA,IAAIC,IAAI,GAAR","file":"test.js","sourcesContent":["let a = 123\r\nlet b = 1233\r\nconsole.log(1)\r\nlet c = 123"]}

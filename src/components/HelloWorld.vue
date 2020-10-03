@@ -2,6 +2,7 @@
   <div class="hello">
     <div>{{value}}</div>
     <button @click="add">add</button>
+    <button @click="test">test</button>
   </div>
 </template>
 
@@ -11,12 +12,18 @@ export default {
   name: 'HelloWorld',
   setup() {
     const state = reactive({ value: 1 })
+    const a = reactive([1, 2, 3])
 
     const add = () => {
      state.value++
     }
 
-    return { ...toRefs(state), add }
+    const test = () => {
+      a[0] = 5
+      console.log(a)
+    }
+
+    return { ...toRefs(state), add, test }
   }
 }
 </script>

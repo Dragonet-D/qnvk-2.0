@@ -3,25 +3,60 @@
     <div>{{value}}</div>
     <button @click="add">add</button>
     <button @click="test">test</button>
+    <input type="text" v-model="input">
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import a from './test'
+import { reactive, toRefs, watchEffect } from 'vue'
 export default {
   name: 'HelloWorld',
+  mounted() {
+    console.log(a)
+  },
   setup() {
-    const state = reactive({ value: 1 })
-    const a = reactive([1, 2, 3])
+    const state = reactive({ value: 1, input: '' })
 
     const add = () => {
      state.value++
     }
 
     const test = () => {
-      a[0] = 5
-      console.log(a)
+      find(a, state.input || '华发集团')
     }
+
+    const find = (list, name) => {
+      let walker = function (array, label) {
+        let going = false;
+        array.forEach(item => {
+          if (item['child']) {
+            let a = walker(item['child'], label);
+            if (a) {
+              item.isEnable = false;
+              going = true;``
+            } else if ((item['name'].includes(label) || item['areaName'].includes(label)) || label === '') {
+              item.isEnable = false;
+              going = true;
+            } else {
+              item.isEnable = true;
+            }
+          } else if ((item['name'].includes(label) || item['areaName'].includes(label)) || label === '') {
+            item.isEnable = false;
+            going = true;
+          } else {
+            item.isEnable = true;
+          }
+        });
+        return going;
+      }
+      walker(list, name);
+      console.log(list)
+    }
+
+    watchEffect(() => {
+      // console.log(state.input)
+    })
 
     return { ...toRefs(state), add, test }
   }
